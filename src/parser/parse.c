@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:16:05 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/07 12:16:20 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/07 12:31:54 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,53 @@ int	parse_color_value(char *line, t_color *color)
 	ft_free_strarr(rgb);
 	if (!check_color_value(color->r, color->g, color->b))
 		ret = -1;
+	return (ret);
+}
+
+int	parse_element(char *line, t_game *game)
+{
+	if (ft_strncmp(line, "NO ", 3) == 0)
+		return (parse_texture_path(line, &game->no_path));
+	else if (ft_strncmp(line, "SO ", 3) == 0)
+		return (parse_texture_path(line, &game->so_path));
+	else if (ft_strncmp(line, "WE ", 3) == 0)
+		return (parse_texture_path(line, &game->we_path));
+	else if (ft_strncmp(line, "EA ", 3) == 0)
+		return (parse_texture_path(line, &game->ea_path));
+	else if (ft_strncmp(line, "F ", 2) == 0)
+		return (parse_color_value(line, &game->floor));
+	else if (ft_strncmp(line, "C ", 2) == 0)
+		return (parse_color_value(line, &game->ceiling));
+	return (-1);
+}
+
+int parse_file(char *filename, t_game *game)
+{
+	int fd;
+	char *line;
+	int ret;
+
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+		return (perror("Error opening file"), -1);
+	ret = 0;
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		if (ft_strlen(line) <= 1 || line[0] == '\n')
+		{
+			free(line);
+			continue ;
+		}
+		if (line[ft_strlen(line) - 1] == '\n')
+			line[ft_strlen(line) - 1] = '\0';
+		if (parse_element(line, game) == -1)
+		{
+			if (parse_map(fd, game, line) == -1)
+				ret = -1;
+			break ;
+		}
+		free(line);
+	}
+	close(fd);
 	return (ret);
 }

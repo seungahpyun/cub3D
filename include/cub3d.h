@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:59:02 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/07 11:52:44 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/07 12:31:41 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,13 @@ bool	check_file_extension(const char *filename);
 bool	check_texture_path(const char *path);
 bool	check_color_value(int r, int g, int b);
 int		check_map_chars(char **map);
+
+int		parse_texture_path(char *line, char **path);
+int		parse_color_value(char *line, t_color *color);
+int		parse_element(char *line, t_game *game);
+int		parse_file(char *filename, t_game *game);
+
+int		parse_map(int fd, t_game *game, char *line);
 
 void	free_map(char **map, t_game *game);
 void	free_game(t_game *game);
