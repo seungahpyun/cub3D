@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:59:02 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/07 10:13:29 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/07 11:16:23 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
-# include "libft.h"
+# include <libft.h>
 # include "MLX42.h"
 
 typedef struct s_color
@@ -57,8 +57,9 @@ typedef struct s_game
 	int			player_y;
 	char		player_dir;
 	t_player	player;
-	// t_texture	texture[4];
-	// t_img		img;
 }	t_game;
+
+int	main(int argc, char **argv);
+int	check_file_extension(const char *filename);
 
 #endif
