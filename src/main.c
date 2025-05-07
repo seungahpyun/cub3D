@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:52:59 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/07 11:25:57 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/07 11:34:22 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,38 +24,6 @@ static void	init_game(t_game *game)
 	game->player_x = -1;
 	game->player_y = -1;
 	game->player_dir = '\0';
-}
-
-static void	free_map(char **map, t_game *game)
-{
-	int	i;
-
-	if (!map || !game)
-		return ;
-	i = 0;
-	while (map[i])
-	{
-		free(map[i]);
-		i++;
-	}
-	free(map);
-	game->map = NULL;
-}
-
-static void free_game(t_game *game)
-{
-	if (!game)
-		return ;
-	if (game->no_path)
-		free(game->no_path);
-	if (game->so_path)
-		free(game->so_path);
-	if (game->we_path)
-		free(game->we_path);
-	if (game->ea_path)
-		free(game->ea_path);
-	if (game->map)
-		free_map(game->map, game);
 }
 
 int	main(int argc, char **argv)
