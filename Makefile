@@ -18,26 +18,26 @@ INCLUDES = -I $(INCLUDE_DIR) -I $(LIB_DIR)/include -I $(MLX_DIR)/include/MLX42
 all: $(NAME)
 
 $(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
-	mkdir -p $(OBJ_DIR)/$(PARSER_DIR)
+	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)/$(PARSER_DIR)
 
 $(LIBFT):
-	$(MAKE) -C $(LIB_DIR)
+	@$(MAKE) -C $(LIB_DIR) --no-print-directory
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME): $(OBJ_DIR) $(LIBFT) $(OBJ_FILES)
 	$(CC) $(CFLAGS) $(OBJ_FILES) $(LIBFT) -o $(NAME)
 
 clean:
-	rm -rf $(OBJ_DIR)
-	make -C $(LIB_DIR) clean
+	@rm -rf $(OBJ_DIR)
+	@make -C $(LIB_DIR) clean  --no-print-directory
 
 fclean: clean
-	rm -f $(NAME)
-	make -C $(LIB_DIR) fclean
+	@rm -f $(NAME)
+	@make -C $(LIB_DIR) fclean --no-print-directory
 
 re: fclean all
 

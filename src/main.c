@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:52:59 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/07 10:34:16 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/07 11:25:57 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ static void free_game(t_game *game)
 		free(game->ea_path);
 	if (game->map)
 		free_map(game->map, game);
-	return (0);
 }
 
 int	main(int argc, char **argv)
