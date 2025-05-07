@@ -30,15 +30,18 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME): $(OBJ_DIR) $(LIBFT) $(OBJ_FILES)
-	$(CC) $(CFLAGS) $(OBJ_FILES) $(LIBFT) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ_FILES) $(LIBFT) -o $(NAME)
+	@echo "\033[1;33mExecutable compiled!\033[0m"
 
 clean:
 	@rm -rf $(OBJ_DIR)
 	@make -C $(LIB_DIR) clean  --no-print-directory
+	@echo "\033[1;33mObject files cleaned!\033[0m"
 
 fclean: clean
 	@rm -f $(NAME)
 	@make -C $(LIB_DIR) fclean --no-print-directory
+	@echo "\033[1;33mExecutable cleaned!\033[0m"
 
 re: fclean all
 

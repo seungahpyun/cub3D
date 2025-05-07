@@ -6,14 +6,13 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:16:08 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/07 11:40:50 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/07 11:54:11 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	parse_map(int fd, t_game *game, char *line)
+// int	parse_map(int fd, t_game *game, char *line)
+// {
 
-{
-
-}
+// }

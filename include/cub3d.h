@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:59:02 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/07 11:35:09 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/07 11:52:44 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,12 @@ typedef struct s_game
 }	t_game;
 
 int		main(int argc, char **argv);
-int		check_file_extension(const char *filename);
+
+bool	check_file_extension(const char *filename);
+bool	check_texture_path(const char *path);
+bool	check_color_value(int r, int g, int b);
+int		check_map_chars(char **map);
+
 void	free_map(char **map, t_game *game);
 void	free_game(t_game *game);
 
