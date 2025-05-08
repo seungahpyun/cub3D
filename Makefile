@@ -9,6 +9,8 @@ MLX_DIR = MLX42
 INCLUDE_DIR = include
 SRC_FILES = $(SRC_DIR)/main.c \
 			$(SRC_DIR)/free_utils.c \
+			$(PARSER_DIR)/map_builder.c \
+			$(PARSER_DIR)/parse_file.c \
 			$(PARSER_DIR)/parse.c \
 			$(PARSER_DIR)/parse_map.c \
 			$(PARSER_DIR)/validation.c

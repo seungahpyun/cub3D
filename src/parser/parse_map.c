@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:16:08 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/07 15:11:29 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/08 09:05:47 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ static int	get_map_width(char **map)
 	return (max_width);
 }
 
-static bool is_valid_map(char **map, t_game *game)
+static bool	is_valid_map(char **map, t_game *game)
 {
 	int	i;
 	int	j;
 
-	if(!map || !game)
+	if (!map || !game)
 		return (false);
-	if(!check_map_chars(map))
+	if (!check_map_chars(map))
 		return (ft_putendl_fd("Error: Invalid characters in map", 2), false);
 	i = 0;
 	while (map[i])
@@ -59,84 +59,50 @@ static bool is_valid_map(char **map, t_game *game)
 	return (true);
 }
 
+static int	read_map_lines(int fd, t_list **map_lines, char *first_line)
+{
+	t_list	*new_node;
+	char	*line;
+
+	if (add_first_line(map_lines, first_line) == -1)
+		return (-1);
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		new_node = create_map_node(line);
+		if (!new_node)
+		{
+			free(line);
+			ft_lstclear(map_lines, free);
+			return (-1);
+		}
+		ft_lstadd_back(map_lines, new_node);
+		free(line);
+		line = get_next_line(fd);
+	}
+	close(fd);
+	if (!*map_lines)
+		return (ft_putendl_fd("Error: Empty map", 2), -1);
+	return (0);
+}
+
 int	parse_map(int fd, t_game *game, char *first_line)
 {
 	t_list	*map_lines;
-	t_list	*current;
-	t_list	*new_node;
-	char	*line;
-	char	*str_dup;
-	int		i;
 
 	map_lines = NULL;
-	if (first_line && *first_line)
-	{
-		str_dup = ft_strdup(first_line);
-		if (!str_dup)
-			return (-1);
-		new_node = ft_lstnew(str_dup);
-		if (!new_node)
-		{
-			free(str_dup);
-			return (-1);
-		}
-		ft_lstadd_back(&map_lines, new_node);
-	}
-	free(first_line);
-	while ((line = get_next_line(fd)) != NULL)
-	{
-		if (line[ft_strlen(line) - 1] == '\n')
-			line[ft_strlen(line) - 1] = '\0';
-		str_dup = ft_strdup(line);
-		if (!str_dup)
-		{
-			free(line);
-			ft_lstclear(&map_lines, free);
-			return (-1);
-		}
-		new_node = ft_lstnew(str_dup);
-		if (!new_node)
-		{
-			free(str_dup);
-			free(line);
-			ft_lstclear(&map_lines, free);
-			return (-1);
-		}
-		ft_lstadd_back(&map_lines, new_node);
-		free(line);
-	}
-	close(fd);
-	if (!map_lines)
-	{
-		ft_putendl_fd("Error: Empty map", 2);
+	if (read_map_lines(fd, &map_lines, first_line) == -1)
 		return (-1);
-	}
-	game->map_height = ft_lstsize(map_lines);
-	game->map = malloc(sizeof(char *) * (game->map_height + 1));
-	if (!game->map)
+	if (build_map_array(game, map_lines) == -1)
 	{
 		ft_lstclear(&map_lines, free);
 		return (-1);
 	}
-	current = map_lines;
-	i = 0;
-	while (current)
-	{
-		game->map[i++] = ft_strdup((char *)current->content);
-		current = current->next;
-	}
-	game->map[i] = NULL;
 	ft_lstclear(&map_lines, free);
-	game->map_width = get_map_width(game->map);
 	if (!is_valid_map(game->map, game))
 	{
 		free_map(game->map, game);
 		return (-1);
-	}
-	printf("Parsed map:\n");
-	for (i = 0; game->map[i]; i++)
-	{
-		printf("%s\n", game->map[i]);
 	}
 	return (0);
 }

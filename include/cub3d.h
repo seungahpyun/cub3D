@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:59:02 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/07 12:31:41 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/08 08:58:38 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,17 @@ typedef struct s_color
 	int	b;
 }	t_color;
 
-typedef struct s_player
-{
-	double	x;
-	double	y;
-	double	dir_x;
-	double	dir_y;
-	double	plane_x;
-	double	plane_y;
-	double	move_speed;
-	double	rot_speed;
-}	t_player;
+// typedef struct s_player
+// {
+// 	double	x;
+// 	double	y;
+// 	double	dir_x;
+// 	double	dir_y;
+// 	double	plane_x;
+// 	double	plane_y;
+// 	double	move_speed;
+// 	double	rot_speed;
+// }	t_player;
 
 typedef struct s_game
 {
@@ -56,20 +56,28 @@ typedef struct s_game
 	int			player_x;
 	int			player_y;
 	char		player_dir;
-	t_player	player;
+	// t_player	player;
 }	t_game;
 
+/* main.c */
 int		main(int argc, char **argv);
 
+/* validation.c */
 bool	check_file_extension(const char *filename);
 bool	check_texture_path(const char *path);
 bool	check_color_value(int r, int g, int b);
 int		check_map_chars(char **map);
 
+/* parse.c */
 int		parse_texture_path(char *line, char **path);
 int		parse_color_value(char *line, t_color *color);
 int		parse_element(char *line, t_game *game);
 int		parse_file(char *filename, t_game *game);
+
+/* map_builder.c  */
+t_list	*create_map_node(char *line);
+int		add_first_line(t_list **map_lines, char *first_line);
+int		build_map_array(t_game *game, t_list *map_lines);
 
 int		parse_map(int fd, t_game *game, char *line);
 
