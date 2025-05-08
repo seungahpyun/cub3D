@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 08:52:11 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/08 08:55:40 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/08 22:36:37 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,15 @@ int	add_first_line(t_list **map_lines, char *first_line)
 	{
 		str_dup = ft_strdup(first_line);
 		if (!str_dup)
+		{
+			free(first_line);
 			return (-1);
+		}
 		new_node = ft_lstnew(str_dup);
 		if (!new_node)
 		{
 			free(str_dup);
+			free(first_line);
 			return (-1);
 		}
 		ft_lstadd_back(map_lines, new_node);
