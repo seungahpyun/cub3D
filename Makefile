@@ -1,4 +1,4 @@
-NAME = cub3d
+NAME = cub3D
 CC = cc
 CFLAGS = -g3 -fsanitize=address -Wall -Wextra -Werror
 SRC_DIR = src
