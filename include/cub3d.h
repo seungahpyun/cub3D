@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:59:02 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/08 08:58:38 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/08 09:08:36 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,11 @@ t_list	*create_map_node(char *line);
 int		add_first_line(t_list **map_lines, char *first_line);
 int		build_map_array(t_game *game, t_list *map_lines);
 
+/* parse_map.c */
+int		get_map_width(char **map);
 int		parse_map(int fd, t_game *game, char *line);
 
+/* free_utils */
 void	free_map(char **map, t_game *game);
 void	free_game(t_game *game);
 

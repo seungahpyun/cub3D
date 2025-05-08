@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 08:55:27 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/08 08:59:35 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/08 09:10:15 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	process_line(char *line, t_game *game, int fd)
 	}
 	else
 	{
-		printf("Parsed element: %s\n", line);
+		// printf("Parsed element: %s\n", line);
 		free(line);
 	}
 	return (ret);

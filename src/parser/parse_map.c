@@ -6,13 +6,13 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:16:08 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/08 09:05:47 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/08 09:07:51 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	get_map_width(char **map)
+int	get_map_width(char **map)
 {
 	int	i;
 	int	max_width;
