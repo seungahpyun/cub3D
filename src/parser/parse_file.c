@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 08:55:27 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/08 09:10:15 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/08 13:26:54 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ int	parse_file(char *filename, t_game *game)
 		if (ret == 0)
 			line = get_next_line(fd);
 	}
-	if (line != NULL && ret != 0)
-		free(line);
 	close(fd);
 	return (ret);
 }
