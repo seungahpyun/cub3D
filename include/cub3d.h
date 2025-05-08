@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:59:02 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/08 09:08:36 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/08 11:44:54 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdio.h>
 # include <math.h>
 # include <libft.h>
-# include "MLX42.h"
+# include <stdbool.h>
 
 typedef struct s_color
 {
