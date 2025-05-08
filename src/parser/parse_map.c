@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:16:08 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/08 13:25:51 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/08 22:52:08 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ static int	read_map_lines(int fd, t_list **map_lines, char *first_line)
 		free(line);
 		line = get_next_line(fd);
 	}
-	close(fd);
 	if (!*map_lines)
 		return (ft_putendl_fd("Error: Empty map", 2), -1);
 	return (0);
