@@ -1,0 +1,79 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   map_builder.c                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: spyun <spyun@student.codam.nl>               +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/05/08 08:52:11 by spyun         #+#    #+#                 */
+/*   Updated: 2025/05/08 22:36:37 by seungah       ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+t_list	*create_map_node(char *line)
+{
+	char	*str_dup;
+	t_list	*new_node;
+
+	if (line[ft_strlen(line) - 1] == '\n')
+		line[ft_strlen(line) - 1] = '\0';
+	str_dup = ft_strdup(line);
+	if (!str_dup)
+		return (NULL);
+	new_node = ft_lstnew(str_dup);
+	if (!new_node)
+	{
+		free(str_dup);
+		return (NULL);
+	}
+	return (new_node);
+}
+
+int	add_first_line(t_list **map_lines, char *first_line)
+{
+	t_list	*new_node;
+	char	*str_dup;
+
+	if (first_line && *first_line)
+	{
+		str_dup = ft_strdup(first_line);
+		if (!str_dup)
+		{
+			free(first_line);
+			return (-1);
+		}
+		new_node = ft_lstnew(str_dup);
+		if (!new_node)
+		{
+			free(str_dup);
+			free(first_line);
+			return (-1);
+		}
+		ft_lstadd_back(map_lines, new_node);
+	}
+	free(first_line);
+	return (0);
+}
+
+int	build_map_array(t_game *game, t_list *map_lines)
+{
+	t_list	*current;
+	int		i;
+
+	game->map_height = ft_lstsize(map_lines);
+	game->map = malloc(sizeof(char *) * (game->map_height + 1));
+	if (!game->map)
+		return (-1);
+	current = map_lines;
+	i = 0;
+	while (current)
+	{
+		game->map[i++] = ft_strdup((char *)current->content);
+		current = current->next;
+	}
+	game->map[i] = NULL;
+	game->map_width = get_map_width(game->map);
+	return (0);
+}
