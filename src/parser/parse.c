@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:16:05 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/08 09:04:21 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/09 15:11:11 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	parse_color_value(char *line, t_color *color)
 
 	ret = 0;
 	split = ft_split(line, ' ');
+	if (!split)
+		return (-1);
 	if (!split[0] || !split[1] || split[2])
 		return (ft_free_strarr(split), -1);
 	rgb = ft_split(split[1], ',');
