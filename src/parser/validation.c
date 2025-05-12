@@ -6,13 +6,13 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:20:25 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/12 15:32:32 by seungah       ########   odam.nl         */
+/*   Updated: 2025/05/12 16:36:10 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool	check_file_extension(const char *filename)
+bool	check_map_extension(const char *filename)
 {
 	const char	*dot;
 
@@ -24,11 +24,33 @@ bool	check_file_extension(const char *filename)
 	return (true);
 }
 
+static bool	check_texture_extension(const char *path)
+{
+	const char	*dot;
+
+	dot = ft_strrchr(path, '.');
+	if (!dot)
+	{
+		ft_putstr_fd("Error: Texture file has no extension: ", 2);
+		ft_putendl_fd((char *)path, 2);
+		return (false);
+	}
+	if (ft_strcmp(dot, ".png") != 0)
+	{
+		ft_putstr_fd("Error: Invalid texture file extension: ", 2);
+		ft_putendl_fd((char *)path, 2);
+		return (false);
+	}
+	return (true);
+}
+
 bool	check_texture_path(const char *path)
 {
 	int	fd;
 
 	if (!path)
+		return (false);
+	if (!check_texture_extension(path))
 		return (false);
 	fd = open(path, O_RDONLY);
 	if (fd == -1)

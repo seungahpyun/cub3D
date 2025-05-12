@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:52:59 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/07 16:10:57 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/12 16:36:25 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(int argc, char **argv)
 		ft_putendl_fd("Error\nUsage: ./cub3d <map.cub>", 2);
 		return (EXIT_FAILURE);
 	}
-	if (!check_file_extension(argv[1]))
+	if (!check_map_extension(argv[1]))
 	{
 		ft_putendl_fd("Error\nInvalid file extension. Expected .cub", 2);
 		return (EXIT_FAILURE);
