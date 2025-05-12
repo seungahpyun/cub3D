@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/09 16:57:05 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/09 17:39:05 by jsong         ########   odam.nl         */
+/*   Updated: 2025/05/12 15:14:41 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_mlx_error(t_game *game)
 	error_msg = (char *)mlx_strerror(mlx_errno);
 	ft_putendl_fd(error_msg, STDERR_FILENO);
 	free_game(game);
-	mlx_terminate(game->mlx);
+	if (game->mlx)
+		mlx_terminate(game->mlx);
 	exit(EXIT_FAILURE);
 }
