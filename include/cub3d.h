@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:59:02 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/09 17:31:46 by jsong         ########   odam.nl         */
+/*   Updated: 2025/05/12 17:35:28 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 
-# define MINI_TILE 8
+# define MINIMAP_W 512
+# define MINIMAP_H 512
+# define MINIMAP_WALL_COLOR 0xFF000000
 
 # include <MLX42.h>
 # include <fcntl.h>
