@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:20:25 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/07 11:52:01 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/12 15:32:32 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,13 @@ bool	check_texture_path(const char *path)
 {
 	int	fd;
 
+	if (!path)
+		return (false);
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 	{
-		perror("Error opening texture file");
+		ft_putstr_fd("Error: Cannot open texture file: ", 2);
+		ft_putendl_fd((char *)path, 2);
 		return (false);
 	}
 	close(fd);
