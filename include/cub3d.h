@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:59:02 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/13 10:41:51 by jsong         ########   odam.nl         */
+/*   Updated: 2025/05/13 11:33:50 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 
 # define MINIMAP_W 512
 # define MINIMAP_H 512
-# define MINIMAP_WALL_COLOR 0xFF000000
+# define MINIMAP_WALL_COLOR 0x003300FF  // dark green
+# define MINIMAP_FLOOR_COLOR 0x006600FF // brighter green
 
 # include <MLX42.h>
 # include <fcntl.h>
