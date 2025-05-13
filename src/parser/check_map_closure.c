@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/13 09:17:08 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/13 10:40:18 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/13 11:35:02 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static bool	is_walkable(char c)
 	return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
-
 static bool	check_cell_surrounded(char **map, int x, int y, t_game *game)
 {
 	int	width;
@@ -36,21 +35,21 @@ static bool	check_cell_surrounded(char **map, int x, int y, t_game *game)
 		return (false);
 	if (x < (int)ft_strlen(map[y - 1]))
 	{
-		if (map[y - 1][x] == ' ' || (x > 0 && map[y - 1][x - 1] == ' ') ||
-			(x < (int)ft_strlen(map[y - 1]) - 1 && map[y - 1][x + 1] == ' '))
+		if (map[y - 1][x] == ' ' || (x > 0 && map[y - 1][x - 1] == ' ')
+		|| (x < (int)ft_strlen(map[y - 1]) - 1 && map[y - 1][x + 1] == ' '))
 			return (false);
 	}
 	else
 		return (false);
-	if(x < (int)ft_strlen(map[y + 1]))
+	if (x < (int)ft_strlen(map[y + 1]))
 	{
-		if (map[y + 1][x] == ' ' || (x > 0 && map[y + 1][x - 1] == ' ') ||
-			(x < (int)ft_strlen(map[y + 1]) - 1 && map[y + 1][x + 1] == ' '))
+		if (map[y + 1][x] == ' ' || (x > 0 && map[y + 1][x - 1] == ' ')
+		|| (x < (int)ft_strlen(map[y + 1]) - 1 && map[y + 1][x + 1] == ' '))
 			return (false);
 	}
 	else
 		return (false);
-	if (map[y][x-1] == ' ' || map[y][x + 1] == ' ')
+	if (map[y][x - 1] == ' ' || map[y][x + 1] == ' ')
 		return (false);
 	return (true);
 }
@@ -89,7 +88,7 @@ static bool	check_map_borders(char **map, t_game *game)
 
 	last_row = game->map_height - 1;
 	y = 0;
-	while(y <= last_row)
+	while (y <= last_row)
 	{
 		if (y == 0 || y == last_row)
 		{
@@ -140,17 +139,23 @@ static bool	check_spaces_surrounded(char **map, t_game *game)
 		{
 			if (map[y][x] == ' ')
 			{
-				if (is_valid_position(x + 1, y, game->map_height, game->map_width) &&
-					map[y][x + 1] && is_walkable(map[y][x + 1]))
+				if (is_valid_position(x + 1, y,
+						game->map_height, game->map_width)
+					&& map[y][x + 1] && is_walkable(map[y][x + 1]))
 					return (false);
-				if (is_valid_position(x - 1, y, game->map_height, game->map_width) &&
-					x > 0 && is_walkable(map[y][x - 1]))
+				if (is_valid_position(x - 1, y,
+						game->map_height, game->map_width)
+					&& x > 0 && is_walkable(map[y][x - 1]))
 					return (false);
-				if (is_valid_position(x, y + 1, game->map_height, game->map_width) &&
-					map[y + 1] && x < (int)ft_strlen(map[y + 1]) && is_walkable(map[y + 1][x]))
+				if (is_valid_position(x, y + 1,
+						game->map_height, game->map_width)
+					&& map[y + 1] && x < (int)ft_strlen(map[y + 1])
+					&& is_walkable(map[y + 1][x]))
 					return (false);
-				if (is_valid_position(x, y - 1, game->map_height, game->map_width) &&
-					y > 0 && x < (int)ft_strlen(map[y - 1]) && is_walkable(map[y - 1][x]))
+				if (is_valid_position(x, y - 1,
+						game->map_height, game->map_width)
+					&& y > 0 && x < (int)ft_strlen(map[y - 1])
+					&& is_walkable(map[y - 1][x]))
 					return (false);
 			}
 			x++;
