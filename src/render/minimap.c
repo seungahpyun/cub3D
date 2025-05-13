@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/09 15:21:43 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/13 13:34:52 by jsong         ########   odam.nl         */
+/*   Updated: 2025/05/13 14:58:03 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ static int	calculate_cell_size(int map_width, int map_height)
 	return (cell_size);
 }
 
-// TO DO: delete game->map_height = 6 when map_parse is done.
 static void	draw_walls(t_game *game)
 {
 	int	mx;
@@ -55,18 +54,17 @@ static void	draw_walls(t_game *game)
 
 	mx = 0;
 	my = 0;
-	game->map_height = 6;
-	cell_size = calculate_cell_size(game->map_width, game->map_height);
+	cell_size = game->minimap.cell_size;
 	while (mx < game->map_width)
 	{
 		my = 0;
 		while (my < game->map_height)
 		{
 			if (game->map[my][mx] == '1')
-				draw_cell(game->minimap, mx * cell_size, my * cell_size,
+				draw_cell(game->minimap.img, mx * cell_size, my * cell_size,
 					cell_size, MINIMAP_WALL_COLOR);
 			else
-				draw_cell(game->minimap, mx * cell_size, my * cell_size,
+				draw_cell(game->minimap.img, mx * cell_size, my * cell_size,
 					cell_size, MINIMAP_FLOOR_COLOR);
 			my++;
 		}
@@ -81,32 +79,35 @@ static void	draw_player(t_game *game)
 	int	cell_size;
 	int	player_size;
 
-	game->map_height = 6;
-	cell_size = calculate_cell_size(game->map_width, game->map_height);
+	cell_size = game->minimap.cell_size;
 	player_size = cell_size / 3;
 	if (player_size < 1)
 		player_size = 1;
 	player_px = game->player_x * cell_size + player_size;
 	player_py = game->player_y * cell_size + player_size;
-	draw_cell(game->minimap, player_px, player_py, player_size,
+	draw_cell(game->minimap.img, player_px, player_py, player_size,
 		MINIMAP_PLAYER_COLOR);
+}
+
+// TO DO: delete game->map_height = 6 when map_parse is done.
+void	init_minimap(t_game *game)
+{
+	game->minimap.img = mlx_new_image(game->mlx, MINIMAP_W, MINIMAP_H);
+	if (!game->minimap.img)
+		ft_mlx_error(game);
+	// Set minimap background as transparent
+	ft_memset(game->minimap.img->pixels, 0, MINIMAP_W * MINIMAP_H
+		* sizeof(int32_t));
+	game->map_height = 6;
+	game->minimap.cell_size = calculate_cell_size(game->map_width,
+			game->map_height);
 }
 
 void	render_minimap(t_game *game)
 {
-	// t_minimap	minimap;
-	game->minimap = mlx_new_image(game->mlx, MINIMAP_W, MINIMAP_H);
-	if (!game->minimap)
-		ft_mlx_error(game);
-	// minimap.map = game->map;
-	// game->map_height = 6;
-	// minimap.cell_size = calculate_cell_size(game->map_width,
-	// game->map_height);
-	// Set minimap background as transparent
-	ft_memset(game->minimap->pixels, 0, game->minimap->width
-		* game->minimap->height * sizeof(int32_t));
+	init_minimap(game);
 	draw_walls(game);
 	draw_player(game);
-	if (mlx_image_to_window(game->mlx, game->minimap, 0, 0) < 0)
+	if (mlx_image_to_window(game->mlx, game->minimap.img, 0, 0) < 0)
 		ft_mlx_error(game);
 }
