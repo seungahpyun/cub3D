@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:59:02 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/13 11:33:50 by jsong         ########   odam.nl         */
+/*   Updated: 2025/05/13 13:31:39 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
 
 # define MINIMAP_W 512
 # define MINIMAP_H 512
-# define MINIMAP_WALL_COLOR 0x003300FF  // dark green
-# define MINIMAP_FLOOR_COLOR 0x006600FF // brighter green
+# define MINIMAP_WALL_COLOR 0x003300FF   // dark green
+# define MINIMAP_FLOOR_COLOR 0x006600FF  // brighter green
+# define MINIMAP_PLAYER_COLOR 0xD1FFC7FF // light green
 
 # include <MLX42.h>
 # include <fcntl.h>
@@ -48,6 +49,14 @@ typedef struct s_color
 // 	double	move_speed;
 // 	double	rot_speed;
 // }	t_player;
+
+typedef struct s_minimap
+{
+	char		**map;
+	int			cell_size;
+	mlx_image_t	*minimap;
+
+}				t_minimap;
 
 typedef struct s_game
 {

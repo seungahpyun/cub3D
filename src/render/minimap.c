@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/09 15:21:43 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/13 11:39:10 by jsong         ########   odam.nl         */
+/*   Updated: 2025/05/13 13:34:52 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,15 +74,39 @@ static void	draw_walls(t_game *game)
 	}
 }
 
+static void	draw_player(t_game *game)
+{
+	int	player_px;
+	int	player_py;
+	int	cell_size;
+	int	player_size;
+
+	game->map_height = 6;
+	cell_size = calculate_cell_size(game->map_width, game->map_height);
+	player_size = cell_size / 3;
+	if (player_size < 1)
+		player_size = 1;
+	player_px = game->player_x * cell_size + player_size;
+	player_py = game->player_y * cell_size + player_size;
+	draw_cell(game->minimap, player_px, player_py, player_size,
+		MINIMAP_PLAYER_COLOR);
+}
+
 void	render_minimap(t_game *game)
 {
+	// t_minimap	minimap;
 	game->minimap = mlx_new_image(game->mlx, MINIMAP_W, MINIMAP_H);
 	if (!game->minimap)
 		ft_mlx_error(game);
+	// minimap.map = game->map;
+	// game->map_height = 6;
+	// minimap.cell_size = calculate_cell_size(game->map_width,
+	// game->map_height);
 	// Set minimap background as transparent
 	ft_memset(game->minimap->pixels, 0, game->minimap->width
 		* game->minimap->height * sizeof(int32_t));
 	draw_walls(game);
+	draw_player(game);
 	if (mlx_image_to_window(game->mlx, game->minimap, 0, 0) < 0)
 		ft_mlx_error(game);
 }
