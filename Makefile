@@ -17,14 +17,15 @@ OBJ_DIR = obj
 SRC_FILES = $(SRC_DIR)/main.c \
 			$(SRC_DIR)/free_utils.c \
 			$(SRC_DIR)/error.c \
-			$(PARSER_DIR)/check_map_borders.c \
-			$(PARSER_DIR)/check_map_closure.c \
-			$(PARSER_DIR)/check_map_spaces.c \
+			$(PARSER_DIR)/element_validator.c \
+			$(PARSER_DIR)/map_borders_validator.c \
 			$(PARSER_DIR)/map_builder.c \
+			$(PARSER_DIR)/map_closure_validator.c \
+			$(PARSER_DIR)/map_spaces_validator.c \
+			$(PARSER_DIR)/map_validator.c \
+			$(PARSER_DIR)/parse_elements.c \
 			$(PARSER_DIR)/parse_file.c \
 			$(PARSER_DIR)/parse_map.c \
-			$(PARSER_DIR)/parse.c \
-			$(PARSER_DIR)/validation.c \
 			$(RENDER_DIR)/minimap.c \
 
 OBJ_FILES = $(SRC_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
@@ -40,7 +41,7 @@ $(LIBFT):
 	@$(MAKE) -C $(LIBFT_DIR) --no-print-directory
 
 $(LIBMLX):
-	@cmake $(LIBMLX_DIR) -B $(LIBMLX_DIR)/build && make -C $(LIBMLX_DIR)/build -j4
+	@cmake $(LIBMLX_DIR) -B $(LIBMLX_DIR)/build && make -C $(LIBMLX_DIR)/build -j4 --no-print-directory
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)

@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:59:02 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/13 12:01:10 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/13 15:05:34 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,36 +70,31 @@ typedef struct s_game
 int				main(int argc, char **argv);
 
 /* parser */
-/* check_map_borders.c */
-bool			check_map_borders(char **map, t_game *game);
-
-/* check_map_closure.c */
-bool			is_walkable(char c);
-bool			validate_map_closure(t_game *game);
-
-/* check_map_spaces.c */
-bool			check_spaces_surrounded(char **map, t_game *game);
-
-/* map_builder.c  */
-t_list			*create_map_node(char *line);
-int				add_first_line(t_list **map_lines, char *first_line);
-int				build_map_array(t_game *game, t_list *map_lines);
-
-/*  parse_file.c */
-int				parse_file(char *filename, t_game *game);
-
-/* parse_map.c */
-int				get_map_width(char **map);
-int				parse_map(int fd, t_game *game, char *line);
-
-/* parse.c */
-int				parse_element(char *line, t_game *game);
-
-/* validation.c */
+/* element_validator.c */
 bool			check_map_extension(const char *filename);
 bool			check_texture_path(const char *path);
 bool			check_color_value(int r, int g, int b);
+/* map_borders_validator.c */
+bool			check_map_borders(char **map, t_game *game);
+/* map_builder.c */
+t_list			*create_map_node(char *line);
+int				add_first_line(t_list **map_lines, char *first_line);
+int				build_map_array(t_game *game, t_list *map_lines);
+/* map_closure_validator.c */
+bool			validate_map_closure(t_game *game);
+/* map_spaces_validator.c */
+bool			is_walkable(char c);
+bool			check_spaces_surrounded(char **map, t_game *game);
+/* map_validator.c */
 int				check_map_chars(char **map);
+bool			validate_map_content(char **map, t_game *game);
+bool			validate_map(t_game *game);
+/* parse_elements.c */
+int				parse_element(char *line, t_game *game);
+/* parse_file.c */
+int				parse_file(char *filename, t_game *game);
+/* parse_map.c */
+int				parse_map(int fd, t_game *game, char *first_line);
 
 /* render*/
 void			render_minimap(t_game *game);

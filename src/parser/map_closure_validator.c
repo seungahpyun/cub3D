@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   check_map_closure.c                                :+:    :+:            */
+/*   map_closure_validator.c                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/13 09:17:08 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/13 12:01:03 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/13 14:54:44 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool	is_walkable(char c)
+static bool	check_upper_row(char **map, int x, int y)
 {
-	return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
-}
-
-static bool	check_cell_surrounded(char **map, int x, int y, t_game *game)
-{
-	int	width;
-
-	width = game->map_width;
-	if (y == 0 || y == game->map_height -1)
-		return (false);
-	if (x == 0 || x >= (int)ft_strlen(map[y]) - 1)
-		return (false);
 	if (x < (int)ft_strlen(map[y - 1]))
 	{
 		if (map[y - 1][x] == ' ' || (x > 0 && map[y - 1][x - 1] == ' ')
@@ -34,6 +22,11 @@ static bool	check_cell_surrounded(char **map, int x, int y, t_game *game)
 	}
 	else
 		return (false);
+	return (true);
+}
+
+static bool	check_lower_row(char **map, int x, int y)
+{
 	if (x < (int)ft_strlen(map[y + 1]))
 	{
 		if (map[y + 1][x] == ' ' || (x > 0 && map[y + 1][x - 1] == ' ')
@@ -41,6 +34,19 @@ static bool	check_cell_surrounded(char **map, int x, int y, t_game *game)
 			return (false);
 	}
 	else
+		return (false);
+	return (true);
+}
+
+static bool	check_cell_surrounded(char **map, int x, int y, t_game *game)
+{
+	if (y == 0 || y == game->map_height - 1)
+		return (false);
+	if (x == 0 || x >= (int)ft_strlen(map[y]) - 1)
+		return (false);
+	if (!check_upper_row(map, x, y))
+		return (false);
+	if (!check_lower_row(map, x, y))
 		return (false);
 	if (map[y][x - 1] == ' ' || map[y][x + 1] == ' ')
 		return (false);

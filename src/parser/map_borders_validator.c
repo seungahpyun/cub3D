@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   check_map_borders.c                                :+:    :+:            */
+/*   map_borders_validator.c                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/13 11:42:12 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/13 11:46:05 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/13 14:53:21 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool	check_map_borders(char **map, t_game *game)
+static bool	check_horizontal_borders(char **map, t_game *game)
 {
 	int	x;
 	int	y;
@@ -37,6 +37,16 @@ bool	check_map_borders(char **map, t_game *game)
 		}
 		y++;
 	}
+	return (true);
+}
+
+static bool	check_vertical_borders(char **map, t_game *game)
+{
+	int	x;
+	int	y;
+	int	last_row;
+
+	last_row = game->map_height - 1;
 	y = 0;
 	while (y <= last_row)
 	{
@@ -55,5 +65,14 @@ bool	check_map_borders(char **map, t_game *game)
 		}
 		y++;
 	}
+	return (true);
+}
+
+bool	check_map_borders(char **map, t_game *game)
+{
+	if (!check_horizontal_borders(map, game))
+		return (false);
+	if (!check_vertical_borders(map, game))
+		return (false);
 	return (true);
 }

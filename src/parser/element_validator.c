@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   validation.c                                       :+:    :+:            */
+/*   element_validator.c                                :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:20:25 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/12 16:36:10 by seungah       ########   odam.nl         */
+/*   Updated: 2025/05/13 14:41:12 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,29 +73,3 @@ bool	check_color_value(int r, int g, int b)
 	return (true);
 }
 
-int	check_map_chars(char **map)
-{
-	int	i;
-	int	j;
-	int	player_count;
-
-	player_count = 0;
-	i = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			if (map[i][j] != '0' && map[i][j] != '1' && map[i][j] != ' ' &&
-				map[i][j] != 'N' && map[i][j] != 'S' && map[i][j] != 'E' &&
-				map[i][j] != 'W')
-				return (0);
-			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E' ||
-				map[i][j] == 'W')
-				player_count++;
-			j++;
-		}
-		i++;
-	}
-	return (player_count == 1);
-}
