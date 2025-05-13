@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:16:05 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/09 15:11:11 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/12 15:30:46 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ int	parse_texture_path(char *line, char **path)
 	*path = ft_strdup(split[1]);
 	if (!(*path))
 		ret = -1;
+	else if (!check_texture_path(*path))
+	{
+		free(*path);
+		*path = NULL;
+		ret = -1;
+	}
 	ft_free_strarr(split);
 	return (ret);
 }
