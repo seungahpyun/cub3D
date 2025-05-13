@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:16:08 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/08 22:52:08 by seungah       ########   odam.nl         */
+/*   Updated: 2025/05/13 10:36:15 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ static bool	is_valid_map(char **map, t_game *game)
 		}
 		i++;
 	}
+	if (!validate_map_closure(game))
+		return (false);
 	return (true);
 }
 
