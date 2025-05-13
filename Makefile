@@ -16,12 +16,14 @@ OBJ_DIR = obj
 
 SRC_FILES = $(SRC_DIR)/main.c \
 			$(SRC_DIR)/free_utils.c \
-			$(PARSER_DIR)/check_map_closure.c \
 			$(SRC_DIR)/error.c \
+			$(PARSER_DIR)/check_map_borders.c \
+			$(PARSER_DIR)/check_map_closure.c \
+			$(PARSER_DIR)/check_map_spaces.c \
 			$(PARSER_DIR)/map_builder.c \
 			$(PARSER_DIR)/parse_file.c \
-			$(PARSER_DIR)/parse.c \
 			$(PARSER_DIR)/parse_map.c \
+			$(PARSER_DIR)/parse.c \
 			$(PARSER_DIR)/validation.c \
 			$(RENDER_DIR)/minimap.c \
 

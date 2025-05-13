@@ -6,13 +6,13 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 08:55:27 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/13 10:41:33 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/13 11:54:35 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	process_line(char *line, t_game *game, int fd)
+static int	process_line(char *line, t_game *game, int fd)
 {
 	int	ret;
 
