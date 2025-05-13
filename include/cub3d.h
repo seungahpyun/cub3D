@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:59:02 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/13 13:31:39 by jsong         ########   odam.nl         */
+/*   Updated: 2025/05/13 14:18:00 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ typedef struct s_minimap
 typedef struct s_game
 {
 	mlx_t		*mlx;
-	void		*win;
 	mlx_image_t	*minimap;
 	char		*no_path;
 	char		*so_path;

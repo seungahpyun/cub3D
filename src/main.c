@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:52:59 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/12 16:36:25 by seungah       ########   odam.nl         */
+/*   Updated: 2025/05/13 14:18:50 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static void	init_game_state(t_game *game)
 {
 	game->mlx = NULL;
-	game->win = NULL;
 	game->no_path = NULL;
 	game->so_path = NULL;
 	game->we_path = NULL;
