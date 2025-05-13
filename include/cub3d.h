@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:59:02 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/09 17:31:46 by jsong         ########   odam.nl         */
+/*   Updated: 2025/05/12 16:36:42 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef struct s_game
 int				main(int argc, char **argv);
 
 /* validation.c */
-bool			check_file_extension(const char *filename);
+bool			check_map_extension(const char *filename);
 bool			check_texture_path(const char *path);
 bool			check_color_value(int r, int g, int b);
 int				check_map_chars(char **map);
