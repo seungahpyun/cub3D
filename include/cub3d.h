@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:59:02 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/13 14:36:58 by jsong         ########   odam.nl         */
+/*   Updated: 2025/05/14 13:00:07 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 
-# define MINIMAP_W 512
-# define MINIMAP_H 512
+# define MINIMAP_W 200
+# define MINIMAP_H 200
+# define MINIMAP_CELL_SIZE 20
 # define MINIMAP_WALL_COLOR 0x003300FF   // dark green
 # define MINIMAP_FLOOR_COLOR 0x006600FF  // brighter green
 # define MINIMAP_PLAYER_COLOR 0xD1FFC7FF // light green
