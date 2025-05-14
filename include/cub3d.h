@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:59:02 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/14 15:55:04 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/14 16:19:45 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,6 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-
-typedef struct s_color
-{
-	int			r;
-	int			g;
-	int			b;
-}				t_color;
-
-typedef struct s_player
-{
-	int			x;
-	int			y;
-	char		dir;
-}				t_player;
 
 typedef struct s_asset
 {
@@ -62,6 +48,20 @@ typedef struct s_map
 	int			height;
 }				t_map;
 
+typedef struct s_color
+{
+	int			r;
+	int			g;
+	int			b;
+}				t_color;
+
+typedef struct s_player
+{
+	int			x;
+	int			y;
+	char		dir;
+}				t_player;
+
 typedef struct s_minimap
 {
 	int			cell_size;
@@ -72,9 +72,10 @@ typedef struct s_minimap
 typedef struct s_game
 {
 	mlx_t		*mlx;
-	t_minimap	minimap;
 	t_asset		asset;
+	t_map		map;
 	t_player	player;
+	t_minimap	minimap;
 }				t_game;
 
 /* main.c */
@@ -86,20 +87,20 @@ bool			check_map_extension(const char *filename);
 bool			check_texture_path(const char *path);
 bool			check_color_value(int r, int g, int b);
 /* map_borders_validator.c */
-bool			check_map_borders(char **map, t_map *map_data);
+bool			check_map_borders(t_map *map);
 /* map_builder.c */
 t_list			*create_map_node(char *line);
 int				add_first_line(t_list **map_lines, char *first_line);
-int				build_map_array(t_map *map_data, t_list *map_lines);
+int				build_map_array(t_map *map, t_list *map_lines);
 /* map_closure_validator.c */
-bool			validate_map_closure(t_map *map_data, t_player *player);
+bool			validate_map_closure(t_map *map, t_player *player);
 /* map_spaces_validator.c */
 bool			is_walkable(char c);
-bool			check_spaces_surrounded(char **grid, t_map *map_data);
+bool			check_spaces_surrounded(t_map *map);
 /* map_validator.c */
-int				check_map_chars(char **grid);
-bool			validate_map_content(char **grid, t_map *map_data, t_player *player);
-bool			validate_map(t_map *map_data, t_player *player);
+int				check_map_chars(char **map_grid);
+bool			validate_map_content(char **map_grid, t_map *map, t_player *player);
+bool			validate_map(t_map *map, t_player *player);
 /* parse_elements.c */
 int				parse_element(char *line, t_asset *asset);
 /* parse_file.c */

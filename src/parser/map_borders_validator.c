@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/13 11:42:12 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/14 14:06:11 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/14 16:19:03 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,11 @@ static bool	check_vertical_borders(char **map, t_game *game)
 	return (true);
 }
 
-bool	check_map_borders(char **map, t_game *game)
+bool	check_map_borders(t_map *map)
 {
-	if (!check_horizontal_borders(map, game))
+	if (!check_horizontal_borders(map->grid, map))
 		return (false);
-	if (!check_vertical_borders(map, game))
+	if (!check_vertical_borders(map->grid, map))
 		return (false);
 	return (true);
 }

@@ -12,11 +12,13 @@ INCLUDE_DIR = include
 SRC_DIR = src
 PARSER_DIR = $(SRC_DIR)/parser
 RENDER_DIR = $(SRC_DIR)/render
+COMMON_DIR = $(SRC_DIR)/common
 OBJ_DIR = obj
 
 SRC_FILES = $(SRC_DIR)/main.c \
-			$(SRC_DIR)/free_utils.c \
-			$(SRC_DIR)/error.c \
+			$(COMMON_DIR)/free_utils.c \
+			$(COMMON_DIR)/error.c \
+			$(COMMON_DIR)/init.c \
 			$(PARSER_DIR)/element_validator.c \
 			$(PARSER_DIR)/map_borders_validator.c \
 			$(PARSER_DIR)/map_builder.c \

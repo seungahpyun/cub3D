@@ -6,24 +6,11 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:52:59 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/14 14:03:49 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/14 16:04:54 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static void	init_game_state(t_game *game)
-{
-	game->mlx = NULL;
-	game->no_path = NULL;
-	game->so_path = NULL;
-	game->we_path = NULL;
-	game->ea_path = NULL;
-	game->map = NULL;
-	game->player_x = -1;
-	game->player_y = -1;
-	game->player_dir = '\0';
-}
 
 static bool	setup_game(int argc, char **argv, t_game *game)
 {
@@ -45,13 +32,6 @@ static bool	setup_game(int argc, char **argv, t_game *game)
 		return (false);
 	}
 	return (true);
-}
-
-static void	init_window(t_game *game)
-{
-	game->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", true);
-	if (!game->mlx)
-		ft_mlx_error(game);
 }
 
 static void	run_game(t_game *game)
