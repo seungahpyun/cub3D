@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:59:02 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/14 16:30:40 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/14 16:37:16 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ bool			check_spaces_surrounded(t_map *map);
 /* map_validator.c */
 int				check_map_chars(char **map_grid);
 bool			validate_map_content(char **map_grid, t_map *map, t_player *player);
-bool			validate_map(t_map *map, t_player *player);
+bool			validate_map(t_map *map);
 /* parse_elements.c */
 int				parse_element(char *line, t_asset *asset);
 /* parse_file.c */

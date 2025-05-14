@@ -6,13 +6,13 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/13 14:36:13 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/13 15:06:53 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/14 16:47:42 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	check_map_chars(char **map)
+bool	check_map_chars(char **map)
 {
 	int	i;
 	int	j;
@@ -39,7 +39,7 @@ int	check_map_chars(char **map)
 	return (player_count == 1);
 }
 
-static bool	find_player_position(char **map, t_game *game)
+static bool	find_player_position(t_map *map, t_player *player)
 {
 	int	i;
 	int	j;
@@ -47,17 +47,17 @@ static bool	find_player_position(char **map, t_game *game)
 
 	i = 0;
 	player_found = 0;
-	while (map[i])
+	while (map->grid[i])
 	{
 		j = 0;
-		while (map[i][j])
+		while (map->grid[i][j])
 		{
-			if (map[i][j] == 'N' || map[i][j] == 'S'
-				|| map[i][j] == 'E' || map[i][j] == 'W')
+			if (map->grid[i][j] == 'N' || map->grid[i][j] == 'S'
+				|| map->grid[i][j] == 'E' || map->grid[i][j] == 'W')
 			{
-				game->player_x = j;
-				game->player_y = i;
-				game->player_dir = map[i][j];
+				player->x = j;
+				player->y = i;
+				player->dir = map->grid[i][j];
 				player_found++;
 			}
 			j++;
@@ -67,16 +67,16 @@ static bool	find_player_position(char **map, t_game *game)
 	return (player_found == 1);
 }
 
-bool	validate_map_content(char **map, t_game *game)
+bool	validate_map_content(t_map *map, t_player *player)
 {
-	if (!map || !game)
+	if (!map || !player)
 		return (false);
 	if (!check_map_chars(map))
 	{
 		ft_putendl_fd("Error: Invalid characters in map", 2);
 		return (false);
 	}
-	if (!find_player_position(map, game))
+	if (!find_player_position(map, player))
 	{
 		ft_putendl_fd("Error: Must have exactly one player position", 2);
 		return (false);
@@ -84,13 +84,13 @@ bool	validate_map_content(char **map, t_game *game)
 	return (true);
 }
 
-bool	validate_map(t_game *game)
+bool	validate_map(t_map *map, t_player *player)
 {
-	if (!game || !game->map)
+	if (!map || !player)
 		return (false);
-	if (!validate_map_content(game->map, game))
+	if (!validate_map_content(map, player))
 		return (false);
-	if (!validate_map_closure(game))
+	if (!validate_map_closure(map))
 		return (false);
 	return (true);
 }
