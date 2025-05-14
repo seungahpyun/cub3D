@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:59:02 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/14 16:19:45 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/14 16:30:40 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ t_list			*create_map_node(char *line);
 int				add_first_line(t_list **map_lines, char *first_line);
 int				build_map_array(t_map *map, t_list *map_lines);
 /* map_closure_validator.c */
-bool			validate_map_closure(t_map *map, t_player *player);
+bool			validate_map_closure(t_map *map);
 /* map_spaces_validator.c */
 bool			is_walkable(char c);
 bool			check_spaces_surrounded(t_map *map);
