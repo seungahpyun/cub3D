@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:52:59 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/13 11:57:09 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/14 09:17:19 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static bool	setup_game(int argc, char **argv, t_game *game)
 	}
 	if (!check_map_extension(argv[1]))
 	{
-		ft_putendl_fd("Error: nInvalid file extension. Expected .cub", 2);
+		ft_putendl_fd("Error: Invalid file extension. Expected .cub", 2);
 		return (false);
 	}
 	init_game_state(game);
