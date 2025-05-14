@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/13 11:42:12 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/13 14:53:21 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/14 10:39:36 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static bool	check_horizontal_borders(char **map, t_game *game)
 			{
 				if (map[y][x] != '1' && map[y][x] != ' ')
 				{
-					ft_putendl_fd("Error: Map border not closed", 2);
+					printf("Error: Map border not closed at (%d, %d)", y, x);
 					return (false);
 				}
 				x++;
@@ -57,7 +57,7 @@ static bool	check_vertical_borders(char **map, t_game *game)
 			{
 				if (map[y][x] != '1' && map[y][x] != ' ')
 				{
-					ft_putendl_fd("Error: Map border not closed", 2);
+					printf("Error: Map border not closed at (%d, %d)", y, x);
 					return (false);
 				}
 			}
