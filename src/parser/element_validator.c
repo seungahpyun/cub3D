@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:20:25 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/13 14:41:12 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/14 11:27:12 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,3 @@ bool	check_color_value(int r, int g, int b)
 	}
 	return (true);
 }
-
