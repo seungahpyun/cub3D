@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:59:02 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/13 15:05:34 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/14 12:10:13 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,9 @@ typedef struct s_color
 	int			b;
 }				t_color;
 
-// typedef struct s_player
-// {
-// 	double	x;
-// 	double	y;
-// 	double	dir_x;
-// 	double	dir_y;
-// 	double	plane_x;
-// 	double	plane_y;
-// 	double	move_speed;
-// 	double	rot_speed;
-// }	t_player;
-
 typedef struct s_game
 {
 	mlx_t		*mlx;
-	void		*win;
 	mlx_image_t	*minimap;
 	char		*no_path;
 	char		*so_path;
@@ -63,7 +50,6 @@ typedef struct s_game
 	int			player_x;
 	int			player_y;
 	char		player_dir;
-	// t_player	player;
 }				t_game;
 
 /* main.c */
