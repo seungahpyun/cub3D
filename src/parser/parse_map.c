@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:16:08 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/13 15:08:28 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/14 10:27:05 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	parse_map(int fd, t_game *game, char *first_line)
 		return (-1);
 	}
 	ft_lstclear(&map_lines, free);
-	if (!validate_map_content(game->map, game))
+	if (!validate_map(game))
 	{
 		free_map(game->map, game);
 		return (-1);
