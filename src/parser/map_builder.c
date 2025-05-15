@@ -6,11 +6,29 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 08:52:11 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/08 22:36:37 by seungah       ########   odam.nl         */
+/*   Updated: 2025/05/13 14:36:55 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static int	get_map_width(char **map)
+{
+	int	i;
+	int	max_width;
+	int	len;
+
+	i = 0;
+	max_width = 0;
+	while (map[i])
+	{
+		len = ft_strlen(map[i]);
+		if (len > max_width)
+			max_width = len;
+		i++;
+	}
+	return (max_width);
+}
 
 t_list	*create_map_node(char *line)
 {
