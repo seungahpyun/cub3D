@@ -6,58 +6,11 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:16:08 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/08 22:52:08 by seungah       ########   odam.nl         */
+/*   Updated: 2025/05/14 10:27:05 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int	get_map_width(char **map)
-{
-	int	i;
-	int	max_width;
-	int	len;
-
-	i = 0;
-	max_width = 0;
-	while (map[i])
-	{
-		len = ft_strlen(map[i]);
-		if (len > max_width)
-			max_width = len;
-		i++;
-	}
-	return (max_width);
-}
-
-static bool	is_valid_map(char **map, t_game *game)
-{
-	int	i;
-	int	j;
-
-	if (!map || !game)
-		return (false);
-	if (!check_map_chars(map))
-		return (ft_putendl_fd("Error: Invalid characters in map", 2), false);
-	i = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			if (map[i][j] == 'N' || map[i][j] == 'S'
-				|| map[i][j] == 'E' || map[i][j] == 'W')
-			{
-				game->player_x = j;
-				game->player_y = i;
-				game->player_dir = map[i][j];
-			}
-			j++;
-		}
-		i++;
-	}
-	return (true);
-}
 
 static int	read_map_lines(int fd, t_list **map_lines, char *first_line)
 {
@@ -98,7 +51,7 @@ int	parse_map(int fd, t_game *game, char *first_line)
 		return (-1);
 	}
 	ft_lstclear(&map_lines, free);
-	if (!is_valid_map(game->map, game))
+	if (!validate_map(game))
 	{
 		free_map(game->map, game);
 		return (-1);

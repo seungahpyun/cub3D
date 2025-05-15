@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   parse.c                                            :+:    :+:            */
+/*   parse_elements.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:16:05 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/12 15:30:46 by seungah       ########   odam.nl         */
+/*   Updated: 2025/05/13 15:06:12 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	parse_texture_path(char *line, char **path)
+static int	parse_texture_path(char *line, char **path)
 {
 	char	**split;
 	int		ret;
@@ -39,7 +39,7 @@ int	parse_texture_path(char *line, char **path)
 	return (ret);
 }
 
-int	parse_color_value(char *line, t_color *color)
+static int	parse_color_value(char *line, t_color *color)
 {
 	char	**split;
 	char	**rgb;
