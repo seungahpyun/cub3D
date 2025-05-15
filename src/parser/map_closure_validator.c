@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/13 09:17:08 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/14 16:33:40 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/15 14:45:02 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static bool	check_surrounding_walls(t_map *map)
 			{
 				if (!check_cell_surrounded(map, x, y))
 				{
-					printf("Error: Map is not closed at (%d, %d)\n", x, y);
+					printf("Error: Map is not closed at (%d, %d)\n", y, x);
 					return (false);
 				}
 			}
