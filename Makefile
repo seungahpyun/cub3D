@@ -27,6 +27,7 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(PARSER_DIR)/parse_file.c \
 			$(PARSER_DIR)/parse_map.c \
 			$(RENDER_DIR)/minimap.c \
+			$(RENDER_DIR)/render_utils.c
 
 OBJ_FILES = $(SRC_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
