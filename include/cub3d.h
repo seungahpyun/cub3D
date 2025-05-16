@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:59:02 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/15 22:39:17 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/16 10:50:16 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,8 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 
-// # define MINIMAP_W 200
-// # define MINIMAP_H 200
-// # define MINIMAP_CELL_SIZE 10
-
-// how many tiles from player you see in each direction
 # define MINIMAP_RADIUS 10
-# define MINIMAP_CELL_SIZE 8 // how many pixels per map‐tile on the minimap
+# define MINIMAP_CELL_SIZE 16
 # define MINIMAP_W (MINIMAP_RADIUS * 2 + 1) * MINIMAP_CELL_SIZE
 # define MINIMAP_H MINIMAP_W
 # define MINIMAP_GRID (MINIMAP_RADIUS * 2 + 1)
@@ -47,6 +42,14 @@ typedef struct s_color
 	int			g;
 	int			b;
 }				t_color;
+
+typedef struct s_cell
+{
+	int			px;
+	int			py;
+	int			size;
+	int			color;
+}				t_cell;
 
 typedef struct s_game
 {
