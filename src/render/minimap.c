@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/09 15:21:43 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/16 14:07:13 by jsong         ########   odam.nl         */
+/*   Updated: 2025/05/16 16:50:23 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,18 +72,27 @@ static void	draw_minimap_ray(t_game *game)
 {
 	double	ray_angle;
 	int		player_angle;
+	double	dist;
+	double	hit_x;
+	double	hit_y;
+	int		sx;
+	int		sy;
+	int		center_x;
+	int		center_y;
 
-	// double	dist;
-	// double	hit_x;
-	// double	hit_y;
+	center_x = MINIMAP_W / 2;
+	center_y = MINIMAP_H / 2;
 	player_angle = dir_to_degree(game->player_dir);
 	for (int i = 0; i < NUM_RAYS; i++)
 	{
 		ray_angle = degree_to_radian(player_angle - FOV / 2 + FOV * i
 				/ NUM_RAYS);
-		// dist = cast_ray(game, ray_angle);
-		// hit_x = game->player_x + cos(ray_angle) * dist;
-		// hit_y = game->player_y + sin(ray_angle) * dist;
+		dist = cast_ray(game, ray_angle);
+		hit_x = game->player_x + cos(ray_angle) * dist;
+		hit_y = game->player_y + sin(ray_angle) * dist;
+		sx = center_x + (hit_x - game->player_x) * MINIMAP_CELL_SIZE;
+		sy = center_y + (hit_y - game->player_y) * MINIMAP_CELL_SIZE;
+		draw_line(game->minimap, center_x, center_y, sx, sy, 0xFF000000);
 	}
 }
 

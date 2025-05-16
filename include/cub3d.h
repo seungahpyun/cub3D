@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:59:02 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/16 14:05:57 by jsong         ########   odam.nl         */
+/*   Updated: 2025/05/16 16:53:01 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,15 @@ typedef struct s_cell
 	int			size;
 	int			color;
 }				t_cell;
+
+typedef struct s_line
+{
+	int			start_x;
+	int			start_y;
+	int			end_x;
+	int			end_y;
+	int			color;
+}				t_line;
 
 typedef struct s_game
 {

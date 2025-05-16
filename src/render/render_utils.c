@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 11:08:44 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/16 14:06:03 by jsong         ########   odam.nl         */
+/*   Updated: 2025/05/16 17:18:26 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,18 @@ int	dir_to_degree(char c)
 	if (c == 'S')
 		return (270);
 	return (-1);
+}
+
+void	draw_line(mlx_image_t *img, t_line line)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while ()
+	{
+		/* code */
+	}
 }
 
 static int	is_within_map(int mx, int my, int map_width, int map_height)
