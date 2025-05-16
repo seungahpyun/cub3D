@@ -6,13 +6,11 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/09 15:21:43 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/16 10:53:28 by jsong         ########   odam.nl         */
+/*   Updated: 2025/05/16 11:41:29 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-bool		is_valid_point(t_game *game, int mx, int my);
 
 static void	draw_cell(mlx_image_t *img, t_cell cell)
 {

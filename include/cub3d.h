@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:59:02 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/16 10:50:16 by jsong         ########   odam.nl         */
+/*   Updated: 2025/05/16 11:41:36 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ int				parse_file(char *filename, t_game *game);
 int				parse_map(int fd, t_game *game, char *first_line);
 
 /* render*/
+bool			is_valid_point(t_game *game, int mx, int my);
 void			render_minimap(t_game *game);
 
 /* error.c*/
