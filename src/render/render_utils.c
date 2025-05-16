@@ -6,11 +6,29 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 11:08:44 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/16 10:35:06 by jsong         ########   odam.nl         */
+/*   Updated: 2025/05/16 14:06:03 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+double	degree_to_radian(double degree)
+{
+	return (degree * M_PI / 180);
+}
+
+int	dir_to_degree(char c)
+{
+	if (c == 'E')
+		return (0);
+	if (c == 'N')
+		return (90);
+	if (c == 'W')
+		return (180);
+	if (c == 'S')
+		return (270);
+	return (-1);
+}
 
 static int	is_within_map(int mx, int my, int map_width, int map_height)
 {
@@ -24,6 +42,37 @@ bool	is_valid_point(t_game *game, int mx, int my)
 	if (mx >= (int)ft_strlen(game->map[my]))
 		return (false);
 	return (true);
+}
+
+void	draw_cell(mlx_image_t *img, t_cell cell)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < cell.size)
+	{
+		y = 0;
+		while (y < cell.size)
+		{
+			if ((uint32_t)cell.px + x < img->width && (uint32_t)cell.py
+				+ y < img->height)
+				mlx_put_pixel(img, cell.px + x, cell.py + y, cell.color);
+			y++;
+		}
+		x++;
+	}
+}
+
+int	get_color(char c)
+{
+	if (c == '1')
+		return (MINIMAP_WALL_COLOR);
+	if (c == '0')
+		return (MINIMAP_FLOOR_COLOR);
+	if (c == ' ')
+		return (MINIMAP_EMPTY_COLOR);
+	return (MINIMAP_PLAYER_COLOR);
 }
 
 // int	calculate_cell_size(int map_width, int map_height)

@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:59:02 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/16 11:41:36 by jsong         ########   odam.nl         */
+/*   Updated: 2025/05/16 14:05:57 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,13 @@
 # define MINIMAP_W (MINIMAP_RADIUS * 2 + 1) * MINIMAP_CELL_SIZE
 # define MINIMAP_H MINIMAP_W
 # define MINIMAP_GRID (MINIMAP_RADIUS * 2 + 1)
-
 # define MINIMAP_WALL_COLOR 0x003300FF   // dark green
 # define MINIMAP_FLOOR_COLOR 0x006600FF  // brighter green
 # define MINIMAP_PLAYER_COLOR 0xD1FFC7FF // light green
 # define MINIMAP_EMPTY_COLOR 0x00000000
+
+# define NUM_RAYS 100
+# define FOV 60
 
 # include <MLX42.h>
 # include <fcntl.h>
