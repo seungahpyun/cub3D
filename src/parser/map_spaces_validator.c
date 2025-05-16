@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/13 11:43:41 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/14 16:23:02 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/16 11:11:52 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ bool	check_spaces_surrounded(t_map *map)
 	while (y < map->height)
 	{
 		x = 0;
-		while (map)
+		while (map->grid[y][x])
 		{
 			if (map->grid[y][x] == ' ')
 			{

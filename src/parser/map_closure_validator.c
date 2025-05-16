@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/13 09:17:08 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/15 14:45:02 by seungah       ########   odam.nl         */
+/*   Updated: 2025/05/16 11:15:28 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ static bool	check_upper_row(t_map *map, int x, int y)
 {
 	if (x < (int)ft_strlen(map->grid[y - 1]))
 	{
-		if (map->grid[y - 1][x] == ' ' || (x > 0 && map->grid[y - 1][x - 1] == ' ')
-		|| (x < (int)ft_strlen(map->grid[y - 1]) - 1 && map->grid[y - 1][x + 1] == ' '))
+		if (map->grid[y - 1][x] == ' '
+			|| (x > 0 && map->grid[y - 1][x - 1] == ' ')
+		|| (x < (int)ft_strlen(map->grid[y - 1]) - 1
+			&& map->grid[y - 1][x + 1] == ' '))
 			return (false);
 	}
 	else
@@ -29,8 +31,10 @@ static bool	check_lower_row(t_map *map, int x, int y)
 {
 	if (x < (int)ft_strlen(map->grid[y + 1]))
 	{
-		if (map->grid[y + 1][x] == ' ' || (x > 0 && map->grid[y + 1][x - 1] == ' ')
-		|| (x < (int)ft_strlen(map->grid[y + 1]) - 1 && map->grid[y + 1][x + 1] == ' '))
+		if (map->grid[y + 1][x] == ' '
+			|| (x > 0 && map->grid[y + 1][x - 1] == ' ')
+		|| (x < (int)ft_strlen(map->grid[y + 1]) - 1
+			&& map->grid[y + 1][x + 1] == ' '))
 			return (false);
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 08:55:27 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/13 11:54:35 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/16 11:10:27 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	process_line(char *line, t_game *game, int fd)
 	}
 	if (line[ft_strlen(line) - 1] == '\n')
 		line[ft_strlen(line) - 1] = '\0';
-	if (parse_element(line, game) == -1)
+	if (parse_element(line, &game->asset) == -1)
 	{
 		if (parse_map(fd, game, line) == -1)
 			ret = -1;

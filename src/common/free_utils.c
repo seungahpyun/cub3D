@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 11:34:24 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/16 10:59:06 by seungah       ########   odam.nl         */
+/*   Updated: 2025/05/16 11:16:26 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	free_asset(t_asset *asset, mlx_t *mlx)
 	asset->we_img = NULL;
 	asset->ea_img = NULL;
 }
-
 
 void	free_game(t_game *game)
 {
