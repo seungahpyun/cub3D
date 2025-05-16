@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 11:34:24 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/14 16:09:47 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/16 10:59:06 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	free_map(t_map *map)
 	map->grid = NULL;
 }
 
-void	free_asset(t_asset *asset)
+void	free_asset(t_asset *asset, mlx_t *mlx)
 {
 	if (!asset)
 		return ;
@@ -40,14 +40,14 @@ void	free_asset(t_asset *asset)
 		free(asset->we_path);
 	if (asset->ea_path)
 		free(asset->ea_path);
-	if (asset->no_img)
-		mlx_delete_image(asset->no_img);
-	if (asset->so_img)
-		mlx_delete_image(asset->so_img);
-	if (asset->we_img)
-		mlx_delete_image(asset->we_img);
-	if (asset->ea_img)
-		mlx_delete_image(asset->ea_img);
+	if (mlx && asset->no_img)
+		mlx_delete_image(mlx, asset->no_img);
+	if (mlx && asset->so_img)
+		mlx_delete_image(mlx, asset->so_img);
+	if (mlx && asset->we_img)
+		mlx_delete_image(mlx, asset->we_img);
+	if (mlx && asset->ea_img)
+		mlx_delete_image(mlx, asset->ea_img);
 	asset->no_path = NULL;
 	asset->so_path = NULL;
 	asset->we_path = NULL;
@@ -58,12 +58,13 @@ void	free_asset(t_asset *asset)
 	asset->ea_img = NULL;
 }
 
+
 void	free_game(t_game *game)
 {
 	if (!game)
 		return ;
 	free_map(&game->map);
-	free_asset(&game->asset);
+	free_asset(&game->asset, game->mlx);
 	if (game->mlx)
 		mlx_terminate(game->mlx);
 }

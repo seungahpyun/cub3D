@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:59:02 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/14 16:37:16 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/16 10:59:46 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+typedef struct s_color
+{
+	int			r;
+	int			g;
+	int			b;
+}				t_color;
 
 typedef struct s_asset
 {
@@ -47,13 +54,6 @@ typedef struct s_map
 	int			width;
 	int			height;
 }				t_map;
-
-typedef struct s_color
-{
-	int			r;
-	int			g;
-	int			b;
-}				t_color;
 
 typedef struct s_player
 {
@@ -80,6 +80,17 @@ typedef struct s_game
 
 /* main.c */
 int				main(int argc, char **argv);
+
+/* common */
+/* error.c*/
+void			ft_mlx_error(t_game *game);
+/* free_utils.c */
+void			free_map(t_map *map);
+void			free_asset(t_asset *asset, mlx_t *mlx);
+void			free_game(t_game *game);
+/* init.c */
+void			init_window(t_game *game);
+void			init_game_state(t_game *game);
 
 /* parser */
 /* element_validator.c */
@@ -110,12 +121,5 @@ int				parse_map(int fd, t_game *game, char *first_line);
 
 /* render*/
 void			render_minimap(t_game *game);
-
-/* error.c*/
-void			ft_mlx_error(t_game *game);
-
-/* free_utils.c */
-void			free_map(char **map, t_game *game);
-void			free_game(t_game *game);
 
 #endif

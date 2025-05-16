@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 08:52:11 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/13 14:36:55 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/16 11:02:07 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,23 +75,23 @@ int	add_first_line(t_list **map_lines, char *first_line)
 	return (0);
 }
 
-int	build_map_array(t_game *game, t_list *map_lines)
+int	build_map_array(t_map *map, t_list *map_lines)
 {
 	t_list	*current;
 	int		i;
 
-	game->map_height = ft_lstsize(map_lines);
-	game->map = malloc(sizeof(char *) * (game->map_height + 1));
-	if (!game->map)
+	map->height = ft_lstsize(map_lines);
+	map->grid = malloc(sizeof(char *) * (map->height + 1));
+	if (!map->grid)
 		return (-1);
 	current = map_lines;
 	i = 0;
 	while (current)
 	{
-		game->map[i++] = ft_strdup((char *)current->content);
+		map->grid[i++] = ft_strdup((char *)current->content);
 		current = current->next;
 	}
-	game->map[i] = NULL;
-	game->map_width = get_map_width(game->map);
+	map->grid[i] = NULL;
+	map->width = get_map_width(map->grid);
 	return (0);
 }
