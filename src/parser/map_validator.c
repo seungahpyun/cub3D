@@ -6,13 +6,13 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/13 14:36:13 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/16 11:07:47 by seungah       ########   odam.nl         */
+/*   Updated: 2025/05/16 11:21:58 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool	check_map_chars(t_map *map)
+int	check_map_chars(t_map *map)
 {
 	int	i;
 	int	j;
