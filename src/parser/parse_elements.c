@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:16:05 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/19 11:33:49 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/19 16:14:19 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,22 @@ static bool	is_numeric(const char *str)
 	return (true);
 }
 
+static int	validate_rgb_values(char **rgb, t_color *color)
+{
+	if (!is_numeric(rgb[0]) || !is_numeric(rgb[1]) || !is_numeric(rgb[2]))
+	{
+		ft_free_strarr(rgb);
+		ft_putendl_fd("Error: RGB values must be numeric", 2);
+		return (-1);
+	}
+	color->r = ft_atoi(rgb[0]);
+	color->g = ft_atoi(rgb[1]);
+	color->b = ft_atoi(rgb[2]);
+	if (!check_color_value(color->r, color->g, color->b))
+		return (-1);
+	return (0);
+}
+
 static int	parse_color_value(char *line, t_color *color)
 {
 	char	**split;
@@ -77,20 +93,9 @@ static int	parse_color_value(char *line, t_color *color)
 		ft_putendl_fd("Error: Invalid RGB format, use 'R,G,B'", 2);
 		return (-1);
 	}
-	if (!is_numeric(rgb[0]) || !is_numeric(rgb[1]) || !is_numeric(rgb[2]))
-	{
-		ft_free_strarr(split);
-		ft_free_strarr(rgb);
-		ft_putendl_fd("Error: RGB values must be numeric", 2);
-		return (-1);
-	}
-	color->r = ft_atoi(rgb[0]);
-	color->g = ft_atoi(rgb[1]);
-	color->b = ft_atoi(rgb[2]);
+	ret = validate_rgb_values(rgb, color);
 	ft_free_strarr(split);
 	ft_free_strarr(rgb);
-	if (!check_color_value(color->r, color->g, color->b))
-		ret = -1;
 	return (ret);
 }
 
