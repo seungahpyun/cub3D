@@ -6,18 +6,20 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/13 09:17:08 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/13 14:54:44 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/19 09:48:17 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "parser.h"
 
-static bool	check_upper_row(char **map, int x, int y)
+static bool	check_upper_row(t_map *map, int x, int y)
 {
-	if (x < (int)ft_strlen(map[y - 1]))
+	if (x < (int)ft_strlen(map->grid[y - 1]))
 	{
-		if (map[y - 1][x] == ' ' || (x > 0 && map[y - 1][x - 1] == ' ')
-		|| (x < (int)ft_strlen(map[y - 1]) - 1 && map[y - 1][x + 1] == ' '))
+		if (map->grid[y - 1][x] == ' '
+			|| (x > 0 && map->grid[y - 1][x - 1] == ' ')
+		|| (x < (int)ft_strlen(map->grid[y - 1]) - 1
+			&& map->grid[y - 1][x + 1] == ' '))
 			return (false);
 	}
 	else
@@ -25,12 +27,14 @@ static bool	check_upper_row(char **map, int x, int y)
 	return (true);
 }
 
-static bool	check_lower_row(char **map, int x, int y)
+static bool	check_lower_row(t_map *map, int x, int y)
 {
-	if (x < (int)ft_strlen(map[y + 1]))
+	if (x < (int)ft_strlen(map->grid[y + 1]))
 	{
-		if (map[y + 1][x] == ' ' || (x > 0 && map[y + 1][x - 1] == ' ')
-		|| (x < (int)ft_strlen(map[y + 1]) - 1 && map[y + 1][x + 1] == ' '))
+		if (map->grid[y + 1][x] == ' '
+			|| (x > 0 && map->grid[y + 1][x - 1] == ' ')
+		|| (x < (int)ft_strlen(map->grid[y + 1]) - 1
+			&& map->grid[y + 1][x + 1] == ' '))
 			return (false);
 	}
 	else
@@ -38,37 +42,37 @@ static bool	check_lower_row(char **map, int x, int y)
 	return (true);
 }
 
-static bool	check_cell_surrounded(char **map, int x, int y, t_game *game)
+static bool	check_cell_surrounded(t_map *map, int x, int y)
 {
-	if (y == 0 || y == game->map_height - 1)
+	if (y == 0 || y == map->height - 1)
 		return (false);
-	if (x == 0 || x >= (int)ft_strlen(map[y]) - 1)
+	if (x == 0 || x >= (int)ft_strlen(map->grid[y]) - 1)
 		return (false);
 	if (!check_upper_row(map, x, y))
 		return (false);
 	if (!check_lower_row(map, x, y))
 		return (false);
-	if (map[y][x - 1] == ' ' || map[y][x + 1] == ' ')
+	if (map->grid[y][x - 1] == ' ' || map->grid[y][x + 1] == ' ')
 		return (false);
 	return (true);
 }
 
-static bool	check_surrounding_walls(char **map, t_game *game)
+static bool	check_surrounding_walls(t_map *map)
 {
 	int	x;
 	int	y;
 
 	y = 0;
-	while (map[y])
+	while (map->grid[y])
 	{
 		x = 0;
-		while (map[y][x])
+		while (map->grid[y][x])
 		{
-			if (is_walkable(map[y][x]))
+			if (is_walkable(map->grid[y][x]))
 			{
-				if (!check_cell_surrounded(map, x, y, game))
+				if (!check_cell_surrounded(map, x, y))
 				{
-					printf("Error: Map is not closed at (%d, %d)\n", x, y);
+					printf("Error: Map is not closed at (%d, %d)\n", y, x);
 					return (false);
 				}
 			}
@@ -79,15 +83,15 @@ static bool	check_surrounding_walls(char **map, t_game *game)
 	return (true);
 }
 
-bool	validate_map_closure(t_game *game)
+bool	validate_map_closure(t_map *map)
 {
-	if (!game || !game->map)
+	if (!map || !map->grid)
 		return (false);
-	if (!check_map_borders(game->map, game))
+	if (!check_map_borders(map))
 		return (false);
-	if (!check_surrounding_walls(game->map, game))
+	if (!check_surrounding_walls(map))
 		return (false);
-	if (!check_spaces_surrounded(game->map, game))
+	if (!check_spaces_surrounded(map))
 	{
 		ft_putendl_fd("Error: Space has walkable area nearby", 2);
 		return (false);
