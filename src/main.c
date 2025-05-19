@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:52:59 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/19 17:40:24 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/19 17:44:16 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static bool	setup_game(int argc, char **argv, t_game *game)
 		free_game(game);
 		return (false);
 	}
-	game->player_angle = dir_to_angle(game->player_dir);
+	game->player.angle = dir_to_angle(game->player.dir);
 	return (true);
 }
 

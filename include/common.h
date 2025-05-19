@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:50 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/19 10:25:12 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/19 17:50:24 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,6 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
-
-# define MINIMAP_RADIUS 10
-# define MINIMAP_CELL_SIZE 16
-# define MINIMAP_W (MINIMAP_RADIUS * 2 + 1) * MINIMAP_CELL_SIZE
-# define MINIMAP_H MINIMAP_W
-# define MINIMAP_GRID (MINIMAP_RADIUS * 2 + 1)
-
-# define MINIMAP_WALL_COLOR 0x003300FF   // dark green
-# define MINIMAP_FLOOR_COLOR 0x006600FF  // brighter green
-# define MINIMAP_PLAYER_COLOR 0xD1FFC7FF // light green
-# define MINIMAP_EMPTY_COLOR 0x00000000
 
 # include <MLX42.h>
 # include <fcntl.h>
@@ -57,14 +46,6 @@ typedef struct s_asset
 	mlx_image_t	*ea_img;
 }				t_asset;
 
-typedef struct s_cell
-{
-	int			px;
-	int			py;
-	int			size;
-	int			color;
-}				t_cell;
-
 typedef struct s_map
 {
 	char		**grid;
@@ -77,6 +58,7 @@ typedef struct s_player
 	int			x;
 	int			y;
 	char		dir;
+	double		angle;
 }				t_player;
 
 typedef struct s_minimap

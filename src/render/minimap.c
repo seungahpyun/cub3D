@@ -6,11 +6,11 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/09 15:21:43 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/19 17:41:45 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/19 17:53:41 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "render.h"
 
 /**
  * Draws walls/floor on minimap around player:
@@ -29,7 +29,7 @@ static void	draw_minimap_cell(t_game *game, int i, int j)
 
 	mx = game->player.x - MINIMAP_RADIUS + i;
 	my = game->player.y - MINIMAP_RADIUS + j;
-	if (is_valid_point(game, mx, my))
+	if (is_valid_point(&game->map, mx, my))
 	{
 		cell.px = i * MINIMAP_CELL_SIZE;
 		cell.py = j * MINIMAP_CELL_SIZE;
@@ -76,13 +76,13 @@ static void	draw_minimap_rays(t_game *game)
 	i = 0;
 	while (i < WIDTH)
 	{
-		ray_angle = game->player_angle + degree_to_radian(-0.5 * FOV + FOV * i
+		ray_angle = game->player.angle + degree_to_radian(-0.5 * FOV + FOV * i
 				/ WIDTH);
 		// dist = cast_ray(game, ray_angle);
 		dist = 10;
 		end.x = start.x + cos(ray_angle) * dist * MINIMAP_CELL_SIZE;
 		end.y = start.y - sin(ray_angle) * dist * MINIMAP_CELL_SIZE;
-		draw_line(game->minimap, start, end, MINIMAP_RAY_COLOR);
+		draw_line(game->minimap.img, start, end, MINIMAP_RAY_COLOR);
 		i++;
 	}
 }
@@ -97,6 +97,6 @@ void	render_minimap(t_game *game)
 		* sizeof(int32_t));
 	draw_minimap_grid(game);
 	draw_minimap_rays(game);
-	if (mlx_image_to_window(game->mlx, game->minimap, 0, 0) < 0)
+	if (mlx_image_to_window(game->mlx, game->minimap.img, 0, 0) < 0)
 		ft_mlx_error(game);
 }

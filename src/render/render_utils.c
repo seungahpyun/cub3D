@@ -6,15 +6,15 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 11:08:44 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/19 17:42:17 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/19 17:52:38 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-int	is_within_boundary(int mx, int my, int width, int height)
+int	is_within_boundary(int x, int y, int width, int height)
 {
-	return (mx >= 0 && my >= 0 && mx < width && my < height);
+	return (x >= 0 && y >= 0 && x < width && y < height);
 }
 
 double	degree_to_radian(double degree)
@@ -35,11 +35,11 @@ double	dir_to_angle(char c)
 	return (-1);
 }
 
-bool	is_valid_point(t_game *game, int mx, int my)
+bool	is_valid_point(t_map *map, int mx, int my)
 {
-	if (!is_within_boundary(mx, my, game->map_width, game->map_height))
+	if (!is_within_boundary(mx, my, map->width, map->height))
 		return (false);
-	if (mx >= (int)ft_strlen(game->map.grid[my]))
+	if (mx >= (int)ft_strlen(map->grid[my]))
 		return (false);
 	return (true);
 }
