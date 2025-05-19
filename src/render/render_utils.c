@@ -6,11 +6,11 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 11:08:44 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/19 17:26:19 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/19 17:42:17 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "render.h"
 
 int	is_within_boundary(int mx, int my, int width, int height)
 {
@@ -39,7 +39,7 @@ bool	is_valid_point(t_game *game, int mx, int my)
 {
 	if (!is_within_boundary(mx, my, game->map_width, game->map_height))
 		return (false);
-	if (mx >= (int)ft_strlen(game->map[my]))
+	if (mx >= (int)ft_strlen(game->map.grid[my]))
 		return (false);
 	return (true);
 }

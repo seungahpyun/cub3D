@@ -6,11 +6,11 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:16:08 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/14 10:27:05 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/19 09:48:33 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "parser.h"
 
 static int	read_map_lines(int fd, t_list **map_lines, char *first_line)
 {
@@ -45,15 +45,15 @@ int	parse_map(int fd, t_game *game, char *first_line)
 	map_lines = NULL;
 	if (read_map_lines(fd, &map_lines, first_line) == -1)
 		return (-1);
-	if (build_map_array(game, map_lines) == -1)
+	if (build_map_array(&game->map, map_lines) == -1)
 	{
 		ft_lstclear(&map_lines, free);
 		return (-1);
 	}
 	ft_lstclear(&map_lines, free);
-	if (!validate_map(game))
+	if (!validate_map(&game->map, &game->player))
 	{
-		free_map(game->map, game);
+		free_map(&game->map);
 		return (-1);
 	}
 	return (0);

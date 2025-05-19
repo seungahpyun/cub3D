@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   cub3d.h                                            :+:    :+:            */
+/*   init_components.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/05/07 09:59:02 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/19 17:40:10 by jianisong     ########   odam.nl         */
+/*   Created: 2025/05/19 10:25:15 by spyun         #+#    #+#                 */
+/*   Updated: 2025/05/19 10:26:01 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "common.h"
 
-# include "common.h"
-# include "parser.h"
-# include "render.h"
+void	init_player(t_player *player)
+{
+	player->x = -1;
+	player->y = -1;
+	player->dir = '\0';
+}
 
-/* main.c */
-int	main(int argc, char **argv);
+void	init_minimap(t_minimap *minimap)
+{
+	minimap->cell_size = MINIMAP_CELL_SIZE;
+	minimap->img = NULL;
+}
 
-#endif
+void	init_map(t_map *map)
+{
+	map->grid = NULL;
+	map->width = 0;
+	map->height = 0;
+}

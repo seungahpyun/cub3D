@@ -6,11 +6,11 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:16:05 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/13 15:06:12 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/19 09:48:27 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "parser.h"
 
 static int	parse_texture_path(char *line, char **path)
 {
@@ -68,19 +68,19 @@ static int	parse_color_value(char *line, t_color *color)
 	return (ret);
 }
 
-int	parse_element(char *line, t_game *game)
+int	parse_element(char *line, t_asset *asset)
 {
 	if (ft_strncmp(line, "NO ", 3) == 0)
-		return (parse_texture_path(line, &game->no_path));
+		return (parse_texture_path(line, &asset->no_path));
 	else if (ft_strncmp(line, "SO ", 3) == 0)
-		return (parse_texture_path(line, &game->so_path));
+		return (parse_texture_path(line, &asset->so_path));
 	else if (ft_strncmp(line, "WE ", 3) == 0)
-		return (parse_texture_path(line, &game->we_path));
+		return (parse_texture_path(line, &asset->we_path));
 	else if (ft_strncmp(line, "EA ", 3) == 0)
-		return (parse_texture_path(line, &game->ea_path));
+		return (parse_texture_path(line, &asset->ea_path));
 	else if (ft_strncmp(line, "F ", 2) == 0)
-		return (parse_color_value(line, &game->floor));
+		return (parse_color_value(line, &asset->floor));
 	else if (ft_strncmp(line, "C ", 2) == 0)
-		return (parse_color_value(line, &game->ceiling));
+		return (parse_color_value(line, &asset->ceiling));
 	return (-1);
 }

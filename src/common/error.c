@@ -6,11 +6,11 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/09 16:57:05 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/12 15:14:41 by jsong         ########   odam.nl         */
+/*   Updated: 2025/05/19 09:48:58 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "common.h"
 
 void	ft_mlx_error(t_game *game)
 {
