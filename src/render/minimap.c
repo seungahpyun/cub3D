@@ -6,11 +6,11 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/09 15:21:43 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/19 09:11:55 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/19 09:48:39 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "render.h"
 
 static void	draw_cell(mlx_image_t *img, t_cell cell)
 {

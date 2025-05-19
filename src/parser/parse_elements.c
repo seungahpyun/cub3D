@@ -6,11 +6,11 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:16:05 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/14 16:36:40 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/19 09:48:27 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "parser.h"
 
 static int	parse_texture_path(char *line, char **path)
 {

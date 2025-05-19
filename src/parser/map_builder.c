@@ -6,11 +6,11 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 08:52:11 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/16 11:02:07 by seungah       ########   odam.nl         */
+/*   Updated: 2025/05/19 09:48:14 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "parser.h"
 
 static int	get_map_width(char **map)
 {

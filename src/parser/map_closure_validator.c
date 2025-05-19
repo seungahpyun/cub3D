@@ -6,11 +6,11 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/13 09:17:08 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/16 11:15:28 by seungah       ########   odam.nl         */
+/*   Updated: 2025/05/19 09:48:17 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "parser.h"
 
 static bool	check_upper_row(t_map *map, int x, int y)
 {

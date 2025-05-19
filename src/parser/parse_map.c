@@ -6,11 +6,11 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:16:08 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/16 11:10:59 by seungah       ########   odam.nl         */
+/*   Updated: 2025/05/19 09:48:33 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "parser.h"
 
 static int	read_map_lines(int fd, t_list **map_lines, char *first_line)
 {

@@ -6,11 +6,11 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/13 11:42:12 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/15 14:44:14 by seungah       ########   odam.nl         */
+/*   Updated: 2025/05/19 09:48:10 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "parser.h"
 
 static bool	check_horizontal_borders(t_map *map)
 {

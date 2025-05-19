@@ -6,11 +6,11 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 11:08:44 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/19 09:12:14 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/19 09:48:43 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "render.h"
 
 static int	is_within_map(int mx, int my, int map_width, int map_height)
 {

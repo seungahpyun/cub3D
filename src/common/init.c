@@ -6,11 +6,11 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 15:59:19 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/16 11:16:01 by seungah       ########   odam.nl         */
+/*   Updated: 2025/05/19 09:48:54 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "common.h"
 
 void	init_window(t_game *game)
 {

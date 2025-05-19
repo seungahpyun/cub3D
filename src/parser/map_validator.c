@@ -6,11 +6,11 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/13 14:36:13 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/19 09:34:15 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/19 09:48:24 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "parser.h"
 
 int	check_map_chars(t_map *map)
 {

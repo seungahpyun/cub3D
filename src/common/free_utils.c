@@ -6,11 +6,11 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 11:34:24 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/19 09:35:55 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/19 09:48:59 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "common.h"
 
 void	free_map(t_map *map)
 {
@@ -60,7 +60,7 @@ static void	free_asset_images(t_asset *asset, mlx_t *mlx)
 	asset->ea_img = NULL;
 }
 
-void	free_asset(t_asset *asset, mlx_t *mlx)
+static void	free_asset(t_asset *asset, mlx_t *mlx)
 {
 	if (!asset)
 		return ;
