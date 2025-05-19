@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/13 14:36:13 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/16 11:21:58 by seungah       ########   odam.nl         */
+/*   Updated: 2025/05/19 09:34:15 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,13 @@ int	check_map_chars(t_map *map)
 		j = 0;
 		while (map->grid[i][j])
 		{
-			if (map->grid[i][j] != '0' && map->grid[i][j] != '1' && map->grid[i][j] != ' ' 
-				&& map->grid[i][j] != 'N' && map->grid[i][j] != 'S' && map->grid[i][j] != 'E' 
+			if (map->grid[i][j] != '0' && map->grid[i][j] != '1'
+				&& map->grid[i][j] != ' ' && map->grid[i][j] != 'N'
+				&& map->grid[i][j] != 'S' && map->grid[i][j] != 'E'
 				&& map->grid[i][j] != 'W')
 				return (0);
-			if (map->grid[i][j] == 'N' || map->grid[i][j] == 'S' || map->grid[i][j] == 'E' 
-				|| map->grid[i][j] == 'W')
+			if (map->grid[i][j] == 'N' || map->grid[i][j] == 'S'
+				|| map->grid[i][j] == 'E' || map->grid[i][j] == 'W')
 				player_count++;
 			j++;
 		}
