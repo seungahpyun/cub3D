@@ -6,16 +6,11 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/09 15:21:43 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/19 16:41:09 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/19 17:29:59 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void		draw_cell(mlx_image_t *img, t_cell cell);
-int			get_color(char c);
-double		degree_to_radian(double degree);
-void		draw_line(mlx_image_t *img, t_point start, t_point end, int color);
 
 /**
  * Draws walls/floor on minimap around player:
@@ -84,7 +79,7 @@ static void	draw_minimap_rays(t_game *game)
 		ray_angle = game->player_angle + degree_to_radian(-0.5 * FOV + FOV * i
 				/ WIDTH);
 		// dist = cast_ray(game, ray_angle);
-		dist = 100;
+		dist = 10;
 		end.x = start.x + cos(ray_angle) * dist * MINIMAP_CELL_SIZE;
 		end.y = start.y - sin(ray_angle) * dist * MINIMAP_CELL_SIZE;
 		draw_line(game->minimap, start, end, MINIMAP_RAY_COLOR);

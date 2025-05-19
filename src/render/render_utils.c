@@ -6,13 +6,13 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 11:08:44 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/19 16:27:55 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/19 17:26:19 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	is_within_boundary(int mx, int my, int width, int height)
+int	is_within_boundary(int mx, int my, int width, int height)
 {
 	return (mx >= 0 && my >= 0 && mx < width && my < height);
 }
@@ -35,36 +35,6 @@ double	dir_to_angle(char c)
 	return (-1);
 }
 
-void	draw_line(mlx_image_t *img, t_point start, t_point end, int color)
-{
-	int		dx;
-	int		dy;
-	int		steps;
-	float	x;
-	float	y;
-	float	x_inc;
-	float	y_inc;
-	int		draw_x;
-	int		draw_y;
-
-	dx = end.x - start.x;
-	dy = end.y - start.y;
-	steps = fmax(abs(dx), abs(dy));
-	x = start.x;
-	y = start.y;
-	x_inc = dx / (float)steps;
-	y_inc = dy / (float)steps;
-	for (int i = 0; i <= steps; i++)
-	{
-		draw_x = (int)x;
-		draw_y = (int)y;
-		if (is_within_boundary(draw_x, draw_y, img->width, img->height))
-			mlx_put_pixel(img, draw_x, draw_y, color);
-		x += x_inc;
-		y += y_inc;
-	}
-}
-
 bool	is_valid_point(t_game *game, int mx, int my)
 {
 	if (!is_within_boundary(mx, my, game->map_width, game->map_height))
@@ -72,26 +42,6 @@ bool	is_valid_point(t_game *game, int mx, int my)
 	if (mx >= (int)ft_strlen(game->map[my]))
 		return (false);
 	return (true);
-}
-
-void	draw_cell(mlx_image_t *img, t_cell cell)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	while (x < cell.size)
-	{
-		y = 0;
-		while (y < cell.size)
-		{
-			if ((uint32_t)cell.px + x < img->width && (uint32_t)cell.py
-				+ y < img->height)
-				mlx_put_pixel(img, cell.px + x, cell.py + y, cell.color);
-			y++;
-		}
-		x++;
-	}
 }
 
 int	get_color(char c)

@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:59:02 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/19 16:45:40 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/19 17:30:14 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,9 +118,19 @@ int				parse_file(char *filename, t_game *game);
 int				parse_map(int fd, t_game *game, char *first_line);
 
 /* render*/
-bool			is_valid_point(t_game *game, int mx, int my);
+/* utils */
 double			dir_to_angle(char c);
+int				is_within_boundary(int mx, int my, int width, int height);
+bool			is_valid_point(t_game *game, int mx, int my);
+int				get_color(char c);
+double			degree_to_radian(double degree);
 
+/* draw_primitives */
+void			draw_line(mlx_image_t *img, t_point start, t_point end,
+					int color);
+void			draw_cell(mlx_image_t *img, t_cell cell);
+
+/* minimap_render*/
 void			render_minimap(t_game *game);
 
 /* error.c*/
