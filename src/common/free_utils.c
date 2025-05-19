@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 11:34:24 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/19 09:48:59 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/19 16:03:30 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,4 @@ void	free_game(t_game *game)
 		return ;
 	free_map(&game->map);
 	free_asset(&game->asset, game->mlx);
-	if (game->mlx)
-		mlx_terminate(game->mlx);
 }
