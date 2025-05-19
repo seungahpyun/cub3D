@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:16:08 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/19 09:48:33 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/19 16:31:18 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,16 @@ static int	read_map_lines(int fd, t_list **map_lines, char *first_line)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		new_node = create_map_node(line);
-		if (!new_node)
+		if (ft_strlen(line) <= 1 && line[0] == '\n')
 		{
 			free(line);
+			ft_putendl_fd("Error: Empty line in map", 2);
 			ft_lstclear(map_lines, free);
 			return (-1);
 		}
+		new_node = create_map_node(line);
+		if (!new_node)
+			return (free(line), ft_lstclear(map_lines, free), -1);
 		ft_lstadd_back(map_lines, new_node);
 		free(line);
 		line = get_next_line(fd);
@@ -42,6 +45,8 @@ int	parse_map(int fd, t_game *game, char *first_line)
 {
 	t_list	*map_lines;
 
+	if (!check_all_elements_set(&game->asset))
+		return (free(first_line), -1);
 	map_lines = NULL;
 	if (read_map_lines(fd, &map_lines, first_line) == -1)
 		return (-1);

@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 08:55:27 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/19 11:36:11 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/19 16:32:36 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,31 @@ static int	process_line(char *line, t_game *game, int fd)
 	return (ret);
 }
 
+static int	check_content_after_map(int fd)
+{
+	char	*line;
+	int		i;
+
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		i = 0;
+		while (line[i])
+		{
+			if (line[i] != ' ' && line[i] != '\n' && line[i] != '\t')
+			{
+				free(line);
+				ft_putendl_fd("Error: Content after map section", 2);
+				return (-1);
+			}
+			i++;
+		}
+		free(line);
+		line = get_next_line(fd);
+	}
+	return (0);
+}
+
 int	parse_file(char *filename, t_game *game)
 {
 	int		fd;
@@ -54,11 +79,10 @@ int	parse_file(char *filename, t_game *game)
 		if (ret == 0)
 			line = get_next_line(fd);
 	}
+	if (ret == 0 && check_content_after_map(fd) == -1)
+		ret = -1;
 	close(fd);
 	if (ret == 0 && !check_all_elements_set(&game->asset))
-	{
-		free_game(game);
-		return (-1);
-	}
+		return (free_game(game), -1);
 	return (ret);
 }
