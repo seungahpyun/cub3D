@@ -2,9 +2,8 @@ name: cub3D Build & Style
 
 on:
   pull_request:
-    branches: [ main, develop ]
-  push:
-    branches: [ main, develop ]
+    branches: [ main ]
+
 
 jobs:
   build-and-style:
