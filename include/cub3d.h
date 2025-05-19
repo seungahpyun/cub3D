@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:59:02 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/16 11:22:03 by seungah       ########   odam.nl         */
+/*   Updated: 2025/05/19 09:03:13 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,16 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 
-# define MINI_TILE 8
+# define MINIMAP_RADIUS 10
+# define MINIMAP_CELL_SIZE 16
+# define MINIMAP_W (MINIMAP_RADIUS * 2 + 1) * MINIMAP_CELL_SIZE
+# define MINIMAP_H MINIMAP_W
+# define MINIMAP_GRID (MINIMAP_RADIUS * 2 + 1)
+
+# define MINIMAP_WALL_COLOR 0x003300FF   // dark green
+# define MINIMAP_FLOOR_COLOR 0x006600FF  // brighter green
+# define MINIMAP_PLAYER_COLOR 0xD1FFC7FF // light green
+# define MINIMAP_EMPTY_COLOR 0x00000000
 
 # include <MLX42.h>
 # include <fcntl.h>
@@ -47,6 +56,14 @@ typedef struct s_asset
 	mlx_image_t	*we_img;
 	mlx_image_t	*ea_img;
 }				t_asset;
+
+typedef struct s_cell
+{
+	int			px;
+	int			py;
+	int			size;
+	int			color;
+}				t_cell;
 
 typedef struct s_map
 {
@@ -120,6 +137,7 @@ int				parse_file(char *filename, t_game *game);
 int				parse_map(int fd, t_game *game, char *first_line);
 
 /* render*/
+bool			is_valid_point(t_game *game, int mx, int my);
 void			render_minimap(t_game *game);
 
 #endif
