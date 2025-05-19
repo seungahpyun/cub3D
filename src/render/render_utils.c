@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 11:08:44 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/19 15:28:59 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/19 16:27:55 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,19 @@ static int	is_within_boundary(int mx, int my, int width, int height)
 
 double	degree_to_radian(double degree)
 {
-	printf("(degree is %f) \n", degree);
 	return (degree * M_PI / 180);
 }
 
-double	dir_to_degree(char c)
+double	dir_to_angle(char c)
 {
 	if (c == 'E')
 		return (0);
 	if (c == 'N')
-		return (90);
+		return (M_PI / 2);
 	if (c == 'W')
-		return (180);
+		return (M_PI);
 	if (c == 'S')
-		return (270);
+		return (3 * M_PI / 2);
 	return (-1);
 }
 

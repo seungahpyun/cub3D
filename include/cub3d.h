@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:59:02 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/19 15:48:11 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/19 16:45:40 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define MINIMAP_FLOOR_COLOR 0x006600FF  // brighter green
 # define MINIMAP_PLAYER_COLOR 0xD1FFC7FF // light green
 # define MINIMAP_EMPTY_COLOR 0x00000000
+# define MINIMAP_RAY_COLOR 0x65965EFF
 
 # define FOV 60.0
 
@@ -83,6 +84,7 @@ typedef struct s_game
 	int			player_x;
 	int			player_y;
 	char		player_dir;
+	double		player_angle;
 }				t_game;
 
 /* main.c */
@@ -117,6 +119,8 @@ int				parse_map(int fd, t_game *game, char *first_line);
 
 /* render*/
 bool			is_valid_point(t_game *game, int mx, int my);
+double			dir_to_angle(char c);
+
 void			render_minimap(t_game *game);
 
 /* error.c*/
