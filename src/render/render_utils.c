@@ -6,18 +6,24 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 11:08:44 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/16 17:18:26 by jsong         ########   odam.nl         */
+/*   Updated: 2025/05/19 15:28:59 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+static int	is_within_boundary(int mx, int my, int width, int height)
+{
+	return (mx >= 0 && my >= 0 && mx < width && my < height);
+}
+
 double	degree_to_radian(double degree)
 {
+	printf("(degree is %f) \n", degree);
 	return (degree * M_PI / 180);
 }
 
-int	dir_to_degree(char c)
+double	dir_to_degree(char c)
 {
 	if (c == 'E')
 		return (0);
@@ -30,26 +36,39 @@ int	dir_to_degree(char c)
 	return (-1);
 }
 
-void	draw_line(mlx_image_t *img, t_line line)
+void	draw_line(mlx_image_t *img, t_point start, t_point end, int color)
 {
-	int	x;
-	int	y;
+	int		dx;
+	int		dy;
+	int		steps;
+	float	x;
+	float	y;
+	float	x_inc;
+	float	y_inc;
+	int		draw_x;
+	int		draw_y;
 
-	x = 0;
-	while ()
+	dx = end.x - start.x;
+	dy = end.y - start.y;
+	steps = fmax(abs(dx), abs(dy));
+	x = start.x;
+	y = start.y;
+	x_inc = dx / (float)steps;
+	y_inc = dy / (float)steps;
+	for (int i = 0; i <= steps; i++)
 	{
-		/* code */
+		draw_x = (int)x;
+		draw_y = (int)y;
+		if (is_within_boundary(draw_x, draw_y, img->width, img->height))
+			mlx_put_pixel(img, draw_x, draw_y, color);
+		x += x_inc;
+		y += y_inc;
 	}
-}
-
-static int	is_within_map(int mx, int my, int map_width, int map_height)
-{
-	return (mx >= 0 && my >= 0 && mx < map_width && my < map_height);
 }
 
 bool	is_valid_point(t_game *game, int mx, int my)
 {
-	if (!is_within_map(mx, my, game->map_width, game->map_height))
+	if (!is_within_boundary(mx, my, game->map_width, game->map_height))
 		return (false);
 	if (mx >= (int)ft_strlen(game->map[my]))
 		return (false);

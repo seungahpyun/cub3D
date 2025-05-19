@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/09 15:21:43 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/16 16:50:23 by jsong         ########   odam.nl         */
+/*   Updated: 2025/05/19 15:50:24 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void		draw_cell(mlx_image_t *img, t_cell cell);
 int			get_color(char c);
-int			dir_to_degree(char c);
+double		dir_to_degree(char c);
 double		degree_to_radian(double degree);
+void		draw_line(mlx_image_t *img, t_point start, t_point end, int color);
 
 /**
  * Draws walls/floor on minimap around player:
@@ -71,7 +72,7 @@ static void	draw_minimap_grid(t_game *game)
 static void	draw_minimap_ray(t_game *game)
 {
 	double	ray_angle;
-	int		player_angle;
+	double	player_angle;
 	double	dist;
 	double	hit_x;
 	double	hit_y;
@@ -79,20 +80,27 @@ static void	draw_minimap_ray(t_game *game)
 	int		sy;
 	int		center_x;
 	int		center_y;
+	t_point	start;
+	t_point	end;
 
 	center_x = MINIMAP_W / 2;
 	center_y = MINIMAP_H / 2;
 	player_angle = dir_to_degree(game->player_dir);
-	for (int i = 0; i < NUM_RAYS; i++)
+	for (int i = 0; i < WIDTH; i++)
 	{
-		ray_angle = degree_to_radian(player_angle - FOV / 2 + FOV * i
-				/ NUM_RAYS);
-		dist = cast_ray(game, ray_angle);
+		ray_angle = degree_to_radian(player_angle - 0.5 * FOV + FOV * i
+				/ WIDTH);
+		// dist = cast_ray(game, ray_angle);
+		dist = 100;
 		hit_x = game->player_x + cos(ray_angle) * dist;
-		hit_y = game->player_y + sin(ray_angle) * dist;
+		hit_y = game->player_y - sin(ray_angle) * dist;
 		sx = center_x + (hit_x - game->player_x) * MINIMAP_CELL_SIZE;
 		sy = center_y + (hit_y - game->player_y) * MINIMAP_CELL_SIZE;
-		draw_line(game->minimap, center_x, center_y, sx, sy, 0xFF000000);
+		start.x = center_x;
+		start.y = center_y;
+		end.x = sx;
+		end.y = sy;
+		draw_line(game->minimap, start, end, 0xFFFF00FF);
 	}
 }
 

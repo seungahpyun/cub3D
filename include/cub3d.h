@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:59:02 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/16 16:53:01 by jsong         ########   odam.nl         */
+/*   Updated: 2025/05/19 15:48:11 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@
 # define MINIMAP_PLAYER_COLOR 0xD1FFC7FF // light green
 # define MINIMAP_EMPTY_COLOR 0x00000000
 
-# define NUM_RAYS 100
-# define FOV 60
+# define FOV 60.0
 
 # include <MLX42.h>
 # include <fcntl.h>
@@ -52,6 +51,12 @@ typedef struct s_cell
 	int			size;
 	int			color;
 }				t_cell;
+
+typedef struct s_point
+{
+	int			x;
+	int			y;
+}				t_point;
 
 typedef struct s_line
 {
