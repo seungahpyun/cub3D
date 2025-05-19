@@ -16,8 +16,9 @@ COMMON_DIR = $(SRC_DIR)/common
 OBJ_DIR = obj
 
 SRC_FILES = $(SRC_DIR)/main.c \
-			$(COMMON_DIR)/free_utils.c \
 			$(COMMON_DIR)/error.c \
+			$(COMMON_DIR)/free_utils.c \
+			$(COMMON_DIR)/init_components.c \
 			$(COMMON_DIR)/init.c \
 			$(PARSER_DIR)/element_validator.c \
 			$(PARSER_DIR)/map_borders_validator.c \
