@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:53 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/19 10:02:28 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/19 11:36:43 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define PARSER_H
 
 # include "common.h"
+
+/* element_checker.c */
+bool			check_all_elements_set(t_asset *asset);
 
 /* element_validator.c */
 bool			check_map_extension(const char *filename);

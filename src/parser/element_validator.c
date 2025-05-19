@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:20:25 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/19 11:21:12 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/19 11:48:44 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,37 @@ bool	check_texture_path(const char *path)
 
 bool	check_color_value(int r, int g, int b)
 {
-	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+	if (r < 0 || r > 255)
 	{
-		ft_putendl_fd("Error: Invalid color value", 2);
+		ft_putendl_fd("Error: Red color value out of range (0-255)", 2);
 		return (false);
 	}
+	if (g < 0 || g > 255)
+	{
+		ft_putendl_fd("Error: Green color value out of range (0-255)", 2);
+		return (false);
+	}
+	if (b < 0 || b > 255)
+	{
+		ft_putendl_fd("Error: Blue color value out of range (0-255)", 2);
+		return (false);
+	}
+	return (true);
+}
+
+bool	check_all_elements_set(t_asset *asset)
+{
+	if (!asset->no_path)
+		return (ft_putendl_fd("Error: Missing North texture (NO)", 2), false);
+	if (!asset->so_path)
+		return (ft_putendl_fd("Error: Missing South texture (SO)", 2), false);
+	if (!asset->we_path)
+		return (ft_putendl_fd("Error: Missing West texture (WE)", 2), false);
+	if (!asset->ea_path)
+		return (ft_putendl_fd("Error: Missing East texture (EA)", 2), false);
+	if (asset->floor.r < 0)
+		return (ft_putendl_fd("Error: Missing floor color (F)", 2), false);
+	if (asset->ceiling.r < 0)
+		return (ft_putendl_fd("Error: Missing ceiling color (C)", 2), false);
 	return (true);
 }
