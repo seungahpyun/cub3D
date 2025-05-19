@@ -6,13 +6,13 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/13 14:36:13 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/19 09:48:24 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/19 10:02:34 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-int	check_map_chars(t_map *map)
+static int	check_map_chars(t_map *map)
 {
 	int	i;
 	int	j;
@@ -68,7 +68,7 @@ static bool	find_player_position(t_map *map, t_player *player)
 	return (player_found == 1);
 }
 
-bool	validate_map_content(t_map *map, t_player *player)
+static bool	validate_map_content(t_map *map, t_player *player)
 {
 	if (!map || !player)
 		return (false);

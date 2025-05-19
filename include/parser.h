@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:53 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/19 09:45:33 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/19 10:02:28 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ bool			is_walkable(char c);
 bool			check_spaces_surrounded(t_map *map);
 
 /* map_validator.c */
-int				check_map_chars(t_map *map);
-bool			validate_map_content(t_map *map, t_player *player);
 bool			validate_map(t_map *map, t_player *player);
 
 /* parse_elements.c */
