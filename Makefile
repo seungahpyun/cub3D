@@ -11,24 +11,37 @@ INCLUDE_DIR = include
 
 SRC_DIR = src
 PARSER_DIR = $(SRC_DIR)/parser
+PARSER_MAP_DIR = $(PARSER_DIR)/map
+PARSER_ELEMENT_DIR = $(PARSER_DIR)/element
+PARSER_FILE_DIR = $(PARSER_DIR)/file
 RENDER_DIR = $(SRC_DIR)/render
 COMMON_DIR = $(SRC_DIR)/common
+
 OBJ_DIR = obj
 
 SRC_FILES = $(SRC_DIR)/main.c \
 			$(COMMON_DIR)/error.c \
-			$(COMMON_DIR)/free_utils.c \
+			$(COMMON_DIR)/free_memory.c \
 			$(COMMON_DIR)/init_components.c \
 			$(COMMON_DIR)/init.c \
-			$(PARSER_DIR)/element_validator.c \
-			$(PARSER_DIR)/map_borders_validator.c \
-			$(PARSER_DIR)/map_builder.c \
-			$(PARSER_DIR)/map_closure_validator.c \
-			$(PARSER_DIR)/map_spaces_validator.c \
-			$(PARSER_DIR)/map_validator.c \
-			$(PARSER_DIR)/parse_elements.c \
-			$(PARSER_DIR)/parse_file.c \
-			$(PARSER_DIR)/parse_map.c \
+			\
+			$(PARSER_ELEMENT_DIR)/color_parser.c \
+			$(PARSER_ELEMENT_DIR)/element_checker.c \
+			$(PARSER_ELEMENT_DIR)/element_parser.c \
+			$(PARSER_ELEMENT_DIR)/texture_parser.c \
+			\
+			$(PARSER_FILE_DIR)/file_content.c \
+			$(PARSER_FILE_DIR)/file_parser.c \
+			$(PARSER_FILE_DIR)/file_processor.c \
+			\
+			$(PARSER_MAP_DIR)/map_borders.c \
+			$(PARSER_MAP_DIR)/map_builder.c \
+			$(PARSER_MAP_DIR)/map_checker.c \
+			$(PARSER_MAP_DIR)/map_closure.c \
+			$(PARSER_MAP_DIR)/map_loader.c \
+			$(PARSER_MAP_DIR)/map_spaces.c \
+			$(PARSER_MAP_DIR)/map_validator.c \
+			\
 			$(RENDER_DIR)/minimap.c \
 			$(RENDER_DIR)/render_utils.c \
 			$(RENDER_DIR)/draw_primitives.c \

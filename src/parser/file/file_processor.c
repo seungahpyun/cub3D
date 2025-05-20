@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   parse_file.c                                       :+:    :+:            */
+/*   file_processor.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/05/08 08:55:27 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/20 14:42:20 by spyun         ########   odam.nl         */
+/*   Created: 2025/05/20 14:57:55 by spyun         #+#    #+#                 */
+/*   Updated: 2025/05/20 15:37:23 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static bool	is_empty_line(char *line)
+bool	is_empty_line(char *line)
 {
 	int	i;
 
@@ -42,7 +42,7 @@ static bool	is_map_line(char *line)
 	return (true);
 }
 
-static int	process_line(char *line, t_game *game, int fd)
+int	process_line(char *line, t_game *game, int fd)
 {
 	int	ret;
 
@@ -67,7 +67,7 @@ static int	process_line(char *line, t_game *game, int fd)
 	return (ret);
 }
 
-static int	check_content_after_map(int fd)
+int	check_content_after_map(int fd)
 {
 	char	*line;
 
@@ -104,45 +104,4 @@ int	check_map_file(t_game *game, int fd, bool map_found)
 		return (-1);
 	}
 	return (0);
-}
-
-int	parse_map_content(t_game *game, int fd, int ret)
-{
-	bool	map_found;
-	char	*line;
-
-	map_found = false;
-	line = get_next_line(fd);
-	while (line != NULL && ret == 0)
-	{
-		ret = process_line(line, game, fd);
-		if (ret == 1)
-		{
-			map_found = true;
-			if (check_content_after_map(fd) == -1)
-			{
-				ret = -1;
-				break ;
-			}
-		}
-		if (ret == 0)
-			line = get_next_line(fd);
-	}
-	if (ret == 0)
-		ret = check_map_file(game, fd, map_found);
-	else
-		close(fd);
-	return (ret);
-}
-
-int	parse_file(char *filename, t_game *game)
-{
-	int	fd;
-	int	ret;
-
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
-		return (perror("Error opening file"), -1);
-	ret = 0;
-	return (parse_map_content(game, fd, ret));
 }

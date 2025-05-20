@@ -1,63 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   element_validator.c                                :+:    :+:            */
+/*   element_checker.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:20:25 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/20 14:36:12 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/20 15:18:02 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-
-bool	check_map_extension(const char *filename)
-{
-	const char	*dot;
-
-	dot = ft_strrchr(filename, '.');
-	if (dot == NULL)
-		return (false);
-	if (ft_strcmp(dot, ".cub") != 0)
-		return (false);
-	return (true);
-}
-
-static bool	print_texture_error(const char *error_msg, const char *path)
-{
-	ft_putstr_fd("Error: ", 2);
-	ft_putstr_fd((char *)error_msg, 2);
-	ft_putendl_fd((char *)path, 2);
-	return (false);
-}
-
-static bool	validate_texture_format(const char *trimmed_path, const char *path)
-{
-	const char	*dot;
-
-	if (ft_strlen(trimmed_path) < 5)
-		return (print_texture_error("Texture file name is too short: ", path));
-	dot = ft_strrchr(trimmed_path, '.');
-	if (!dot)
-		return (print_texture_error("Texture file has no extension: ", path));
-	else if (ft_strcmp(dot, ".png") != 0)
-		return (print_texture_error("Invalid texture file extension: ", path));
-	return (true);
-}
-
-static bool	check_texture_extension(const char *path)
-{
-	char		*trimmed_path;
-	bool		ret;
-
-	trimmed_path = ft_strtrim(path, " \t\n\v\f\r");
-	if (!trimmed_path)
-		return (false);
-	ret = validate_texture_format(trimmed_path, path);
-	free(trimmed_path);
-	return (ret);
-}
 
 bool	check_texture_path(const char *path)
 {

@@ -1,30 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   parse_map.c                                        :+:    :+:            */
+/*   map_loader.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:16:08 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/20 12:13:59 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/20 15:39:39 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-
-static bool	is_empty_line(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
-			return (false);
-		i++;
-	}
-	return (true);
-}
 
 static bool	is_map_char(char c)
 {
@@ -51,7 +37,7 @@ static bool	is_valid_map_line(char *line)
 	return (true);
 }
 
-static int	read_map_lines(int fd, t_list **map_lines, char *first_line)
+int	read_map_lines(int fd, t_list **map_lines, char *first_line)
 {
 	t_list	*new_node;
 	char	*line;
@@ -80,7 +66,7 @@ static int	read_map_lines(int fd, t_list **map_lines, char *first_line)
 	return (0);
 }
 
-static bool	has_valid_first_line(char *line)
+bool	has_valid_first_line(char *line)
 {
 	int	i;
 	int	valid_chars;
@@ -107,23 +93,4 @@ static bool	has_valid_first_line(char *line)
 		i++;
 	}
 	return (valid_chars > 0);
-}
-
-int	parse_map(int fd, t_game *game, char *first_line)
-{
-	t_list	*map_lines;
-
-	if (!has_valid_first_line(first_line))
-		return (free(first_line), -1);
-	if (!check_all_elements_set(&game->asset))
-		return (free(first_line), -1);
-	map_lines = NULL;
-	if (read_map_lines(fd, &map_lines, first_line) == -1)
-		return (-1);
-	if (build_map_array(&game->map, map_lines) == -1)
-		return (ft_lstclear(&map_lines, free), -1);
-	ft_lstclear(&map_lines, free);
-	if (!validate_map(&game->map, &game->player))
-		return (free_map(&game->map), -1);
-	return (1);
 }
