@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 08:55:27 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/20 15:05:48 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/20 16:45:50 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ int	parse_file(char *filename, t_game *game)
 	if (fd == -1)
 		return (perror("Error opening file"), -1);
 	ret = 0;
-	return (parse_map_content(game, fd, ret));
+	ret = parse_map_content(game, fd, ret);
+	gnl_cleanup(fd);
+	close(fd);
+	return (ret);
 }
 
 int	parse_map(int fd, t_game *game, char *first_line)

@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/20 14:57:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/20 16:21:11 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/20 16:46:45 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,9 @@ int	process_line(char *line, t_game *game, int fd)
 int	check_content_after_map(int fd)
 {
 	char	*line;
+	int		ret;
 
+	ret = 0;
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
@@ -64,18 +66,13 @@ int	check_content_after_map(int fd)
 		{
 			ft_putendl_fd("Error: Content found after map section", 2);
 			free(line);
-			line = get_next_line(fd);
-			while (line != NULL)
-			{
-				free(line);
-				line = get_next_line(fd);
-			}
-			return (-1);
+			ret = -1;
+			break;
 		}
 		free(line);
 		line = get_next_line(fd);
 	}
-	return (0);
+	return (ret);
 }
 
 int	check_map_file(t_game *game, int fd, bool map_found)

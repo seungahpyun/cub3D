@@ -1,6 +1,6 @@
 NAME = cub3D
 CC = cc
-SANITIZE   := -fsanitize=address
+# SANITIZE   := -fsanitize=address
 CFLAGS = -g3 $(SANITIZE) -Wall -Wextra -Werror
 LDFLAGS := $(SANITIZE) -ldl -lglfw -pthread -lm
 

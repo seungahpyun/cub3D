@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:53 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/20 16:28:49 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/20 16:45:18 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,20 +85,21 @@ bool			validate_map_closure(t_map *map);
 /* ========================================================================== */
 
 /* error_utils.c */
-bool	print_error(const char *message, bool return_value);
-bool	print_error_with_value(const char *prefix, const char *value,
-							bool return_value);
+bool			print_error(const char *message, bool return_value);
+bool			print_error_with_value(const char *prefix, const char *value,
+									bool return_value);
 
 /* file_utils.c */
-bool	check_file_extension(const char *path, const char *extension);
+bool			check_file_extension(const char *path, const char *extension);
+void			gnl_cleanup(int fd);
 
 /* string_utils.c */
-char	*ft_trim_and_compact(char *str);
-bool	is_empty_line(char *line);
+char			*ft_trim_and_compact(char *str);
+bool			is_empty_line(char *line);
 
 /* map_utils.c */
-bool	is_valid_position(int x, int y, int height, int width);
-bool	is_walkable(char c);
-bool	is_map_char(char c);
+bool			is_valid_position(int x, int y, int height, int width);
+bool			is_walkable(char c);
+bool			is_map_char(char c);
 
 #endif
