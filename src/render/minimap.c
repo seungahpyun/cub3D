@@ -6,42 +6,11 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/09 15:21:43 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/19 09:48:39 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/19 17:53:41 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
-
-static void	draw_cell(mlx_image_t *img, t_cell cell)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	while (x < cell.size)
-	{
-		y = 0;
-		while (y < cell.size)
-		{
-			if ((uint32_t)cell.px + x < img->width && (uint32_t)cell.py
-				+ y < img->height)
-				mlx_put_pixel(img, cell.px + x, cell.py + y, cell.color);
-			y++;
-		}
-		x++;
-	}
-}
-
-static int	get_color(char c)
-{
-	if (c == '1')
-		return (MINIMAP_WALL_COLOR);
-	if (c == '0')
-		return (MINIMAP_FLOOR_COLOR);
-	if (c == ' ')
-		return (MINIMAP_EMPTY_COLOR);
-	return (MINIMAP_PLAYER_COLOR);
-}
 
 /**
  * Draws walls/floor on minimap around player:
@@ -60,7 +29,7 @@ static void	draw_minimap_cell(t_game *game, int i, int j)
 
 	mx = game->player.x - MINIMAP_RADIUS + i;
 	my = game->player.y - MINIMAP_RADIUS + j;
-	if (is_valid_point(game, mx, my))
+	if (is_valid_point(&game->map, mx, my))
 	{
 		cell.px = i * MINIMAP_CELL_SIZE;
 		cell.py = j * MINIMAP_CELL_SIZE;
@@ -88,6 +57,36 @@ static void	draw_minimap_grid(t_game *game)
 	}
 }
 
+/**
+ * Draws rays on minimap from the player:
+ * 1. Calculate the ray angle and distiance to get hit point of ray
+ * 2. Map map_corrdinates to minimap image position
+ * 3. Draw the line on the minimap buffer
+ */
+static void	draw_minimap_rays(t_game *game)
+{
+	double	ray_angle;
+	double	dist;
+	t_point	start;
+	t_point	end;
+	int		i;
+
+	start.x = MINIMAP_W / 2;
+	start.y = MINIMAP_H / 2;
+	i = 0;
+	while (i < WIDTH)
+	{
+		ray_angle = game->player.angle + degree_to_radian(-0.5 * FOV + FOV * i
+				/ WIDTH);
+		// dist = cast_ray(game, ray_angle);
+		dist = 10;
+		end.x = start.x + cos(ray_angle) * dist * MINIMAP_CELL_SIZE;
+		end.y = start.y - sin(ray_angle) * dist * MINIMAP_CELL_SIZE;
+		draw_line(game->minimap.img, start, end, MINIMAP_RAY_COLOR);
+		i++;
+	}
+}
+
 void	render_minimap(t_game *game)
 {
 	game->minimap.img = mlx_new_image(game->mlx, MINIMAP_W, MINIMAP_H);
@@ -97,6 +96,7 @@ void	render_minimap(t_game *game)
 	ft_memset(game->minimap.img->pixels, 0, MINIMAP_W * MINIMAP_H
 		* sizeof(int32_t));
 	draw_minimap_grid(game);
+	draw_minimap_rays(game);
 	if (mlx_image_to_window(game->mlx, game->minimap.img, 0, 0) < 0)
 		ft_mlx_error(game);
 }
