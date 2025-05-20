@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 11:08:44 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/19 17:52:38 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/20 16:51:26 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	is_within_boundary(int x, int y, int width, int height)
 
 double	degree_to_radian(double degree)
 {
+	if (degree < 0)
+		degree += 360;
 	return (degree * M_PI / 180);
 }
 
