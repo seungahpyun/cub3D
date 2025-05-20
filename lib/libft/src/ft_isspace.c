@@ -6,11 +6,12 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/21 10:00:12 by spyun         #+#    #+#                 */
-/*   Updated: 2025/01/29 17:06:49 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/20 09:51:34 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isspace(char c)
 {
-	return (c == ' ' || c == '\t');
+	return (c == ' ' || c == '\t' || c == '\n' ||
+			c == '\v' || c == '\f' || c == '\r');
 }

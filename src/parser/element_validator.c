@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:20:25 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/19 11:48:44 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/20 09:56:29 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,34 +27,43 @@ bool	check_map_extension(const char *filename)
 static bool	check_texture_extension(const char *path)
 {
 	const char	*dot;
-	size_t		len;
+	char		*trimmed_path;
+	bool		ret;
 
-	len = ft_strlen(path);
-	if (len < 5)
+	trimmed_path = ft_strtrim(path, " \t\n\v\f\r");
+	if (!trimmed_path)
+		return (false);
+	ret = true;
+	if (ft_strlen(trimmed_path) < 5)
 	{
 		ft_putstr_fd("Error: Texture file name is too short: ", 2);
 		ft_putendl_fd((char *)path, 2);
-		return (false);
+		ret = false;
 	}
-	dot = ft_strrchr(path, '.');
-	if (!dot)
+	else
 	{
-		ft_putstr_fd("Error: Texture file has no extension: ", 2);
-		ft_putendl_fd((char *)path, 2);
-		return (false);
+		dot = ft_strrchr(trimmed_path, '.');
+		if (!dot)
+		{
+			ft_putstr_fd("Error: Texture file has no extension: ", 2);
+			ft_putendl_fd((char *)path, 2);
+			ret = false;
+		}
+		else if (ft_strcmp(dot, ".png") != 0)
+		{
+			ft_putstr_fd("Error: Invalid texture file extension: ", 2);
+			ft_putendl_fd((char *)path, 2);
+			ret = false;
+		}
 	}
-	if (ft_strcmp(dot, ".png") != 0)
-	{
-		ft_putstr_fd("Error: Invalid texture file extension: ", 2);
-		ft_putendl_fd((char *)path, 2);
-		return (false);
-	}
-	return (true);
+	free(trimmed_path);
+	return (ret);
 }
 
 bool	check_texture_path(const char *path)
 {
-	int	fd;
+	int		fd;
+	char	*trimmed_path;
 
 	if (!path)
 	{
@@ -68,14 +77,19 @@ bool	check_texture_path(const char *path)
 	}
 	if (!check_texture_extension(path))
 		return (false);
-	fd = open(path, O_RDONLY);
+	trimmed_path = ft_strtrim(path, " \t\n\v\f\r");
+	if (!trimmed_path)
+		return (false);
+	fd = open(trimmed_path, O_RDONLY);
 	if (fd == -1)
 	{
 		ft_putstr_fd("Error: Cannot open texture file: ", 2);
 		ft_putendl_fd((char *)path, 2);
+		free(trimmed_path);
 		return (false);
 	}
 	close(fd);
+	free(trimmed_path);
 	return (true);
 }
 

@@ -6,52 +6,95 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 08:55:27 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/19 16:32:36 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/20 10:36:41 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
+static bool	is_empty_line(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+static bool	is_map_line(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] != ' ' && line[i] != '\t' && line[i] != '0' &&
+			line[i] != '1' && line[i] != 'N' && line[i] != 'S' &&
+			line[i] != 'E' && line[i] != 'W' && line[i] != '\n')
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
 static int	process_line(char *line, t_game *game, int fd)
 {
 	int	ret;
 
+	printf("DEBUG [process_line]: Processing line: '%s'\n", line);
 	ret = 0;
-	if (ft_strlen(line) <= 1 || line[0] == '\n')
+	if (is_empty_line(line))
 	{
+		printf("DEBUG [process_line]: Empty line, skipping\n");
 		free(line);
 		return (0);
 	}
 	if (line[ft_strlen(line) - 1] == '\n')
 		line[ft_strlen(line) - 1] = '\0';
-	if (parse_element(line, &game->asset) == -1)
+	if (is_map_line(line) && check_all_elements_set(&game->asset))
 	{
-		if (parse_map(fd, game, line) == -1)
-			ret = -1;
+		printf("DEBUG [process_line]: Line appears to be a map line\n");
+		ret = parse_map(fd, game, line);
+		if (ret == -1)
+			printf("DEBUG [process_line]: Failed to parse as map\n");
+		else
+			printf("DEBUG [process_line]: Parsed as map successfully\n");
 	}
 	else
-		free(line);
+	{
+		ret = parse_element(line, &game->asset);
+		if (ret == -1)
+		{
+			printf("DEBUG [process_line]: Not a recognized element or map line\n");
+			free(line);
+			ret = -1;
+		}
+		else
+		{
+			printf("DEBUG [process_line]: Parsed as element successfully\n");
+			free(line);
+		}
+	}
 	return (ret);
 }
 
 static int	check_content_after_map(int fd)
 {
 	char	*line;
-	int		i;
 
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		i = 0;
-		while (line[i])
+		if (!is_empty_line(line))
 		{
-			if (line[i] != ' ' && line[i] != '\n' && line[i] != '\t')
-			{
-				free(line);
-				ft_putendl_fd("Error: Content after map section", 2);
-				return (-1);
-			}
-			i++;
+			free(line);
+			ft_putendl_fd("Error: Content after map section", 2);
+			return (-1);
 		}
 		free(line);
 		line = get_next_line(fd);
@@ -65,6 +108,7 @@ int	parse_file(char *filename, t_game *game)
 	char	*line;
 	int		ret;
 
+	printf("DEBUG [parse_file]: Parsing file: %s\n", filename);
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
@@ -82,7 +126,19 @@ int	parse_file(char *filename, t_game *game)
 	if (ret == 0 && check_content_after_map(fd) == -1)
 		ret = -1;
 	close(fd);
+	printf("DEBUG [parse_file]: All elements set check\n");
+	printf("DEBUG [parse_file]: NO path: %s\n", game->asset.no_path ? game->asset.no_path : "NULL");
+	printf("DEBUG [parse_file]: SO path: %s\n", game->asset.so_path ? game->asset.so_path : "NULL");
+	printf("DEBUG [parse_file]: WE path: %s\n", game->asset.we_path ? game->asset.we_path : "NULL");
+	printf("DEBUG [parse_file]: EA path: %s\n", game->asset.ea_path ? game->asset.ea_path : "NULL");
+	printf("DEBUG [parse_file]: Floor color: (%d, %d, %d)\n", game->asset.floor.r, game->asset.floor.g, game->asset.floor.b);
+	printf("DEBUG [parse_file]: Ceiling color: (%d, %d, %d)\n", game->asset.ceiling.r, game->asset.ceiling.g, game->asset.ceiling.b);
 	if (ret == 0 && !check_all_elements_set(&game->asset))
-		return (free_game(game), -1);
+	{
+		printf("DEBUG [parse_file]: Not all elements are set\n");
+		free_game(game);
+		return (-1);
+	}
+	printf("DEBUG [parse_file]: Parsing complete with result: %d\n", ret);
 	return (ret);
 }
