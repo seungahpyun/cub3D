@@ -11,9 +11,10 @@ INCLUDE_DIR = include
 
 SRC_DIR = src
 PARSER_DIR = $(SRC_DIR)/parser
-PARSER_MAP_DIR = $(PARSER_DIR)/map
 PARSER_ELEMENT_DIR = $(PARSER_DIR)/element
 PARSER_FILE_DIR = $(PARSER_DIR)/file
+PARSER_MAP_DIR = $(PARSER_DIR)/map
+PARSER_UTILS_DIR = $(PARSER_DIR)/utils
 RENDER_DIR = $(SRC_DIR)/render
 COMMON_DIR = $(SRC_DIR)/common
 
@@ -41,6 +42,11 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(PARSER_MAP_DIR)/map_loader.c \
 			$(PARSER_MAP_DIR)/map_spaces.c \
 			$(PARSER_MAP_DIR)/map_validator.c \
+			\
+			$(PARSER_UTILS_DIR)/error_utils.c \
+			$(PARSER_UTILS_DIR)/file_utils.c \
+			$(PARSER_UTILS_DIR)/map_utils.c \
+			$(PARSER_UTILS_DIR)/string_utils.c \
 			\
 			$(RENDER_DIR)/minimap.c \
 			$(RENDER_DIR)/render_utils.c \

@@ -6,23 +6,11 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/13 11:43:41 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/20 15:08:45 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/20 16:28:37 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-
-bool	is_walkable(char c)
-{
-	return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
-}
-
-static bool	is_valid_position(int x, int y, int height, int width)
-{
-	if (y < 0 || y >= height || x < 0 || x >= width)
-		return (false);
-	return (true);
-}
 
 static bool	check_space_adjacents(t_map *map, int x, int y)
 {

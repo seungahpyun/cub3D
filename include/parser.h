@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:53 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/20 15:49:45 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/20 16:28:49 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ bool			check_color_value(int r, int g, int b);
 bool			check_all_elements_set(t_asset *asset);
 
 /* element_parser.c */
-char			*ft_trim_and_compact(char *str);
 int				parse_element(char *line, t_asset *asset);
 
 /* texture_parser.c */
@@ -47,7 +46,6 @@ int				parse_file(char *filename, t_game *game);
 int				parse_map(int fd, t_game *game, char *first_line);
 
 /* file_processor.c */
-bool			is_empty_line(char *line);
 int				process_line(char *line, t_game *game, int fd);
 int				check_content_after_map(int fd);
 int				check_map_file(t_game *game, int fd, bool map_found);
@@ -76,11 +74,31 @@ int				read_map_lines(int fd, t_list **map_lines, char *first_line);
 bool			has_valid_first_line(char *line);
 
 /* map_spaces.c */
-bool			is_walkable(char c);
 bool			check_spaces_surrounded(t_map *map);
 
 /* map_validator.c */
 bool			validate_map(t_map *map, t_player *player);
 bool			validate_map_closure(t_map *map);
+
+/* ========================================================================== */
+/*                               UTILITY FUNCTIONS                            */
+/* ========================================================================== */
+
+/* error_utils.c */
+bool	print_error(const char *message, bool return_value);
+bool	print_error_with_value(const char *prefix, const char *value,
+							bool return_value);
+
+/* file_utils.c */
+bool	check_file_extension(const char *path, const char *extension);
+
+/* string_utils.c */
+char	*ft_trim_and_compact(char *str);
+bool	is_empty_line(char *line);
+
+/* map_utils.c */
+bool	is_valid_position(int x, int y, int height, int width);
+bool	is_walkable(char c);
+bool	is_map_char(char c);
 
 #endif

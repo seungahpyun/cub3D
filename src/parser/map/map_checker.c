@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/20 15:16:48 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/20 15:38:27 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/20 16:11:35 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,5 @@ bool	validate_map_content(t_map *map, t_player *player)
 
 bool	check_map_extension(const char *filename)
 {
-	const char	*dot;
-
-	dot = ft_strrchr(filename, '.');
-	if (dot == NULL)
-		return (false);
-	if (ft_strcmp(dot, ".cub") != 0)
-		return (false);
-	return (true);
+	return (check_file_extension(filename, ".cub"));
 }

@@ -6,31 +6,20 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/20 15:07:56 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/20 15:33:43 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/20 16:29:53 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static bool	print_texture_error(const char *error_msg, const char *path)
-{
-	ft_putstr_fd("Error: ", 2);
-	ft_putstr_fd((char *)error_msg, 2);
-	ft_putendl_fd((char *)path, 2);
-	return (false);
-}
-
 static bool	validate_texture_format(const char *trimmed_path, const char *path)
 {
-	const char	*dot;
-
 	if (ft_strlen(trimmed_path) < 5)
-		return (print_texture_error("Texture file name is too short: ", path));
-	dot = ft_strrchr(trimmed_path, '.');
-	if (!dot)
-		return (print_texture_error("Texture file has no extension: ", path));
-	else if (ft_strcmp(dot, ".png") != 0)
-		return (print_texture_error("Invalid texture file extension: ", path));
+		return (print_error_with_value("Texture file name is too short: ",
+				path, false));
+	if (!check_file_extension(trimmed_path, ".png"))
+		return (print_error_with_value("Invalid texture file extension: ",
+				path, false));
 	return (true);
 }
 

@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:20:25 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/20 15:18:02 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/20 16:10:22 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ bool	check_texture_path(const char *path)
 	char	*trimmed_path;
 
 	if (!path)
-		return (ft_putendl_fd("Error: Texture path is NULL", 2), false);
+		return (print_error("Error: Texture path is NULL", false));
 	if (ft_strlen(path) == 0)
-		return (ft_putendl_fd("Error: Texture path is empty", 2), false);
+		return (print_error("Error: Texture path is empty", false));
 	if (!check_texture_extension(path))
 		return (false);
 	trimmed_path = ft_strtrim(path, " \t\n\v\f\r");
@@ -29,8 +29,7 @@ bool	check_texture_path(const char *path)
 	fd = open(trimmed_path, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_putstr_fd("Error: Cannot open texture file: ", 2);
-		ft_putendl_fd((char *)path, 2);
+		print_error_with_value("Cannot open texture file: ", path, false);
 		free(trimmed_path);
 		return (false);
 	}
@@ -42,20 +41,11 @@ bool	check_texture_path(const char *path)
 bool	check_color_value(int r, int g, int b)
 {
 	if (r < 0 || r > 255)
-	{
-		ft_putendl_fd("Error: Red color value out of range (0-255)", 2);
-		return (false);
-	}
+		return (print_error("Red color value out of range (0-255)", false));
 	if (g < 0 || g > 255)
-	{
-		ft_putendl_fd("Error: Green color value out of range (0-255)", 2);
-		return (false);
-	}
+		return (print_error("Green color value out of range (0-255)", false));
 	if (b < 0 || b > 255)
-	{
-		ft_putendl_fd("Error: Blue color value out of range (0-255)", 2);
-		return (false);
-	}
+		return (print_error("Blue color value out of range (0-255)", false));
 	return (true);
 }
 

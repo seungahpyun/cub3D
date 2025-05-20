@@ -6,17 +6,11 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:16:08 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/20 15:39:39 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/20 16:22:52 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-
-static bool	is_map_char(char c)
-{
-	return (c == '0' || c == '1' || c == ' ' || c == '\t'
-		|| c == 'N' || c == 'S' || c == 'E' || c == 'W');
-}
 
 static bool	is_valid_map_line(char *line)
 {
