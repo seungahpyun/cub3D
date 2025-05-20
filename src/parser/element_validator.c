@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:20:25 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/20 09:56:29 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/20 14:36:12 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,38 +24,37 @@ bool	check_map_extension(const char *filename)
 	return (true);
 }
 
-static bool	check_texture_extension(const char *path)
+static bool	print_texture_error(const char *error_msg, const char *path)
+{
+	ft_putstr_fd("Error: ", 2);
+	ft_putstr_fd((char *)error_msg, 2);
+	ft_putendl_fd((char *)path, 2);
+	return (false);
+}
+
+static bool	validate_texture_format(const char *trimmed_path, const char *path)
 {
 	const char	*dot;
+
+	if (ft_strlen(trimmed_path) < 5)
+		return (print_texture_error("Texture file name is too short: ", path));
+	dot = ft_strrchr(trimmed_path, '.');
+	if (!dot)
+		return (print_texture_error("Texture file has no extension: ", path));
+	else if (ft_strcmp(dot, ".png") != 0)
+		return (print_texture_error("Invalid texture file extension: ", path));
+	return (true);
+}
+
+static bool	check_texture_extension(const char *path)
+{
 	char		*trimmed_path;
 	bool		ret;
 
 	trimmed_path = ft_strtrim(path, " \t\n\v\f\r");
 	if (!trimmed_path)
 		return (false);
-	ret = true;
-	if (ft_strlen(trimmed_path) < 5)
-	{
-		ft_putstr_fd("Error: Texture file name is too short: ", 2);
-		ft_putendl_fd((char *)path, 2);
-		ret = false;
-	}
-	else
-	{
-		dot = ft_strrchr(trimmed_path, '.');
-		if (!dot)
-		{
-			ft_putstr_fd("Error: Texture file has no extension: ", 2);
-			ft_putendl_fd((char *)path, 2);
-			ret = false;
-		}
-		else if (ft_strcmp(dot, ".png") != 0)
-		{
-			ft_putstr_fd("Error: Invalid texture file extension: ", 2);
-			ft_putendl_fd((char *)path, 2);
-			ret = false;
-		}
-	}
+	ret = validate_texture_format(trimmed_path, path);
 	free(trimmed_path);
 	return (ret);
 }
@@ -66,15 +65,9 @@ bool	check_texture_path(const char *path)
 	char	*trimmed_path;
 
 	if (!path)
-	{
-		ft_putendl_fd("Error: Texture path is NULL", 2);
-		return (false);
-	}
+		return (ft_putendl_fd("Error: Texture path is NULL", 2), false);
 	if (ft_strlen(path) == 0)
-	{
-		ft_putendl_fd("Error: Texture path is empty", 2);
-		return (false);
-	}
+		return (ft_putendl_fd("Error: Texture path is empty", 2), false);
 	if (!check_texture_extension(path))
 		return (false);
 	trimmed_path = ft_strtrim(path, " \t\n\v\f\r");

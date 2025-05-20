@@ -6,11 +6,29 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:16:05 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/20 12:04:46 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/20 14:40:43 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+
+static void	ft_handle_char(char *trimmed, int *i, int *j, int *in_space)
+{
+	if (ft_isspace(trimmed[*i]))
+	{
+		if (!(*in_space))
+		{
+			trimmed[(*j)++] = ' ';
+			*in_space = 1;
+		}
+	}
+	else
+	{
+		trimmed[(*j)++] = trimmed[*i];
+		*in_space = 0;
+	}
+	(*i)++;
+}
 
 static char	*ft_trim_and_compact(char *str)
 {
@@ -26,44 +44,16 @@ static char	*ft_trim_and_compact(char *str)
 	j = 0;
 	in_space = 0;
 	while (trimmed[i])
-	{
-		if (ft_isspace(trimmed[i]))
-		{
-			if (!in_space)
-			{
-				trimmed[j++] = ' ';
-				in_space = 1;
-			}
-		}
-		else
-		{
-			trimmed[j++] = trimmed[i];
-			in_space = 0;
-		}
-		i++;
-	}
+		ft_handle_char(trimmed, &i, &j, &in_space);
 	trimmed[j] = '\0';
 	return (trimmed);
 }
 
-static int	parse_texture_path(char *line, char **path)
+static int	validate_texture(char **path, char **split)
 {
-	char	*trimmed;
-	char	**split;
-	int		ret;
+	int	ret;
 
 	ret = 0;
-	if (*path != NULL)
-		return (ft_putendl_fd("Error: Duplicate texture path", 2), -1);
-	trimmed = ft_trim_and_compact(line);
-	if (!trimmed)
-		return (-1);
-	split = ft_split(trimmed, ' ');
-	free(trimmed);
-	if (!split)
-		return (-1);
-	if (!split[0] || !split[1] || split[2])
-		return (ft_free_strarr(split), -1);
 	*path = ft_strdup(split[1]);
 	if (!(*path))
 		ret = -1;
@@ -77,53 +67,71 @@ static int	parse_texture_path(char *line, char **path)
 	return (ret);
 }
 
-static int	extract_rgb_values(char *line, t_color *color)
+static int	parse_texture_path(char *line, char **path)
 {
-	int		i;
+	char	*trimmed;
+	char	**split;
+
+	if (*path != NULL)
+		return (ft_putendl_fd("Error: Duplicate texture path", 2), -1);
+	trimmed = ft_trim_and_compact(line);
+	if (!trimmed)
+		return (-1);
+	split = ft_split(trimmed, ' ');
+	free(trimmed);
+	if (!split)
+		return (-1);
+	if (!split[0] || !split[1] || split[2])
+		return (ft_free_strarr(split), -1);
+	return (validate_texture(path, split));
+}
+
+static int	parse_single_value(char **str, int *value)
+{
 	int		j;
-	int		values[3];
-	char	*str;
 	bool	negative;
 
-	if (color->r >= 0)
+	while (**str && (**str == ' ' || **str == ','))
+		(*str)++;
+	negative = false;
+	if (**str == '-')
 	{
-		ft_putendl_fd("Error: Duplicate color value", 2);
-		return (-1);
+		negative = true;
+		(*str)++;
 	}
-	str = line;
-	while (*str && *str != ' ')
-		str++;
-	while (*str && *str == ' ')
-		str++;
+	else if (**str == '+')
+		(*str)++;
+	j = 0;
+	*value = 0;
+	while (**str && ft_isdigit(**str))
+	{
+		*value = *value * 10 + (**str - '0');
+		(*str)++;
+		j++;
+	}
+	if (negative)
+		*value = -*value;
+	return (j);
+}
+
+static int	parse_rgb_values(char *str, int values[3])
+{
+	int	i;
+	int	j;
+
 	i = 0;
 	while (i < 3)
 	{
-		while (*str && (*str == ' ' || *str == ','))
-			str++;
-		negative = false;
-		if (*str == '-')
-		{
-			negative = true;
-			str++;
-		}
-		else if (*str == '+')
-		{
-			str++;
-		}
-		j = 0;
-		values[i] = 0;
-		while (*str && ft_isdigit(*str))
-		{
-			values[i] = values[i] * 10 + (*str - '0');
-			str++;
-			j++;
-		}
-		if (negative)
-			values[i] = -values[i];
+		j = parse_single_value(&str, &values[i]);
 		if (j == 0)
 			return (-1);
 		i++;
 	}
+	return (0);
+}
+
+static int	set_color_values(t_color *color, int values[3])
+{
 	color->r = values[0];
 	color->g = values[1];
 	color->b = values[2];
@@ -135,6 +143,23 @@ static int	extract_rgb_values(char *line, t_color *color)
 		return (-1);
 	}
 	return (0);
+}
+
+static int	extract_rgb_values(char *line, t_color *color)
+{
+	int		values[3];
+	char	*str;
+
+	if (color->r >= 0)
+		return (ft_putendl_fd("Error: Duplicate color value", 2), -1);
+	str = line;
+	while (*str && *str != ' ')
+		str++;
+	while (*str && *str == ' ')
+		str++;
+	if (parse_rgb_values(str, values) == -1)
+		return (-1);
+	return (set_color_values(color, values));
 }
 
 static int	parse_color_value(char *line, t_color *color)

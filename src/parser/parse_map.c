@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:16:08 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/20 12:07:32 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/20 12:13:59 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static bool	is_empty_line(char *line)
 
 static bool	is_map_char(char c)
 {
-	return (c == '0' || c == '1' || c == ' ' || c == '\t' ||
-			c == 'N' || c == 'S' || c == 'E' || c == 'W');
+	return (c == '0' || c == '1' || c == ' ' || c == '\t'
+		|| c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
 static bool	is_valid_map_line(char *line)
@@ -57,37 +57,26 @@ static int	read_map_lines(int fd, t_list **map_lines, char *first_line)
 	char	*line;
 
 	if (add_first_line(map_lines, first_line) == -1)
-	{
 		return (-1);
-	}
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
 		if (is_empty_line(line))
 		{
 			free(line);
-			break;
+			break ;
 		}
 		if (!is_valid_map_line(line))
-		{
-			free(line);
-			ft_lstclear(map_lines, free);
-			return (-1);
-		}
+			return (free(line), ft_lstclear(map_lines, free), -1);
 		new_node = create_map_node(line);
 		if (!new_node)
-		{
 			return (free(line), ft_lstclear(map_lines, free), -1);
-		}
-
 		ft_lstadd_back(map_lines, new_node);
 		free(line);
 		line = get_next_line(fd);
 	}
 	if (!*map_lines)
-	{
 		return (ft_putendl_fd("Error: Empty map", 2), -1);
-	}
 	return (0);
 }
 
@@ -98,9 +87,7 @@ static bool	has_valid_first_line(char *line)
 	int	total_chars;
 
 	if (!line || is_empty_line(line))
-	{
 		return (false);
-	}
 	i = 0;
 	valid_chars = 0;
 	total_chars = 0;
@@ -110,15 +97,13 @@ static bool	has_valid_first_line(char *line)
 			total_chars++;
 		if (is_map_char(line[i]))
 		{
-			if (line[i] == '0' || line[i] == '1' ||
-				line[i] == 'N' || line[i] == 'S' ||
-				line[i] == 'E' || line[i] == 'W')
+			if (line[i] == '0' || line[i] == '1'
+				|| line[i] == 'N' || line[i] == 'S'
+				|| line[i] == 'E' || line[i] == 'W')
 				valid_chars++;
 		}
 		else
-		{
 			return (false);
-		}
 		i++;
 	}
 	return (valid_chars > 0);
@@ -129,29 +114,16 @@ int	parse_map(int fd, t_game *game, char *first_line)
 	t_list	*map_lines;
 
 	if (!has_valid_first_line(first_line))
-	{
-		free(first_line);
-		return (-1);
-	}
-	if (!check_all_elements_set(&game->asset))
-	{
 		return (free(first_line), -1);
-	}
+	if (!check_all_elements_set(&game->asset))
+		return (free(first_line), -1);
 	map_lines = NULL;
 	if (read_map_lines(fd, &map_lines, first_line) == -1)
-	{
 		return (-1);
-	}
 	if (build_map_array(&game->map, map_lines) == -1)
-	{
-		ft_lstclear(&map_lines, free);
-		return (-1);
-	}
+		return (ft_lstclear(&map_lines, free), -1);
 	ft_lstclear(&map_lines, free);
 	if (!validate_map(&game->map, &game->player))
-	{
-		free_map(&game->map);
-		return (-1);
-	}
+		return (free_map(&game->map), -1);
 	return (1);
 }
