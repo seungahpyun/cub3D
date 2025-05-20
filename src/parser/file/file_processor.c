@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/20 14:57:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/20 16:46:45 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/20 16:49:59 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	check_content_after_map(int fd)
 			ft_putendl_fd("Error: Content found after map section", 2);
 			free(line);
 			ret = -1;
-			break;
+			break ;
 		}
 		free(line);
 		line = get_next_line(fd);
