@@ -20,6 +20,7 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(COMMON_DIR)/free_utils.c \
 			$(COMMON_DIR)/init_components.c \
 			$(COMMON_DIR)/init.c \
+			$(COMMON_DIR)/debug.c \
 			$(PARSER_DIR)/element_validator.c \
 			$(PARSER_DIR)/map_borders_validator.c \
 			$(PARSER_DIR)/map_builder.c \
@@ -32,6 +33,7 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(RENDER_DIR)/minimap.c \
 			$(RENDER_DIR)/render_utils.c \
 			$(RENDER_DIR)/draw_primitives.c \
+			$(RENDER_DIR)/cast_rays.c 
 
 
 OBJ_FILES = $(SRC_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:50 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/19 17:50:24 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/20 14:33:47 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,8 @@ void			init_game_state(t_game *game);
 void			init_player(t_player *player);
 void			init_minimap(t_minimap *minimap);
 void			init_map(t_map *map);
+
+/* debug */
+void			debug(t_game *game);
 
 #endif
