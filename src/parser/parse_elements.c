@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:16:05 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/20 10:35:07 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/20 10:45:33 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,11 @@ static int	parse_texture_path(char *line, char **path)
 	int		ret;
 
 	ret = 0;
+	if (*path != NULL)
+	{
+		ft_putendl_fd("Error: Duplicate texture path", 2);
+		return (-1);
+	}
 	trimmed = ft_trim_and_compact(line);
 	if (!trimmed)
 		return (-1);
@@ -90,6 +95,11 @@ static int	extract_rgb_values(char *line, t_color *color)
 	char	*str;
 	bool	negative;
 
+	if (color->r >= 0)
+	{
+		ft_putendl_fd("Error: Duplicate color value", 2);
+		return (-1);
+	}
 	str = line;
 	while (*str && *str != ' ')
 		str++;
@@ -133,6 +143,9 @@ static int	extract_rgb_values(char *line, t_color *color)
 	if (!check_color_value(color->r, color->g, color->b))
 	{
 		printf("DEBUG: RGB values out of range\n");
+		color->r = -1;
+		color->g = -1;
+		color->b = -1;
 		return (-1);
 	}
 	return (0);

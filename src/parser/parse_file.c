@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 08:55:27 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/20 10:36:41 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/20 11:54:39 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,14 @@ static int	check_content_after_map(int fd)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
+		printf("DEBUG [check_content_after_map]: Checking line: '%s'\n", line);
 		if (!is_empty_line(line))
 		{
+			printf("DEBUG [check_content_after_map]: Found non-empty line after map: '%s'\n", line);
+			ft_putendl_fd("Error: Content found after map section", 2);
 			free(line);
-			ft_putendl_fd("Error: Content after map section", 2);
+			while ((line = get_next_line(fd)) != NULL)
+				free(line);
 			return (-1);
 		}
 		free(line);
@@ -107,6 +111,7 @@ int	parse_file(char *filename, t_game *game)
 	int		fd;
 	char	*line;
 	int		ret;
+	bool	map_found;
 
 	printf("DEBUG [parse_file]: Parsing file: %s\n", filename);
 	fd = open(filename, O_RDONLY);
@@ -116,15 +121,23 @@ int	parse_file(char *filename, t_game *game)
 		return (-1);
 	}
 	ret = 0;
+	map_found = false;
 	line = get_next_line(fd);
 	while (line != NULL && ret == 0)
 	{
 		ret = process_line(line, game, fd);
+		if (ret == 1)
+		{
+			map_found = true;
+			if (check_content_after_map(fd) == -1)
+			{
+				ret = -1;
+				break;
+			}
+		}
 		if (ret == 0)
 			line = get_next_line(fd);
 	}
-	if (ret == 0 && check_content_after_map(fd) == -1)
-		ret = -1;
 	close(fd);
 	printf("DEBUG [parse_file]: All elements set check\n");
 	printf("DEBUG [parse_file]: NO path: %s\n", game->asset.no_path ? game->asset.no_path : "NULL");
@@ -136,6 +149,13 @@ int	parse_file(char *filename, t_game *game)
 	if (ret == 0 && !check_all_elements_set(&game->asset))
 	{
 		printf("DEBUG [parse_file]: Not all elements are set\n");
+		free_game(game);
+		return (-1);
+	}
+	if (ret == 0 && !map_found)
+	{
+		printf("DEBUG [parse_file]: No map found in file\n");
+		ft_putendl_fd("Error: No map found in file", 2);
 		free_game(game);
 		return (-1);
 	}

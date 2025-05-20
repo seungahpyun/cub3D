@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:16:08 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/20 10:35:24 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/20 11:54:47 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,25 @@ static bool	is_map_char(char c)
 			c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
+static bool	is_valid_map_line(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (!is_map_char(line[i]) && line[i] != '\n')
+		{
+			ft_putstr_fd("Error: Invalid character in map: '", 2);
+			ft_putchar_fd(line[i], 2);
+			ft_putendl_fd("'", 2);
+			return (false);
+		}
+		i++;
+	}
+	return (true);
+}
+
 static int	read_map_lines(int fd, t_list **map_lines, char *first_line)
 {
 	t_list	*new_node;
@@ -52,7 +71,14 @@ static int	read_map_lines(int fd, t_list **map_lines, char *first_line)
 		{
 			printf("DEBUG [read_map_lines]: Empty line found, stopping map parsing\n");
 			free(line);
-			return (0);
+			break;
+		}
+		if (!is_valid_map_line(line))
+		{
+			printf("DEBUG [read_map_lines]: Invalid map line found\n");
+			free(line);
+			ft_lstclear(map_lines, free);
+			return (-1);
 		}
 		new_node = create_map_node(line);
 		if (!new_node)
@@ -149,5 +175,5 @@ int	parse_map(int fd, t_game *game, char *first_line)
 		return (-1);
 	}
 	printf("DEBUG [parse_map]: Map parsing successful\n");
-	return (0);
+	return (1);
 }
