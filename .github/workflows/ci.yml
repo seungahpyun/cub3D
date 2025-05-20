@@ -1,0 +1,25 @@
+name: cub3D Build & Style
+
+on:
+  pull_request:
+    branches: [ main ]
+
+
+jobs:
+  build-and-style:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential python3-pip libx11-dev libxext-dev libxrandr-dev libxcursor-dev libxi-dev libglfw3-dev libglfw3 xorg-dev libglew-dev libopenal-dev libssl-dev pkg-config
+          pip3 install norminette
+
+      - name: Build with make
+        run: make
+
+      - name: Norminette style check
+        run: norminette src include

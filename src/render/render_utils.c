@@ -6,24 +6,53 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 11:08:44 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/19 09:48:43 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/19 17:52:38 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-static int	is_within_map(int mx, int my, int map_width, int map_height)
+int	is_within_boundary(int x, int y, int width, int height)
 {
-	return (mx >= 0 && my >= 0 && mx < map_width && my < map_height);
+	return (x >= 0 && y >= 0 && x < width && y < height);
 }
 
-bool	is_valid_point(t_game *game, int mx, int my)
+double	degree_to_radian(double degree)
 {
-	if (!is_within_map(mx, my, game->map.width, game->map.height))
+	return (degree * M_PI / 180);
+}
+
+double	dir_to_angle(char c)
+{
+	if (c == 'E')
+		return (0);
+	if (c == 'N')
+		return (M_PI / 2);
+	if (c == 'W')
+		return (M_PI);
+	if (c == 'S')
+		return (3 * M_PI / 2);
+	return (-1);
+}
+
+bool	is_valid_point(t_map *map, int mx, int my)
+{
+	if (!is_within_boundary(mx, my, map->width, map->height))
 		return (false);
-	if (mx >= (int)ft_strlen(game->map.grid[my]))
+	if (mx >= (int)ft_strlen(map->grid[my]))
 		return (false);
 	return (true);
+}
+
+int	get_color(char c)
+{
+	if (c == '1')
+		return (MINIMAP_WALL_COLOR);
+	if (c == '0')
+		return (MINIMAP_FLOOR_COLOR);
+	if (c == ' ')
+		return (MINIMAP_EMPTY_COLOR);
+	return (MINIMAP_PLAYER_COLOR);
 }
 
 // int	calculate_cell_size(int map_width, int map_height)
