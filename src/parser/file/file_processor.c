@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/20 14:57:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/21 11:27:11 by seungah       ########   odam.nl         */
+/*   Updated: 2025/05/21 11:41:03 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,7 @@ int	process_line(char *line, t_game *game, int fd)
 	else
 	{
 		ret = parse_element(line, &game->asset);
-		if (ret == -1)
-		{
-			free(line);
-			ret = -1;
-		}
-		else
-			free(line);
+		free(line);
 	}
 	return (ret);
 }
