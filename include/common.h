@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:50 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/19 17:50:24 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/20 09:35:24 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ typedef struct s_game
 	t_minimap	minimap;
 }				t_game;
 
-/* error.c*/
+/* error.c */
 void			ft_mlx_error(t_game *game);
 
 /* free_utils.c */

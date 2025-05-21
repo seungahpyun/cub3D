@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   map_validator.c                                    :+:    :+:            */
+/*   map_checker.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/05/13 14:36:13 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/19 10:02:34 by spyun         ########   odam.nl         */
+/*   Created: 2025/05/20 15:16:48 by spyun         #+#    #+#                 */
+/*   Updated: 2025/05/20 16:11:35 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static bool	find_player_position(t_map *map, t_player *player)
 	return (player_found == 1);
 }
 
-static bool	validate_map_content(t_map *map, t_player *player)
+bool	validate_map_content(t_map *map, t_player *player)
 {
 	if (!map || !player)
 		return (false);
@@ -85,13 +85,7 @@ static bool	validate_map_content(t_map *map, t_player *player)
 	return (true);
 }
 
-bool	validate_map(t_map *map, t_player *player)
+bool	check_map_extension(const char *filename)
 {
-	if (!map || !player)
-		return (false);
-	if (!validate_map_content(map, player))
-		return (false);
-	if (!validate_map_closure(map))
-		return (false);
-	return (true);
+	return (check_file_extension(filename, ".cub"));
 }
