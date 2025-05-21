@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   map_closure_validator.c                            :+:    :+:            */
+/*   map_closure.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/13 09:17:08 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/19 09:48:17 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/20 15:39:08 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static bool	check_cell_surrounded(t_map *map, int x, int y)
 	return (true);
 }
 
-static bool	check_surrounding_walls(t_map *map)
+bool	check_surrounding_walls(t_map *map)
 {
 	int	x;
 	int	y;
@@ -79,22 +79,6 @@ static bool	check_surrounding_walls(t_map *map)
 			x++;
 		}
 		y++;
-	}
-	return (true);
-}
-
-bool	validate_map_closure(t_map *map)
-{
-	if (!map || !map->grid)
-		return (false);
-	if (!check_map_borders(map))
-		return (false);
-	if (!check_surrounding_walls(map))
-		return (false);
-	if (!check_spaces_surrounded(map))
-	{
-		ft_putendl_fd("Error: Space has walkable area nearby", 2);
-		return (false);
 	}
 	return (true);
 }

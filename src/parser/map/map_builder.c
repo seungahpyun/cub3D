@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 08:52:11 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/19 09:48:14 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/20 12:01:24 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,28 +49,42 @@ t_list	*create_map_node(char *line)
 	return (new_node);
 }
 
+static bool	is_empty_or_null(char *str)
+{
+	int	i;
+
+	if (!str)
+		return (true);
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
 int	add_first_line(t_list **map_lines, char *first_line)
 {
 	t_list	*new_node;
 	char	*str_dup;
 
-	if (first_line && *first_line)
+	if (is_empty_or_null(first_line))
+		return (free(first_line), -1);
+	if (first_line[ft_strlen(first_line) - 1] == '\n')
+		first_line[ft_strlen(first_line) - 1] = '\0';
+	str_dup = ft_strdup(first_line);
+	if (!str_dup)
+		return (free(first_line), -1);
+	new_node = ft_lstnew(str_dup);
+	if (!new_node)
 	{
-		str_dup = ft_strdup(first_line);
-		if (!str_dup)
-		{
-			free(first_line);
-			return (-1);
-		}
-		new_node = ft_lstnew(str_dup);
-		if (!new_node)
-		{
-			free(str_dup);
-			free(first_line);
-			return (-1);
-		}
-		ft_lstadd_back(map_lines, new_node);
+		free(str_dup);
+		free(first_line);
+		return (-1);
 	}
+	ft_lstadd_back(map_lines, new_node);
 	free(first_line);
 	return (0);
 }
