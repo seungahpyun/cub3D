@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 08:55:27 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/20 16:45:50 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/21 11:37:07 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ int	parse_map(int fd, t_game *game, char *first_line)
 	t_list	*map_lines;
 
 	if (!has_valid_first_line(first_line))
-		return (free(first_line), -1);
-	if (!check_all_elements_set(&game->asset))
 		return (free(first_line), -1);
 	map_lines = NULL;
 	if (read_map_lines(fd, &map_lines, first_line) == -1)
