@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/20 14:57:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/21 11:41:03 by seungah       ########   odam.nl         */
+/*   Updated: 2025/05/21 12:59:22 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,10 @@ int	check_content_after_map(int fd)
 int	check_map_file(t_game *game, bool map_found)
 {
 	if (!check_all_elements_set(&game->asset))
-		return (free_game(game), -1);
+		return (-1);
 	if (!map_found)
 	{
 		ft_putendl_fd("Error: No map found in file", 2);
-		free_game(game);
 		return (-1);
 	}
 	return (0);

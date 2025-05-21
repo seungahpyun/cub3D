@@ -3,6 +3,7 @@ CC = cc
 SANITIZE   := -fsanitize=address
 CFLAGS = -g3 $(SANITIZE) -Wall -Wextra -Werror
 LDFLAGS := $(SANITIZE) -ldl -lglfw -pthread -lm
+LDFLAGS += -L/opt/homebrew/lib -lglfw
 
 LIBMLX_DIR	:= ./lib/MLX42
 LIBFT_DIR   := ./lib/libft
