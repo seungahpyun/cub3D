@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:53 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/21 11:26:05 by seungah       ########   odam.nl         */
+/*   Updated: 2025/05/21 15:11:24 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 /* ========================================================================== */
 /*                             ELEMENT PARSING                                */
 /* ========================================================================== */
+/* color_component_parser.c */
+int				count_color_commas(const char *str);
+int				check_extra_color_chars(char *str);
+int				parse_color_component(char **str, int *value);
 /* color_parser.c */
 int				parse_color_value(char *line, t_color *color);
 /* element_checker.c */

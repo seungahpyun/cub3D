@@ -27,6 +27,7 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(COMMON_DIR)/init_components.c \
 			$(COMMON_DIR)/init.c \
 			\
+			$(PARSER_ELEMENT_DIR)/color_component_parser.c \
 			$(PARSER_ELEMENT_DIR)/color_parser.c \
 			$(PARSER_ELEMENT_DIR)/element_checker.c \
 			$(PARSER_ELEMENT_DIR)/element_parser.c \

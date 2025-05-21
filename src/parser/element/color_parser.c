@@ -6,53 +6,33 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/20 15:07:58 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/20 15:40:44 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/21 15:08:50 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static int	parse_single_value(char **str, int *value)
-{
-	int		j;
-	bool	negative;
-
-	while (**str && (**str == ' ' || **str == ','))
-		(*str)++;
-	negative = false;
-	if (**str == '-')
-	{
-		negative = true;
-		(*str)++;
-	}
-	else if (**str == '+')
-		(*str)++;
-	j = 0;
-	*value = 0;
-	while (**str && ft_isdigit(**str))
-	{
-		*value = *value * 10 + (**str - '0');
-		(*str)++;
-		j++;
-	}
-	if (negative)
-		*value = -*value;
-	return (j);
-}
-
 static int	parse_rgb_values(char *str, int values[3])
 {
 	int	i;
 	int	j;
+	int	comma_count;
 
+	comma_count = count_color_commas(str);
+	if (comma_count < 2)
+		return (ft_putendl_fd("Error: Missing comma in color values", 2), -1);
+	if (comma_count > 2)
+		return (ft_putendl_fd("Error: Too many commas in color values", 2), -1);
 	i = 0;
 	while (i < 3)
 	{
-		j = parse_single_value(&str, &values[i]);
+		j = parse_color_component(&str, &values[i]);
 		if (j == 0)
-			return (-1);
+			return (ft_putendl_fd("Error: Invalid color component", 2), -1);
 		i++;
 	}
+	if (check_extra_color_chars(str) == -1)
+		return (ft_putendl_fd("Error: Extra characters after color", 2), -1);
 	return (0);
 }
 
