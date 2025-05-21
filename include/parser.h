@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:53 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/20 16:50:53 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/21 11:26:05 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int				parse_map(int fd, t_game *game, char *first_line);
 /* file_processor.c */
 int				process_line(char *line, t_game *game, int fd);
 int				check_content_after_map(int fd);
-int				check_map_file(t_game *game, int fd, bool map_found);
+int				check_map_file(t_game *game, bool map_found);
 /* ========================================================================== */
 /*                               MAP PARSING                                  */
 /* ========================================================================== */

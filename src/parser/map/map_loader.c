@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 10:16:08 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/20 16:22:52 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/21 11:28:54 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,13 @@ bool	has_valid_first_line(char *line)
 {
 	int	i;
 	int	valid_chars;
-	int	total_chars;
 
 	if (!line || is_empty_line(line))
 		return (false);
 	i = 0;
 	valid_chars = 0;
-	total_chars = 0;
 	while (line[i])
 	{
-		if (line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
-			total_chars++;
 		if (is_map_char(line[i]))
 		{
 			if (line[i] == '0' || line[i] == '1'

@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/20 14:57:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/20 16:49:59 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/21 11:27:11 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,8 @@ int	check_content_after_map(int fd)
 	return (ret);
 }
 
-int	check_map_file(t_game *game, int fd, bool map_found)
+int	check_map_file(t_game *game, bool map_found)
 {
-	close(fd);
 	if (!check_all_elements_set(&game->asset))
 		return (free_game(game), -1);
 	if (!map_found)
