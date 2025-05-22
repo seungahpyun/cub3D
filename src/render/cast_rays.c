@@ -6,38 +6,45 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/21 14:19:16 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/22 10:05:46 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/22 10:37:49 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-void	calculate_initial_distance(t_ray *ray)
+static void	calculate_dist_inc(t_ray *ray)
 {
-	double	ray_dir_x;
-	double	ray_dir_y;
+	if (fabs(ray->dir_x) < 1e-9)
+		ray->dist_inc_x = INFINITY;
+	else
+		ray->dist_inc_x = fabs(1.0 / ray->dir_x);
+	if (fabs(ray->dir_y) < 1e-9)
+		ray->dist_inc_y = INFINITY;
+	else
+		ray->dist_inc_y = fabs(1.0 / ray->dir_y);
+}
 
-	ray_dir_x = cos(ray->angle);
-	ray_dir_y = sin(ray->angle);
-	if (ray_dir_x > 0)
+static void	calculate_initial_dist(t_ray *ray)
+{
+	if (ray->dir_x > 0)
 	{
 		ray->step_x = 1;
-		ray->ray_dx = (ray->map_x + 1.0 - ray->start_x) * ray->ray_inc_x;
+		ray->dist_to_v = (ray->map_x + 1.0 - ray->start_x) * ray->dist_inc_x;
 	}
 	else
 	{
 		ray->step_x = -1;
-		ray->ray_dx = (ray->start_x - ray->map_x) * ray->ray_inc_x;
+		ray->dist_to_v = (ray->start_x - ray->map_x) * ray->dist_inc_x;
 	}
-	if (ray_dir_y > 0)
+	if (ray->dir_y > 0)
 	{
 		ray->step_y = -1;
-		ray->ray_dy = (ray->start_y - ray->map_y) * ray->ray_inc_y;
+		ray->dist_to_h = (ray->start_y - ray->map_y) * ray->dist_inc_y;
 	}
 	else
 	{
 		ray->step_y = 1;
-		ray->ray_dy = (ray->map_y + 1.0 - ray->start_y) * ray->ray_inc_y;
+		ray->dist_to_h = (ray->map_y + 1.0 - ray->start_y) * ray->dist_inc_y;
 	}
 }
 
@@ -54,9 +61,10 @@ void	init_ray(t_player *player, double ray_angle, t_ray *ray)
 	ray->map_x = (int)ray->start_x;
 	ray->map_y = (int)ray->start_y;
 	ray->angle = ray_angle;
-	ray->ray_inc_x = fabs(1 / cos(ray->angle));
-	ray->ray_inc_y = fabs(1 / sin(ray->angle));
-	calculate_initial_distance(ray);
+	ray->dir_x = cos(ray->angle);
+	ray->dir_y = sin(ray->angle);
+	calculate_dist_inc(ray);
+	calculate_initial_dist(ray);
 }
 
 bool	check_hit_wall(t_map *map, t_ray *ray)
@@ -71,7 +79,7 @@ bool	check_hit_wall(t_map *map, t_ray *ray)
 /**
  * Cast a ray from player position until it hit a wall
  * 1. Determine which boundary the ray will hit first
- *  -compare ray_dx and ray_dy value
+ *  -compare dist_to_v and dist_to_horiz value
  *  - move the ray to that intersection point
  * 2. Update the distance to the next boundary of that type
  * 3. Check if you've hit a wall at this new grid cell
@@ -86,15 +94,15 @@ double	cast_ray(t_game *game, t_ray *ray)
 	hit = false;
 	while (!hit)
 	{
-		if (ray->ray_dx < ray->ray_dy)
+		if (ray->dist_to_v < ray->dist_to_h)
 		{
-			ray->ray_dx += ray->ray_inc_x;
+			ray->dist_to_v += ray->dist_inc_x;
 			ray->map_x += ray->step_x;
 			ray->hit_side = 'v';
 		}
 		else
 		{
-			ray->ray_dy += ray->ray_inc_y;
+			ray->dist_to_h += ray->dist_inc_y;
 			ray->map_y += ray->step_y;
 			ray->hit_side = 'h';
 		}
@@ -112,8 +120,9 @@ void	test_rays(t_game *game)
 
 	// t_point	inter;
 	printf("player_angle is %f\n", game->player.angle);
-	ray_angle = game->player.angle + degree_to_radian(0.5 * FOV);
-	printf("ray_angle is %f\n", ray_angle);
+	ray_angle = game->player.angle;
 	init_ray(&game->player, ray_angle, &ray);
+	printf("ray_angle is %f, dist_inc_x is %f, dist_inc_y is %f\n", ray_angle,
+		ray.dist_inc_x, ray.dist_inc_y);
 	cast_ray(game, &ray);
 }
