@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:50 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/20 09:35:24 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/22 11:35:16 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	int			x;
-	int			y;
+	double		x;
+	double		y;
 	char		dir;
 	double		angle;
 }				t_player;
