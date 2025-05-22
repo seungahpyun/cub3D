@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/21 14:19:16 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/21 17:39:18 by jsong         ########   odam.nl         */
+/*   Updated: 2025/05/22 10:05:46 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,30 @@
 
 void	calculate_initial_distance(t_ray *ray)
 {
-	if (ray->angle <= M_PI / 2 || ray->angle >= 3 * M_PI / 2)
+	double	ray_dir_x;
+	double	ray_dir_y;
+
+	ray_dir_x = cos(ray->angle);
+	ray_dir_y = sin(ray->angle);
+	if (ray_dir_x > 0)
 	{
 		ray->step_x = 1;
-		ray->hit_dist_x = (ray->map_x + 1.0 - ray->start_x) * ray->ray_inc_x;
+		ray->ray_dx = (ray->map_x + 1.0 - ray->start_x) * ray->ray_inc_x;
 	}
 	else
 	{
 		ray->step_x = -1;
-		ray->hit_dist_x = (ray->start_x - ray->map_x) * ray->ray_inc_x;
+		ray->ray_dx = (ray->start_x - ray->map_x) * ray->ray_inc_x;
 	}
-	if (ray->angle <= M_PI)
+	if (ray_dir_y > 0)
 	{
 		ray->step_y = -1;
-		ray->hit_dist_y = (ray->start_y - ray->map_y) * ray->ray_inc_y;
+		ray->ray_dy = (ray->start_y - ray->map_y) * ray->ray_inc_y;
 	}
 	else
 	{
 		ray->step_y = 1;
-		ray->hit_dist_y = (ray->map_y + 1.0 - ray->start_y) * ray->ray_inc_y;
+		ray->ray_dy = (ray->map_y + 1.0 - ray->start_y) * ray->ray_inc_y;
 	}
 }
 
@@ -66,7 +71,7 @@ bool	check_hit_wall(t_map *map, t_ray *ray)
 /**
  * Cast a ray from player position until it hit a wall
  * 1. Determine which boundary the ray will hit first
- *  -compare hit_dist_x and hit_dist_y value
+ *  -compare ray_dx and ray_dy value
  *  - move the ray to that intersection point
  * 2. Update the distance to the next boundary of that type
  * 3. Check if you've hit a wall at this new grid cell
@@ -81,17 +86,17 @@ double	cast_ray(t_game *game, t_ray *ray)
 	hit = false;
 	while (!hit)
 	{
-		if (ray->hit_dist_x < ray->hit_dist_y)
+		if (ray->ray_dx < ray->ray_dy)
 		{
-			ray->hit_dist_x += ray->ray_inc_x;
+			ray->ray_dx += ray->ray_inc_x;
 			ray->map_x += ray->step_x;
-			ray->hit_side = 'x';
+			ray->hit_side = 'v';
 		}
 		else
 		{
-			ray->hit_dist_y += ray->ray_inc_y;
+			ray->ray_dy += ray->ray_inc_y;
 			ray->map_y += ray->step_y;
-			ray->hit_side = 'y';
+			ray->hit_side = 'h';
 		}
 		hit = check_hit_wall(&game->map, ray);
 	}
