@@ -6,12 +6,17 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/21 14:19:16 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/22 10:37:49 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/22 12:22:46 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
+/**
+ * Calculate the distance the ray must travel to cross one grid cell
+ * along x or y.
+ * If the ray direction component is nearly zero, the increment is infinite
+ */
 static void	calculate_dist_inc(t_ray *ray)
 {
 	if (fabs(ray->dir_x) < 1e-9)
@@ -24,6 +29,11 @@ static void	calculate_dist_inc(t_ray *ray)
 		ray->dist_inc_y = fabs(1.0 / ray->dir_y);
 }
 
+/**
+ * Compute initial distances from the ray start position to the
+ * first vertical and horizontal grid boundaries.
+ * Also set the step direction for moving between grid cells.
+ */
 static void	calculate_initial_dist(t_ray *ray)
 {
 	if (ray->dir_x > 0)
@@ -49,10 +59,10 @@ static void	calculate_initial_dist(t_ray *ray)
 }
 
 /**
- * Initialize a ray with player position and ray_angle
- * 1.initialize start position and current square position
- * 2.calculate the distance the ray has to travel for 1 unit x or 1 unit y
- * 3.calculate initial distance the ray has to travel to first x_side and y_side
+ * Initialize a ray for DDA-based grid traversal
+ * - Set starting position and current map cell
+ * - Compute direction vector from angle
+ * - Precompute stepping increments and initial distances
  */
 void	init_ray(t_player *player, double ray_angle, t_ray *ray)
 {
@@ -69,7 +79,6 @@ void	init_ray(t_player *player, double ray_angle, t_ray *ray)
 
 bool	check_hit_wall(t_map *map, t_ray *ray)
 {
-	printf("Checked point is (%d, %d) \n", ray->map_x, ray->map_y);
 	if (is_valid_point(map, ray->map_x, ray->map_y)
 		&& map->grid[ray->map_y][ray->map_x] == '0')
 		return (false);
@@ -79,14 +88,14 @@ bool	check_hit_wall(t_map *map, t_ray *ray)
 /**
  * Cast a ray from player position until it hit a wall
  * 1. Determine which boundary the ray will hit first
- *  -compare dist_to_v and dist_to_horiz value
- *  - move the ray to that intersection point
+ *  - compare dist_to_v and dist_to_h value
+ *  - extend the ray to that intersection point
  * 2. Update the distance to the next boundary of that type
  * 3. Check if you've hit a wall at this new grid cell
  *  - if no hit, repeat the previous process
  * 4. Calculate the final distance and return
  */
-double	cast_ray(t_game *game, t_ray *ray)
+double	cast_ray(t_map *map, t_ray *ray)
 {
 	bool	hit;
 	double	distance;
@@ -106,23 +115,11 @@ double	cast_ray(t_game *game, t_ray *ray)
 			ray->map_y += ray->step_y;
 			ray->hit_side = 'h';
 		}
-		hit = check_hit_wall(&game->map, ray);
+		hit = check_hit_wall(map, ray);
 	}
-	// distance = calculate_distance_to_wall(ray);
-	distance = 10;
+	if (ray->hit_side == 'v')
+		distance = ray->dist_to_v - ray->dist_inc_x;
+	else
+		distance = ray->dist_to_h - ray->dist_inc_y;
 	return (distance);
-}
-
-void	test_rays(t_game *game)
-{
-	t_ray	ray;
-	double	ray_angle;
-
-	// t_point	inter;
-	printf("player_angle is %f\n", game->player.angle);
-	ray_angle = game->player.angle;
-	init_ray(&game->player, ray_angle, &ray);
-	printf("ray_angle is %f, dist_inc_x is %f, dist_inc_y is %f\n", ray_angle,
-		ray.dist_inc_x, ray.dist_inc_y);
-	cast_ray(game, &ray);
 }

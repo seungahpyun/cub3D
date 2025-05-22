@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/22 10:31:37 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/22 11:57:45 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define MINIMAP_EMPTY_COLOR 0x00000000
 # define MINIMAP_RAY_COLOR 0x65965EFF
 
-# define FOV 120.0
+# define FOV 60.0
 
 # include "common.h"
 
@@ -74,6 +74,9 @@ void		draw_line(mlx_image_t *img, t_point start, t_point end, int color);
 void		draw_cell(mlx_image_t *img, t_cell cell);
 
 /* cast_rays*/
+void		init_ray(t_player *player, double ray_angle, t_ray *ray);
+double		cast_ray(t_map *map, t_ray *ray);
+
 // void	find_hit_point_horizon(t_map *map, t_player *player, t_ray *ray);
 
 /* minimap_render*/
