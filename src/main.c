@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:52:59 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/22 12:37:22 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/22 22:08:13 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,8 @@ static bool	setup_game(int argc, char **argv, t_game *game)
 
 static void	run_game(t_game *game)
 {
-	setup_player_for_raycasting(&game->player);
-	test_rays(game);
-	render_minimap(game);
+	setup_for_raycasting(game);
+	render(game);
 	mlx_loop(game->mlx);
 }
 

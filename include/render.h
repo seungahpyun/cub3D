@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/22 11:57:45 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/22 22:09:56 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,9 @@ bool		is_valid_point(t_map *map, int mx, int my);
 int			get_color(char c);
 double		degree_to_radian(double degree);
 
-void		setup_player_for_raycasting(t_player *player);
+/*render*/
+void		render(t_game *game);
+void		setup_for_raycasting(t_game *game);
 
 /* draw_primitives */
 void		draw_line(mlx_image_t *img, t_point start, t_point end, int color);
@@ -77,12 +79,7 @@ void		draw_cell(mlx_image_t *img, t_cell cell);
 void		init_ray(t_player *player, double ray_angle, t_ray *ray);
 double		cast_ray(t_map *map, t_ray *ray);
 
-// void	find_hit_point_horizon(t_map *map, t_player *player, t_ray *ray);
-
 /* minimap_render*/
 void		render_minimap(t_game *game);
-
-/*test */
-void		test_rays(t_game *game);
 
 #endif
