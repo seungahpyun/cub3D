@@ -18,6 +18,7 @@ PARSER_MAP_DIR = $(PARSER_DIR)/map
 PARSER_UTILS_DIR = $(PARSER_DIR)/utils
 RENDER_DIR = $(SRC_DIR)/render
 COMMON_DIR = $(SRC_DIR)/common
+CONTROL_DIR = $(SRC_DIR)/control
 
 OBJ_DIR = obj
 
@@ -26,6 +27,11 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(COMMON_DIR)/free_memory.c \
 			$(COMMON_DIR)/init_components.c \
 			$(COMMON_DIR)/init.c \
+			\
+			$(CONTROL_DIR)/collision.c \
+			$(CONTROL_DIR)/input_init.c \
+			$(CONTROL_DIR)/key_handler.c \
+			$(CONTROL_DIR)/player_movement.c \
 			\
 			$(PARSER_ELEMENT_DIR)/color_component_parser.c \
 			$(PARSER_ELEMENT_DIR)/color_parser.c \

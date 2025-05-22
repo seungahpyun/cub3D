@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:52:59 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/19 17:44:16 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/22 11:24:35 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,19 @@ static bool	setup_game(int argc, char **argv, t_game *game)
 	return (true);
 }
 
+static void	game_loop(void *param)
+{
+	t_game	*game;
+
+	game = (t_game *)param;
+	render_minimap(game);
+}
+
 static void	run_game(t_game *game)
 {
+	init_input_system(game);
 	render_minimap(game);
+	mlx_loop_hook(game->mlx, &game_loop, game);
 	mlx_loop(game->mlx);
 }
 

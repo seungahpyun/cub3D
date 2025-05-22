@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:59:02 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/19 17:40:10 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/22 11:07:55 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 # include "common.h"
+# include "control.h"
 # include "parser.h"
 # include "render.h"
 
