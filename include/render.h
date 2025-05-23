@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/23 17:02:03 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/23 17:22:42 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,12 @@ double		cast_ray(t_map *map, t_ray *ray);
 
 /* minimap_render*/
 void		render_minimap(t_game *game);
+
+/* minimap_player.c */
+void		calculate_player_screen_pos(t_game *game, t_point *pos);
+void		draw_minimap_player(t_game *game);
+
+/* minimap_rays.c */
+void		draw_minimap_rays(t_game *game);
 
 #endif
