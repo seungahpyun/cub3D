@@ -6,7 +6,7 @@
 /*   By: jianisong <jianisong@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/22 21:47:09 by jianisong     #+#    #+#                 */
-/*   Updated: 2025/05/23 10:59:53 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/23 11:16:07 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static void	game_loop(void *param)
 	t_game	*game;
 
 	game = (t_game *)param;
+	update_rays(game);
 	render_minimap(game);
 }
 
