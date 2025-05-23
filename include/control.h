@@ -6,14 +6,14 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/22 08:50:14 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/23 10:50:18 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/23 14:58:34 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONTROL_H
 # define CONTROL_H
 
-# define MOVE_SPEED 0.3
+# define MOVE_SPEED 1.0
 # define ROTATE_SPEED 0.1
 
 #include "common.h"
@@ -38,4 +38,5 @@ void	move_player_left(t_game *game);
 void	move_player_right(t_game *game);
 void	rotate_player_left(t_game *game);
 void	rotate_player_right(t_game *game);
+
 #endif
