@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/21 15:17:24 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/22 22:08:53 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/23 11:47:51 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ static void	init_rays_offset(t_ray_data *rays)
 
 void	setup_for_raycasting(t_game *game)
 {
-	game->player.x = game->player.x + 0.5;
-	game->player.y = game->player.y + 0.5;
 	game->player.angle = dir_to_angle(game->player.dir);
 	init_rays_offset(game->rays);
 }
