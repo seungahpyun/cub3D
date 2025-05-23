@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/21 15:17:24 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/22 22:08:53 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/23 15:30:50 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,21 @@ static void	init_rays_offset(t_ray_data *rays)
 	}
 }
 
+static void	init_images(t_game *game)
+{
+	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
+	if (!game->img)
+		ft_mlx_error(game);
+	game->minimap.img = mlx_new_image(game->mlx, MINIMAP_W, MINIMAP_H);
+	if (!game->minimap.img)
+		ft_mlx_error(game);
+}
+
 void	setup_for_raycasting(t_game *game)
 {
 	game->player.x = game->player.x + 0.5;
 	game->player.y = game->player.y + 0.5;
 	game->player.angle = dir_to_angle(game->player.dir);
 	init_rays_offset(game->rays);
+	init_images(game);
 }

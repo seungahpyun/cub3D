@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/22 22:09:56 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/23 15:24:48 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int			is_within_boundary(int x, int y, int width, int height);
 bool		is_valid_point(t_map *map, int mx, int my);
 int			get_color(char c);
 double		degree_to_radian(double degree);
+int			color_to_rgba(t_color *color, int a);
 
 /*render*/
 void		render(t_game *game);
@@ -81,5 +82,6 @@ double		cast_ray(t_map *map, t_ray *ray);
 
 /* minimap_render*/
 void		render_minimap(t_game *game);
+void		render_3d_projection(t_game *game);
 
 #endif
