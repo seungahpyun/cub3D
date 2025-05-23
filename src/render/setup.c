@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/21 15:17:24 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/23 15:30:50 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/23 17:12:31 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	init_rays_offset(t_ray_data *rays)
 	step = FOV / (WIDTH - 1);
 	while (i < WIDTH)
 	{
-		rays[i].angle_offset = degree_to_radian(-0.5 * FOV + step * i);
+		rays[i].angle_offset = degree_to_radian(0.5 * FOV - step * i);
 		i++;
 	}
 }
