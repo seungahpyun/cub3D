@@ -32,7 +32,7 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(CONTROL_DIR)/collision.c \
 			$(CONTROL_DIR)/keyboard_input.c \
 			$(CONTROL_DIR)/mouse_input.c \
-			$(CONTROL_DIR)/player_movement.c \
+			$(CONTROL_DIR)/player_controller.c \
 			\
 			$(PARSER_ELEMENT_DIR)/color_component_parser.c \
 			$(PARSER_ELEMENT_DIR)/color_parser.c \
