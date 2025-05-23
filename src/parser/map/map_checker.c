@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/20 15:16:48 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/22 11:59:25 by seungah       ########   odam.nl         */
+/*   Updated: 2025/05/23 15:10:53 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ static bool	find_player_position(t_map *map, t_player *player)
 				player->dir = map->grid[i][j];
 				map->grid[i][j] = '0';
 				player_found++;
-				printf("Player found at map[%d][%d], converted to '0'\n", i, j);
-				printf("Player position set to (%.1f, %.1f)\n", player->x, player->y);
 			}
 			j++;
 		}

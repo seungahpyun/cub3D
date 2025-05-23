@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:59:02 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/22 11:07:55 by seungah       ########   odam.nl         */
+/*   Updated: 2025/05/23 15:07:45 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@
 # include "render.h"
 
 /* main.c */
-int	main(int argc, char **argv);
+int				main(int argc, char **argv);
 
 #endif
