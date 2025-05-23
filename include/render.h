@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/20 09:35:15 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/23 09:50:19 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define RENDER_H
 
 # define MINIMAP_RADIUS 10
-# define MINIMAP_CELL_SIZE 16
+# define MINIMAP_CELL_SIZE 20
 # define MINIMAP_W (MINIMAP_RADIUS * 2 + 1) * MINIMAP_CELL_SIZE
 # define MINIMAP_H MINIMAP_W
 # define MINIMAP_GRID (MINIMAP_RADIUS * 2 + 1)

@@ -6,14 +6,14 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/22 08:50:14 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/22 12:02:53 by seungah       ########   odam.nl         */
+/*   Updated: 2025/05/23 09:50:09 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONTROL_H
 # define CONTROL_H
 
-# define MOVE_SPEED 1
+# define MOVE_SPEED 0.3
 # define ROTATE_SPEED 0.1
 
 #include "common.h"
