@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/22 08:52:09 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/22 11:48:08 by seungah       ########   odam.nl         */
+/*   Updated: 2025/05/23 13:57:18 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	debug_player_position(t_game *game, char *action)
 {
 	printf("Action: %s\n", action);
 	printf("Player Position: (%.2f, %.2f)\n", game->player.x, game->player.y);
-	printf("Player Angle: %.2f (%.2f degrees)\n", 
+	printf("Player Angle: %.2f (%.2f degrees)\n",
 		game->player.angle, game->player.angle * 180 / M_PI);
 	printf("Player Direction: %c\n", game->player.dir);
 	printf("---\n");
