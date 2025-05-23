@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/22 09:04:05 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/23 12:11:33 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/23 15:31:11 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,16 +68,18 @@ void	move_player_right(t_game *game)
 	}
 }
 
-void	rotate_player_left(t_game *game)
+void	rotate_player(t_game *game, int direction)
 {
-	game->player.angle += ROTATE_SPEED;
-	if (game->player.angle >= 2 * M_PI)
-		game->player.angle -= 2 * M_PI;
-}
-
-void	rotate_player_right(t_game *game)
-{
-	game->player.angle -= ROTATE_SPEED;
-	if (game->player.angle < 0)
-		game->player.angle += 2 * M_PI;
+	if (direction == ROTATE_LEFT)
+	{
+		game->player.angle += ROTATE_SPEED;
+		if (game->player.angle >= 2 * M_PI)
+			game->player.angle -= 2 * M_PI;
+	}
+	else if (direction == ROTATE_RIGHT)
+	{
+		game->player.angle -= ROTATE_SPEED;
+		if (game->player.angle < 0)
+			game->player.angle += 2 * M_PI;
+	}
 }

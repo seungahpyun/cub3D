@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/09 15:21:43 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/23 15:20:09 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/23 15:23:41 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@ static void	draw_minimap_cell(t_game *game, int i, int j)
 	my = (int)floor(game->player.y) - MINIMAP_RADIUS + j;
 	if (is_valid_point(&game->map, mx, my))
 	{
-		cell.px = i * MINIMAP_CELL_SIZE - (int)(offset.offset_x * MINIMAP_CELL_SIZE);
-		cell.py = j * MINIMAP_CELL_SIZE - (int)(offset.offset_y * MINIMAP_CELL_SIZE);
+		cell.px = i * MINIMAP_CELL_SIZE \
+			- (int)(offset.offset_x * MINIMAP_CELL_SIZE);
+		cell.py = j * MINIMAP_CELL_SIZE \
+			- (int)(offset.offset_y * MINIMAP_CELL_SIZE);
 		cell.size = MINIMAP_CELL_SIZE;
 		cell.color = get_color(game->map.grid[my][mx]);
 		draw_cell(game->minimap.img, cell);
@@ -80,8 +82,10 @@ static void	draw_minimap_rays(t_game *game)
 	i = 0;
 	while (i < WIDTH)
 	{
-		end.x = start.x + cos(game->rays[i].angle) * game->rays[i].dist * MINIMAP_CELL_SIZE;
-		end.y = start.y - sin(game->rays[i].angle) * game->rays[i].dist * MINIMAP_CELL_SIZE;
+		end.x = start.x + cos(game->rays[i].angle) \
+			* game->rays[i].dist * MINIMAP_CELL_SIZE;
+		end.y = start.y - sin(game->rays[i].angle) \
+			* game->rays[i].dist * MINIMAP_CELL_SIZE;
 		draw_line(game->minimap.img, start, end, MINIMAP_RAY_COLOR);
 		i++;
 	}

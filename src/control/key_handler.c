@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/22 08:52:09 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/23 15:09:34 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/23 15:30:21 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	handle_key_press(mlx_key_data_t keydata, void *param)
 		else if (keydata.key == MLX_KEY_D)
 			move_player_right(game);
 		else if (keydata.key == MLX_KEY_LEFT)
-			rotate_player_left(game);
+			rotate_player(game, ROTATE_LEFT);
 		else if (keydata.key == MLX_KEY_RIGHT)
-			rotate_player_right(game);
+			rotate_player(game, ROTATE_RIGHT);
 	}
 }
 

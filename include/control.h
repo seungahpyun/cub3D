@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/22 08:50:14 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/23 15:07:20 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/23 15:32:04 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # define MOVE_SPEED 1.0
 # define ROTATE_SPEED 0.1
+# define ROTATE_LEFT 1
+# define ROTATE_RIGHT -1
 
 # include "common.h"
 
@@ -35,7 +37,6 @@ void			move_player_forward(t_game *game);
 void			move_player_backward(t_game *game);
 void			move_player_left(t_game *game);
 void			move_player_right(t_game *game);
-void			rotate_player_left(t_game *game);
-void			rotate_player_right(t_game *game);
+void			rotate_player(t_game *game, int direction);
 
 #endif
