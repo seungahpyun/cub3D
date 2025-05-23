@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 15:59:19 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/22 14:38:09 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/23 17:44:07 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static void	init_asset(t_asset *asset)
 void	init_game_state(t_game *game)
 {
 	game->mlx = NULL;
+	game->img = NULL;
 	init_asset(&game->asset);
 	init_player(&game->player);
 	init_map(&game->map);
