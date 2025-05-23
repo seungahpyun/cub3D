@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/22 09:04:05 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/22 11:32:59 by seungah       ########   odam.nl         */
+/*   Updated: 2025/05/23 09:45:11 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,9 @@ void	move_player_left(t_game *game)
 {
 	double	new_x;
 	double	new_y;
-	double	left_angle;
 
-	left_angle = game->player.angle + M_PI / 2;
-	new_x = game->player.x + cos(left_angle) * MOVE_SPEED;
-	new_y = game->player.y + sin(left_angle) * MOVE_SPEED;
+	new_x = game->player.x + sin(game->player.angle) * MOVE_SPEED;
+	new_y = game->player.y + cos(game->player.angle) * MOVE_SPEED;
 	if (can_move_to(game, new_x, new_y))
 	{
 		game->player.x = new_x;
@@ -60,11 +58,9 @@ void	move_player_right(t_game *game)
 {
 	double	new_x;
 	double	new_y;
-	double	right_angle;
 
-	right_angle = game->player.angle - M_PI / 2;
-	new_x = game->player.x + cos(right_angle) * MOVE_SPEED;
-	new_y = game->player.y + sin(right_angle) * MOVE_SPEED;
+	new_x = game->player.x - sin(game->player.angle) * MOVE_SPEED;
+	new_y = game->player.y - cos(game->player.angle) * MOVE_SPEED;
 	if (can_move_to(game, new_x, new_y))
 	{
 		game->player.x = new_x;
