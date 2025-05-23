@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/23 15:47:12 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/23 15:55:19 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ typedef struct s_minimap_offset
 	double	offset_x;
 	double	offset_y;
 }			t_minimap_offset;
-
 
 typedef struct s_ray
 {

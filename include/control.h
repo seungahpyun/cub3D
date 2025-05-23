@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/22 08:50:14 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/23 15:32:04 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/23 15:54:13 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define MOVE_SPEED 1.0
 # define ROTATE_SPEED 0.1
-# define ROTATE_LEFT 1
+# define ROTATE_LEFT 1	
 # define ROTATE_RIGHT -1
 
 # include "common.h"
