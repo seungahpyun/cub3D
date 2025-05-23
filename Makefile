@@ -23,15 +23,15 @@ CONTROL_DIR = $(SRC_DIR)/control
 OBJ_DIR = obj
 
 SRC_FILES = $(SRC_DIR)/main.c \
+			$(COMMON_DIR)/debug.c \
 			$(COMMON_DIR)/error.c \
 			$(COMMON_DIR)/free_memory.c \
 			$(COMMON_DIR)/init_components.c \
 			$(COMMON_DIR)/init.c \
-			$(COMMON_DIR)/debug.c \
 			\
 			$(CONTROL_DIR)/collision.c \
-			$(CONTROL_DIR)/input_init.c \
-			$(CONTROL_DIR)/key_handler.c \
+			$(CONTROL_DIR)/keyboard_input.c \
+			$(CONTROL_DIR)/mouse_input.c \
 			$(CONTROL_DIR)/player_movement.c \
 			\
 			$(PARSER_ELEMENT_DIR)/color_component_parser.c \

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   input_init.c                                       :+:    :+:            */
+/*   mouse_input.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/22 08:51:40 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/23 13:57:13 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/23 16:27:05 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,4 @@ void	handle_mouse_move(double xpos, double ypos, void *param)
 	}
 	last_x = (int)xpos;
 	(void)ypos;
-}
-
-void	init_input_system(t_game *game)
-{
-	mlx_key_hook(game->mlx, &handle_key_press, game);
-	mlx_cursor_hook(game->mlx, &handle_mouse_move, game);
-	mlx_close_hook(game->mlx, &handle_window_close, game);
 }

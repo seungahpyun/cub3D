@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/22 08:50:14 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/23 15:54:13 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/23 16:34:03 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define MOVE_SPEED 1.0
 # define ROTATE_SPEED 0.1
-# define ROTATE_LEFT 1	
+# define ROTATE_LEFT 1
 # define ROTATE_RIGHT -1
 
 # include "common.h"
@@ -23,14 +23,12 @@
 /* collision.c */
 bool			can_move_to(t_game *game, double new_x, double new_y);
 
-/* input_init.c */
-
-void			handle_mouse_move(double xpos, double ypos, void *param);
-void			init_input_system(t_game *game);
-
-/* key_handler.c */
+/* keyboard_input.c */
 void			handle_key_press(mlx_key_data_t keydata, void *param);
 void			handle_window_close(void *param);
+
+/* mouse_init.c */
+void			handle_mouse_move(double xpos, double ypos, void *param);
 
 /* player_movement.c */
 void			move_player_forward(t_game *game);
