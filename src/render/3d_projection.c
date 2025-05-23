@@ -6,7 +6,7 @@
 /*   By: jianisong <jianisong@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/23 13:39:14 by jianisong     #+#    #+#                 */
-/*   Updated: 2025/05/23 15:24:48 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/23 17:43:24 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static t_point	calculate_wall_end(int line_height, int i)
 	return (wall_end);
 }
 
-void	draw_ceiling(mlx_image_t *img, t_point wall_start, t_color *color)
+static void	draw_ceiling(mlx_image_t *img, t_point wall_start, t_color *color)
 {
 	t_point	ceiling_start;
 	int		ceiling_color;
@@ -45,7 +45,7 @@ void	draw_ceiling(mlx_image_t *img, t_point wall_start, t_color *color)
 	draw_line(img, ceiling_start, wall_start, ceiling_color);
 }
 
-void	draw_floor(mlx_image_t *img, t_point wall_end, t_color *color)
+static void	draw_floor(mlx_image_t *img, t_point wall_end, t_color *color)
 {
 	int		floor_color;
 	t_point	floor_end;
@@ -56,6 +56,13 @@ void	draw_floor(mlx_image_t *img, t_point wall_end, t_color *color)
 	draw_line(img, wall_end, floor_end, floor_color);
 }
 
+/**
+ * Render 3d projection to the screen
+ * 1. Calculate perpendicular ray distance to remove fish-eye distortion
+ * 2. Calculate Wall height based on distance to simulate perspective:
+ *    closer wall appears taller
+ * 3. Draw ceiling above the wall and floor below the wall
+ */
 void	render_3d_projection(t_game *game)
 {
 	double	per_dist;
