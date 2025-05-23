@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/09 15:21:43 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/23 10:41:38 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/23 13:30:31 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,10 @@
  *       screen position with color based on map cell type
  */
 
-static void	draw_minimap_player(t_game *game)
- {
-	 t_cell	player_cell;
-	 int		player_size;
 
-	 player_size = MINIMAP_CELL_SIZE / 3;
-	 if (player_size < 2)
-		 player_size = 2;
-	 player_cell.px = MINIMAP_W / 2 - player_size / 2;
-	 player_cell.py = MINIMAP_H / 2 - player_size / 2;
-	 player_cell.size = player_size;
-	 player_cell.color = MINIMAP_PLAYER_COLOR;
-	 draw_cell(game->minimap.img, player_cell);
- }
 
- static void	draw_minimap_cell(t_game *game, int i, int j)
- {
+static void	draw_minimap_cell(t_game *game, int i, int j)
+{
 	 int		mx;
 	 int		my;
 	 t_cell	cell;
@@ -118,7 +105,6 @@ void	render_minimap(t_game *game)
 	ft_memset(game->minimap.img->pixels, 0, MINIMAP_W * MINIMAP_H
 		* sizeof(int32_t));
 	draw_minimap_grid(game);
-	draw_minimap_player(game);
 	draw_minimap_rays(game);
 	if (mlx_image_to_window(game->mlx, game->minimap.img, 0, 0) < 0)
 		ft_mlx_error(game);
