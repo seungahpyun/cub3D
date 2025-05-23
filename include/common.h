@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:50 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/22 11:35:16 by seungah       ########   odam.nl         */
+/*   Updated: 2025/05/23 10:40:00 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,13 @@ typedef struct s_minimap
 	mlx_image_t	*img;
 }				t_minimap;
 
+typedef struct s_ray_data
+{
+	double		angle_offset;
+	double		angle;
+	double		dist;
+}				t_ray_data;
+
 typedef struct s_game
 {
 	mlx_t		*mlx;
@@ -74,6 +81,7 @@ typedef struct s_game
 	t_map		map;
 	t_player	player;
 	t_minimap	minimap;
+	t_ray_data	rays[WIDTH];
 }				t_game;
 
 /* error.c */
@@ -91,5 +99,8 @@ void			init_game_state(t_game *game);
 void			init_player(t_player *player);
 void			init_minimap(t_minimap *minimap);
 void			init_map(t_map *map);
+
+/* debug */
+void			debug(t_game *game);
 
 #endif

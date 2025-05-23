@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:52:59 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/23 09:32:22 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/23 11:00:14 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,14 @@ static bool	setup_game(int argc, char **argv, t_game *game)
 		free_game(game);
 		return (false);
 	}
-	game->player.angle = dir_to_angle(game->player.dir);
 	return (true);
-}
-
-static void	game_loop(void *param)
-{
-	t_game	*game;
-
-	game = (t_game *)param;
-	render_minimap(game);
 }
 
 static void	run_game(t_game *game)
 {
 	init_input_system(game);
-	mlx_loop_hook(game->mlx, &game_loop, game);
+	setup_for_raycasting(game);
+	render(game);
 	mlx_loop(game->mlx);
 }
 
@@ -56,6 +48,7 @@ int	main(int argc, char **argv)
 
 	if (!setup_game(argc, argv, &game))
 		return (EXIT_FAILURE);
+	// debug(&game);
 	init_window(&game);
 	run_game(&game);
 	free_game(&game);

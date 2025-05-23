@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/09 15:21:43 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/23 09:58:42 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/23 10:41:38 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,8 @@ static void	draw_minimap_rays(t_game *game)
 	i = 0;
 	while (i < WIDTH)
 	{
-		ray_angle = game->player.angle + degree_to_radian(-0.5 * FOV + FOV * i
-				/ WIDTH);
-		// dist = cast_ray(game, ray_angle);
-		dist = 10;
+		ray_angle = game->rays[i].angle;
+		dist = game->rays[i].dist;
 		end.x = start.x + cos(ray_angle) * dist * MINIMAP_CELL_SIZE;
 		end.y = start.y - sin(ray_angle) * dist * MINIMAP_CELL_SIZE;
 		draw_line(game->minimap.img, start, end, MINIMAP_RAY_COLOR);
