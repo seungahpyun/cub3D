@@ -6,7 +6,7 @@
 /*   By: jianisong <jianisong@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/22 21:47:09 by jianisong     #+#    #+#                 */
-/*   Updated: 2025/05/23 14:01:33 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/23 14:06:18 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,10 @@ static void	update_rays(t_game *game)
 static void	game_loop(void *param)
 {
 	t_game	*game;
-	t_cell	cell;
 
 	game = (t_game *)param;
 	update_rays(game);
 	render_minimap(game);
-	cell.px = MINIMAP_W / 2 - (MINIMAP_CELL_SIZE * 3 / 4) / 2;
-	cell.py = MINIMAP_H / 2 - (MINIMAP_CELL_SIZE * 3 / 4) / 2;
-	cell.size = MINIMAP_CELL_SIZE * 3 / 4;
-	cell.color = MINIMAP_PLAYER_COLOR;
-	draw_cell(game->minimap.img, cell);
 }
 
 void	render(t_game *game)
