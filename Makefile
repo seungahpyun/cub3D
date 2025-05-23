@@ -3,7 +3,7 @@ CC = cc
 SANITIZE   := -fsanitize=address
 CFLAGS = -g3 $(SANITIZE) -Wall -Wextra -Werror
 LDFLAGS := $(SANITIZE) -ldl -lglfw -pthread -lm
-LDFLAGS += -L/opt/homebrew/lib -lglfw
+LDFLAGS += -L/opt/homebrew/lib
 
 LIBMLX_DIR	:= ./lib/MLX42
 LIBFT_DIR   := ./lib/libft
@@ -26,6 +26,7 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(COMMON_DIR)/free_memory.c \
 			$(COMMON_DIR)/init_components.c \
 			$(COMMON_DIR)/init.c \
+			$(COMMON_DIR)/debug.c \
 			\
 			$(PARSER_ELEMENT_DIR)/color_component_parser.c \
 			$(PARSER_ELEMENT_DIR)/color_parser.c \
@@ -52,7 +53,10 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			\
 			$(RENDER_DIR)/minimap.c \
 			$(RENDER_DIR)/render_utils.c \
+			$(RENDER_DIR)/render.c \
 			$(RENDER_DIR)/draw_primitives.c \
+			$(RENDER_DIR)/setup.c \
+			$(RENDER_DIR)/cast_rays.c \
 
 
 OBJ_FILES = $(SRC_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

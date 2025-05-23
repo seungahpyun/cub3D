@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/09 15:21:43 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/19 17:53:41 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/22 22:04:52 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static void	draw_minimap_cell(t_game *game, int i, int j)
 	int		my;
 	t_cell	cell;
 
-	mx = game->player.x - MINIMAP_RADIUS + i;
-	my = game->player.y - MINIMAP_RADIUS + j;
+	mx = (int)game->player.x - MINIMAP_RADIUS + i;
+	my = (int)game->player.y - MINIMAP_RADIUS + j;
 	if (is_valid_point(&game->map, mx, my))
 	{
 		cell.px = i * MINIMAP_CELL_SIZE;
@@ -76,10 +76,8 @@ static void	draw_minimap_rays(t_game *game)
 	i = 0;
 	while (i < WIDTH)
 	{
-		ray_angle = game->player.angle + degree_to_radian(-0.5 * FOV + FOV * i
-				/ WIDTH);
-		// dist = cast_ray(game, ray_angle);
-		dist = 10;
+		ray_angle = game->rays[i].angle;
+		dist = game->rays[i].dist;
 		end.x = start.x + cos(ray_angle) * dist * MINIMAP_CELL_SIZE;
 		end.y = start.y - sin(ray_angle) * dist * MINIMAP_CELL_SIZE;
 		draw_line(game->minimap.img, start, end, MINIMAP_RAY_COLOR);

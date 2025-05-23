@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 11:08:44 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/19 17:52:38 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/21 15:23:52 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,9 @@ int	is_within_boundary(int x, int y, int width, int height)
 
 double	degree_to_radian(double degree)
 {
+	if (degree < 0)
+		degree += 360;
 	return (degree * M_PI / 180);
-}
-
-double	dir_to_angle(char c)
-{
-	if (c == 'E')
-		return (0);
-	if (c == 'N')
-		return (M_PI / 2);
-	if (c == 'W')
-		return (M_PI);
-	if (c == 'S')
-		return (3 * M_PI / 2);
-	return (-1);
 }
 
 bool	is_valid_point(t_map *map, int mx, int my)

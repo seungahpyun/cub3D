@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 15:59:19 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/19 10:26:16 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/22 14:38:09 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,5 @@ void	init_game_state(t_game *game)
 	init_player(&game->player);
 	init_map(&game->map);
 	init_minimap(&game->minimap);
+	ft_bzero(game->rays, sizeof(game->rays));
 }
