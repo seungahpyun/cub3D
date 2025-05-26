@@ -6,7 +6,7 @@
 /*   By: jianisong <jianisong@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/22 21:47:09 by jianisong     #+#    #+#                 */
-/*   Updated: 2025/05/23 14:06:18 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/26 10:31:46 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,19 @@ static void	update_rays(t_game *game)
 	}
 }
 
-static void	game_loop(void *param)
+static void game_loop(void *param)
 {
 	t_game	*game;
+	static	double last_time = 0;
+	double	current_time = mlx_get_time();
 
 	game = (t_game *)param;
-	update_rays(game);
-	render_minimap(game);
+	if (current_time - last_time > 0.016)
+	{
+		update_rays(game);
+		render_minimap(game);
+		last_time = current_time;
+	}
 }
 
 void	render(t_game *game)

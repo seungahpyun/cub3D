@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 11:34:24 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/23 10:42:09 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/26 10:31:08 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,9 @@ void	free_game(t_game *game)
 		return ;
 	free_map(&game->map);
 	free_asset(&game->asset, game->mlx);
-	if (game->minimap.img)
+	if (game->mlx && game->minimap.img)
+	{
 		mlx_delete_image(game->mlx, game->minimap.img);
+		game->minimap.img = NULL;
+	}
 }
