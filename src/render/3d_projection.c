@@ -6,7 +6,7 @@
 /*   By: jianisong <jianisong@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/23 13:39:14 by jianisong     #+#    #+#                 */
-/*   Updated: 2025/05/23 17:43:24 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/26 16:02:07 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ void	render_3d_projection(t_game *game)
 	while (i < WIDTH)
 	{
 		per_dist = game->rays[i].dist * cos(game->rays[i].angle_offset);
+		if (per_dist < MIN_PER_DIST)
+			per_dist = MIN_PER_DIST;
 		line_height = (int)HEIGHT / per_dist;
 		wall_start = calculate_wall_start(line_height, i);
 		wall_end = calculate_wall_end(line_height, i);

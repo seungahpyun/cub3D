@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/23 15:24:48 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/26 16:04:54 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define MINIMAP_RAY_COLOR 0x65965EFF
 
 # define FOV 60.0
+# define MIN_PER_DIST 0.0001
 
 # include "common.h"
 
