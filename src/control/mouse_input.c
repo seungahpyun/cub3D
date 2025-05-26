@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/22 08:51:40 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/23 16:27:05 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/26 10:14:21 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	handle_mouse_move(double xpos, double ypos, void *param)
 	delta_x = (int)xpos - last_x;
 	if (delta_x != 0)
 	{
-		game->player.angle -= delta_x * 0.001;
+		game->player.angle -= delta_x * 0.004;
 		if (game->player.angle < 0)
 			game->player.angle += 2 * M_PI;
 		else if (game->player.angle >= 2 * M_PI)
