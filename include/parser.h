@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:53 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/21 15:11:24 by seungah       ########   odam.nl         */
+/*   Updated: 2025/05/26 12:10:06 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,6 @@ bool			validate_map_closure(t_map *map);
 /* ========================================================================== */
 /*                               UTILITY FUNCTIONS                            */
 /* ========================================================================== */
-/* error_utils.c */
-bool			print_error(const char *message, bool return_value);
-bool			print_error_with_value(const char *prefix, const char *value,
-					bool return_value);
 /* file_utils.c */
 bool			check_file_extension(const char *path, const char *extension);
 void			gnl_cleanup(int fd);

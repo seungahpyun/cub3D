@@ -52,7 +52,6 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(PARSER_MAP_DIR)/map_spaces.c \
 			$(PARSER_MAP_DIR)/map_validator.c \
 			\
-			$(PARSER_UTILS_DIR)/error_utils.c \
 			$(PARSER_UTILS_DIR)/file_utils.c \
 			$(PARSER_UTILS_DIR)/map_utils.c \
 			$(PARSER_UTILS_DIR)/string_utils.c \
@@ -65,6 +64,7 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(RENDER_DIR)/render_utils.c \
 			$(RENDER_DIR)/render.c \
 			$(RENDER_DIR)/setup.c \
+			$(RENDER_DIR)/texture_loader.c \
 
 
 OBJ_FILES = $(SRC_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/26 10:32:24 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/26 12:03:20 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,9 @@ void		draw_minimap_player(t_game *game);
 
 /* minimap_rays.c */
 void		draw_minimap_rays(t_game *game);
+
+/* texture_loader.c */
+bool		load_textures(t_game *game);
+void		free_textures(t_game *game);
 
 #endif

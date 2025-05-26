@@ -6,12 +6,13 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 15:59:19 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/23 16:34:47 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/26 12:08:24 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
 #include "control.h"
+#include "render.h"
 
 void	init_window(t_game *game)
 {
@@ -53,4 +54,9 @@ void	init_game_state(t_game *game)
 	init_map(&game->map);
 	init_minimap(&game->minimap);
 	ft_bzero(game->rays, sizeof(game->rays));
+	if (!load_textures(game))
+	{
+		ft_mlx_error(game);
+		exit(EXIT_FAILURE);
+	}
 }
