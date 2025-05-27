@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/09 15:21:43 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/27 15:02:23 by jsong         ########   odam.nl         */
+/*   Updated: 2025/05/27 17:06:28 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ static void	calculate_offset(t_player *player, t_minimap *minimap)
  */
 static void	draw_minimap_grid(t_map *map, t_minimap *minimap)
 {
-	int		mx;
-	int		my;
-	t_cell	cell;
+	int					mx;
+	int					my;
+	t_cell				cell;
 
 	mx = 0;
 	while (mx < map->width)
@@ -93,7 +93,7 @@ static void	draw_minimap_player(t_player *player, t_minimap *minimap)
 	t_point	player_start;
 	t_point	player_end;
 
-	player_cell.size = MINIMAP_CELL_SIZE / 4;
+	player_cell.size = MINIMAP_CELL_SIZE / 3;
 	player_cell.px = MINIMAP_W / 2 - player_cell.size / 2;
 	player_cell.py = MINIMAP_H / 2 - player_cell.size / 2;
 	player_cell.color = MINIMAP_PLAYER_COLOR;
@@ -107,15 +107,8 @@ static void	draw_minimap_player(t_player *player, t_minimap *minimap)
 
 void	render_minimap(t_game *game)
 {
-	game->minimap.img = mlx_new_image(game->mlx, MINIMAP_W, MINIMAP_H);
-	if (!game->minimap.img)
-		ft_mlx_error(game);
-	ft_memset(game->minimap.img->pixels, 0, MINIMAP_W * MINIMAP_H
-		* sizeof(int32_t));
 	calculate_offset(&game->player, &game->minimap);
 	draw_minimap_grid(&game->map, &game->minimap);
 	draw_minimap_rays(game->rays, &game->minimap);
 	draw_minimap_player(&game->player, &game->minimap);
-	if (mlx_image_to_window(game->mlx, game->minimap.img, 0, 0) < 0)
-		ft_mlx_error(game);
 }

@@ -18,15 +18,22 @@ PARSER_MAP_DIR = $(PARSER_DIR)/map
 PARSER_UTILS_DIR = $(PARSER_DIR)/utils
 RENDER_DIR = $(SRC_DIR)/render
 COMMON_DIR = $(SRC_DIR)/common
+CONTROL_DIR = $(SRC_DIR)/control
 
 OBJ_DIR = obj
 
 SRC_FILES = $(SRC_DIR)/main.c \
+			$(COMMON_DIR)/debug.c \
 			$(COMMON_DIR)/error.c \
 			$(COMMON_DIR)/free_memory.c \
 			$(COMMON_DIR)/init_components.c \
 			$(COMMON_DIR)/init.c \
-			$(COMMON_DIR)/debug.c \
+			\
+			$(CONTROL_DIR)/collision_check.c \
+			$(CONTROL_DIR)/collision_movement.c \
+			$(CONTROL_DIR)/keyboard_input.c \
+			$(CONTROL_DIR)/mouse_input.c \
+			$(CONTROL_DIR)/player_controller.c \
 			\
 			$(PARSER_ELEMENT_DIR)/color_component_parser.c \
 			$(PARSER_ELEMENT_DIR)/color_parser.c \
@@ -51,12 +58,14 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(PARSER_UTILS_DIR)/map_utils.c \
 			$(PARSER_UTILS_DIR)/string_utils.c \
 			\
+			$(RENDER_DIR)/cast_rays.c \
+			$(RENDER_DIR)/draw_primitives.c \
 			$(RENDER_DIR)/minimap.c \
 			$(RENDER_DIR)/render_utils.c \
 			$(RENDER_DIR)/render.c \
-			$(RENDER_DIR)/draw_primitives.c \
 			$(RENDER_DIR)/setup.c \
-			$(RENDER_DIR)/cast_rays.c \
+			$(RENDER_DIR)/3d_projection.c \
+
 
 
 OBJ_FILES = $(SRC_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

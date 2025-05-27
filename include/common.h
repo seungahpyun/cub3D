@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:50 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/27 11:02:57 by jsong         ########   odam.nl         */
+/*   Updated: 2025/05/27 16:40:42 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct s_ray_data
 typedef struct s_game
 {
 	mlx_t		*mlx;
+	mlx_image_t	*img;
 	t_asset		asset;
 	t_map		map;
 	t_player	player;
@@ -88,12 +89,13 @@ typedef struct s_game
 /* error.c */
 void			ft_mlx_error(t_game *game);
 
-/* free_utils.c */
+/* free_memory.c */
 void			free_map(t_map *map);
 void			free_game(t_game *game);
 
 /* init.c */
 void			init_window(t_game *game);
+void			init_input_system(t_game *game);
 void			init_game_state(t_game *game);
 
 /* init_components.c */

@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 10:25:15 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/27 11:47:25 by jsong         ########   odam.nl         */
+/*   Updated: 2025/05/27 16:40:48 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	init_player(t_player *player)
 {
-	player->x = -1;
-	player->y = -1;
+	player->x = -1.0;
+	player->y = -1.0;
 	player->dir = '\0';
-	player->angle = -1;
+	player->angle = -1.0;
 }
 
 void	init_minimap(t_minimap *minimap)
