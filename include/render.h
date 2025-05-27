@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/22 22:09:56 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/27 15:04:16 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define RENDER_H
 
 # define MINIMAP_RADIUS 10
-# define MINIMAP_CELL_SIZE 16
+# define MINIMAP_CELL_SIZE 50
 # define MINIMAP_W (MINIMAP_RADIUS * 2 + 1) * MINIMAP_CELL_SIZE
 # define MINIMAP_H MINIMAP_W
 # define MINIMAP_GRID (MINIMAP_RADIUS * 2 + 1)
@@ -24,6 +24,8 @@
 # define MINIMAP_PLAYER_COLOR 0xD1FFC7FF // light green
 # define MINIMAP_EMPTY_COLOR 0x00000000
 # define MINIMAP_RAY_COLOR 0x65965EFF
+
+# define RED 0xFF0000FF
 
 # define FOV 60.0
 
