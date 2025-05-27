@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/09 15:21:43 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/22 22:04:52 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/27 12:01:59 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,40 +21,89 @@
  *    c. If valid: draw scaled cell (MINIMAP_CELL_SIZE) at calculated
  *       screen position with color based on map cell type
  */
-static void	draw_minimap_cell(t_game *game, int i, int j)
+// static void	draw_minimap_cell(t_game *game, int i, int j)
+// {
+// 	int		mx;
+// 	int		my;
+// 	t_cell	cell;
+
+// 	mx = (int)game->player.x - MINIMAP_RADIUS + i;
+// 	my = (int)game->player.y - MINIMAP_RADIUS + j;
+// 	if (is_valid_point(&game->map, mx, my))
+// 	{
+// 		cell.px = i * MINIMAP_CELL_SIZE;
+// 		cell.py = j * MINIMAP_CELL_SIZE;
+// 		cell.size = MINIMAP_CELL_SIZE;
+// 		cell.color = get_color(game->map.grid[my][mx]);
+// 		draw_cell(game->minimap.img, cell);
+// 	}
+// }
+
+// static void	draw_minimap_grid(t_game *game)
+// {
+// 	int	i;
+// 	int	j;
+
+// 	i = 0;
+// 	while (i < MINIMAP_GRID)
+// 	{
+// 		j = 0;
+// 		while (j < MINIMAP_GRID)
+// 		{
+// 			draw_minimap_cell(game, i, j);
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// }
+
+static void	draw_minimap_grid(t_map *map, t_minimap *minimap)
 {
 	int		mx;
 	int		my;
+	int		wx;
+	int		wy;
+	int		sx;
+	int		sy;
 	t_cell	cell;
 
-	mx = (int)game->player.x - MINIMAP_RADIUS + i;
-	my = (int)game->player.y - MINIMAP_RADIUS + j;
-	if (is_valid_point(&game->map, mx, my))
+	mx = 0;
+	while (mx < map->width)
 	{
-		cell.px = i * MINIMAP_CELL_SIZE;
-		cell.py = j * MINIMAP_CELL_SIZE;
-		cell.size = MINIMAP_CELL_SIZE;
-		cell.color = get_color(game->map.grid[my][mx]);
-		draw_cell(game->minimap.img, cell);
+		my = 0;
+		while (my < map->height)
+		{
+			wx = mx * MINIMAP_CELL_SIZE;
+			wy = my * MINIMAP_CELL_SIZE;
+			sx = wx - minimap->offset_x;
+			sy = wy - minimap->offset_y;
+			if (is_valid_point(map, mx, my))
+			{
+				cell.px = sx;
+				cell.py = sy;
+				cell.color = get_color(map->grid[my][mx]);
+				cell.size = MINIMAP_CELL_SIZE;
+				draw_cell(minimap->img, cell);
+			}
+			my++;
+		}
+		mx++;
 	}
 }
 
-static void	draw_minimap_grid(t_game *game)
+static void	calculate_offset(t_player *player, t_minimap *minimap)
 {
-	int	i;
-	int	j;
+	int	w_px;
+	int	w_py;
+	int	s_px;
+	int	s_py;
 
-	i = 0;
-	while (i < MINIMAP_GRID)
-	{
-		j = 0;
-		while (j < MINIMAP_GRID)
-		{
-			draw_minimap_cell(game, i, j);
-			j++;
-		}
-		i++;
-	}
+	w_px = (int)player->x * MINIMAP_CELL_SIZE;
+	w_py = (int)player->y * MINIMAP_CELL_SIZE;
+	s_px = MINIMAP_W / 2;
+	s_py = MINIMAP_H / 2;
+	minimap->offset_x = w_px - s_px;
+	minimap->offset_y = w_py - s_py;
 }
 
 /**
@@ -93,7 +142,8 @@ void	render_minimap(t_game *game)
 	// Set minimap background as transparent
 	ft_memset(game->minimap.img->pixels, 0, MINIMAP_W * MINIMAP_H
 		* sizeof(int32_t));
-	draw_minimap_grid(game);
+	calculate_offset(&game->player, &game->minimap);
+	draw_minimap_grid(&game->map, &game->minimap);
 	draw_minimap_rays(game);
 	if (mlx_image_to_window(game->mlx, game->minimap.img, 0, 0) < 0)
 		ft_mlx_error(game);
