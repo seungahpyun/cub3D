@@ -6,7 +6,7 @@
 /*   By: jianisong <jianisong@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/23 13:39:14 by jianisong     #+#    #+#                 */
-/*   Updated: 2025/05/26 16:02:07 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/27 15:16:44 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,8 @@ void	render_3d_projection(t_game *game)
 		wall_start = calculate_wall_start(line_height, i);
 		wall_end = calculate_wall_end(line_height, i);
 		draw_ceiling(game->img, wall_start, &game->asset.ceiling);
-		draw_line(game->img, wall_start, wall_end, 0x000000FF);
+		draw_line(game->img, wall_start, wall_end, 0x001f1f1f);
 		draw_floor(game->img, wall_end, &game->asset.floor);
 		i++;
 	}
-	if (mlx_image_to_window(game->mlx, game->img, 0, 0) < 0)
-		ft_mlx_error(game);
 }

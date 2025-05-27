@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/09 15:21:43 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/23 15:17:26 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/27 14:33:59 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@
  */
 static void	draw_minimap_cell(t_game *game, int i, int j)
 {
-	int		mx;
-	int		my;
-	t_cell	cell;
+	int					mx;
+	int					my;
+	t_cell				cell;
 
-	mx = (int)game->player.x - MINIMAP_RADIUS + i;
-	my = (int)game->player.y - MINIMAP_RADIUS + j;
+	mx = (int)floor(game->player.x) - MINIMAP_RADIUS + i;
+	my = (int)floor(game->player.y) - MINIMAP_RADIUS + j;
 	if (is_valid_point(&game->map, mx, my))
 	{
 		cell.px = i * MINIMAP_CELL_SIZE;
@@ -57,38 +57,13 @@ static void	draw_minimap_grid(t_game *game)
 	}
 }
 
-/**
- * Draws rays on minimap from the player:
- * 1. Calculate the ray angle and distiance to get hit point of ray
- * 2. Map map_corrdinates to minimap image position
- * 3. Draw the line on the minimap buffer
- */
-static void	draw_minimap_rays(t_game *game)
-{
-	double	ray_angle;
-	double	dist;
-	t_point	start;
-	t_point	end;
-	int		i;
-
-	start.x = MINIMAP_W / 2;
-	start.y = MINIMAP_H / 2;
-	i = 0;
-	while (i < WIDTH)
-	{
-		ray_angle = game->rays[i].angle;
-		dist = game->rays[i].dist;
-		end.x = start.x + cos(ray_angle) * dist * MINIMAP_CELL_SIZE;
-		end.y = start.y - sin(ray_angle) * dist * MINIMAP_CELL_SIZE;
-		draw_line(game->minimap.img, start, end, MINIMAP_RAY_COLOR);
-		i++;
-	}
-}
-
 void	render_minimap(t_game *game)
 {
+	if (!game->minimap.img)
+		return ;
+	ft_memset(game->minimap.img->pixels, 0, MINIMAP_W * MINIMAP_H
+		* sizeof(int32_t));
 	draw_minimap_grid(game);
 	draw_minimap_rays(game);
-	if (mlx_image_to_window(game->mlx, game->minimap.img, 0, 0) < 0)
-		ft_mlx_error(game);
+	draw_minimap_player(game);
 }

@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/20 15:16:48 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/20 16:11:35 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/23 15:10:53 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,10 @@ static bool	find_player_position(t_map *map, t_player *player)
 			if (map->grid[i][j] == 'N' || map->grid[i][j] == 'S'
 				|| map->grid[i][j] == 'E' || map->grid[i][j] == 'W')
 			{
-				player->x = j;
-				player->y = i;
+				player->x = j + 0.5;
+				player->y = i + 0.5;
 				player->dir = map->grid[i][j];
+				map->grid[i][j] = '0';
 				player_found++;
 			}
 			j++;

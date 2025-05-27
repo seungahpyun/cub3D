@@ -6,11 +6,12 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 15:59:19 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/23 17:44:07 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/27 14:19:42 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
+#include "control.h"
 
 void	init_window(t_game *game)
 {
@@ -35,6 +36,13 @@ static void	init_asset(t_asset *asset)
 	asset->so_img = NULL;
 	asset->we_img = NULL;
 	asset->ea_img = NULL;
+}
+
+void	init_input_system(t_game *game)
+{
+	mlx_key_hook(game->mlx, &handle_key_press, game);
+	mlx_cursor_hook(game->mlx, &handle_mouse_move, game);
+	mlx_close_hook(game->mlx, &handle_window_close, game);
 }
 
 void	init_game_state(t_game *game)
