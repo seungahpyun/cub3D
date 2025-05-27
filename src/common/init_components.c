@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 10:25:15 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/27 14:19:40 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/27 16:40:48 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	init_player(t_player *player)
 
 void	init_minimap(t_minimap *minimap)
 {
-	minimap->cell_size = 0;
+	minimap->offset_x = 0;
+	minimap->offset_y = 0;
 	minimap->img = NULL;
 }
 

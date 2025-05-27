@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/27 16:09:42 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/27 17:00:22 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define RENDER_H
 
 # define MINIMAP_RADIUS 10
-# define MINIMAP_CELL_SIZE 16
+# define MINIMAP_CELL_SIZE 50
 # define MINIMAP_W (MINIMAP_RADIUS * 2 + 1) * MINIMAP_CELL_SIZE
 # define MINIMAP_H MINIMAP_W
 # define MINIMAP_GRID (MINIMAP_RADIUS * 2 + 1)
@@ -24,6 +24,8 @@
 # define MINIMAP_PLAYER_COLOR 0xD1FFC7FF // light green
 # define MINIMAP_EMPTY_COLOR 0x00000000
 # define MINIMAP_RAY_COLOR 0x65965EFF
+
+# define RED 0xFF0000FF
 
 # define FOV 60.0
 # define MIN_PER_DIST 0.0001
@@ -84,12 +86,5 @@ double		cast_ray(t_map *map, t_ray *ray);
 /* minimap_render*/
 void		render_minimap(t_game *game);
 void		render_3d_projection(t_game *game);
-
-/* minimap_player.c */
-void		calculate_player_screen_pos(t_game *game, t_point *pos);
-void		draw_minimap_player(t_game *game);
-
-/* minimap_rays.c */
-void		draw_minimap_rays(t_game *game);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 11:08:44 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/27 16:18:30 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/27 16:38:44 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,7 @@ int	get_color(char c)
 {
 	if (c == '1')
 		return (MINIMAP_WALL_COLOR);
-	if (c == '0')
-		return (MINIMAP_FLOOR_COLOR);
 	if (c == ' ')
 		return (MINIMAP_EMPTY_COLOR);
-	return (MINIMAP_PLAYER_COLOR);
+	return (MINIMAP_FLOOR_COLOR);
 }
