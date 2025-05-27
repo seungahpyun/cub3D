@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/22 09:04:17 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/27 17:15:28 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/27 17:32:29 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,3 @@ bool	can_move_y(t_game *game, double new_y)
 {
 	return (can_move_to(game, game->player.x, new_y));
 }
-
