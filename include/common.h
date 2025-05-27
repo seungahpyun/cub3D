@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:50 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/22 21:57:50 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/27 11:02:57 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ typedef struct s_player
 
 typedef struct s_minimap
 {
-	int			cell_size;
+	int			offset_x;
+	int			offset_y;
 	mlx_image_t	*img;
 }				t_minimap;
 
