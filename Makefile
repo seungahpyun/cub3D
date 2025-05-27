@@ -65,6 +65,8 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(RENDER_DIR)/render_utils.c \
 			$(RENDER_DIR)/render.c \
 			$(RENDER_DIR)/setup.c \
+			$(RENDER_DIR)/3d_projection.c \
+
 
 
 OBJ_FILES = $(SRC_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

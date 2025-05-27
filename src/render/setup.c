@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/21 15:17:24 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/23 11:47:51 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/27 14:30:22 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,24 @@ static void	init_rays_offset(t_ray_data *rays)
 	step = FOV / (WIDTH - 1);
 	while (i < WIDTH)
 	{
-		rays[i].angle_offset = degree_to_radian(-0.5 * FOV + step * i);
+		rays[i].angle_offset = degree_to_radian(0.5 * FOV - step * i);
 		i++;
 	}
 }
+
+// static void	init_images(t_game *game)
+// {
+// 	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
+// 	if (!game->img)
+// 		ft_mlx_error(game);
+// 	game->minimap.img = mlx_new_image(game->mlx, MINIMAP_W, MINIMAP_H);
+// 	if (!game->minimap.img)
+// 		ft_mlx_error(game);
+// }
 
 void	setup_for_raycasting(t_game *game)
 {
 	game->player.angle = dir_to_angle(game->player.dir);
 	init_rays_offset(game->rays);
+	// init_images(game);
 }

@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:52:59 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/23 11:00:14 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/27 14:19:26 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int	main(int argc, char **argv)
 
 	if (!setup_game(argc, argv, &game))
 		return (EXIT_FAILURE);
-	// debug(&game);
 	init_window(&game);
 	run_game(&game);
 	free_game(&game);
