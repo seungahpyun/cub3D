@@ -6,11 +6,16 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 11:08:44 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/21 15:23:52 by jsong         ########   odam.nl         */
+/*   Updated: 2025/05/23 15:13:21 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
+
+int	color_to_rgba(t_color *color, int a)
+{
+	return (color->r << 24 | color->g << 16 | color->b << 8 | a);
+}
 
 int	is_within_boundary(int x, int y, int width, int height)
 {

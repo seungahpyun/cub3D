@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:50 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/22 21:57:50 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/23 13:52:41 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_ray_data
 typedef struct s_game
 {
 	mlx_t		*mlx;
+	mlx_image_t	*img;
 	t_asset		asset;
 	t_map		map;
 	t_player	player;

@@ -6,7 +6,7 @@
 /*   By: jianisong <jianisong@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/22 21:47:09 by jianisong     #+#    #+#                 */
-/*   Updated: 2025/05/22 22:06:47 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/23 15:31:55 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,17 @@ static void	update_rays(t_game *game)
 	}
 }
 
+static void	clear_images(t_game *game)
+{
+	ft_memset(game->minimap.img->pixels, 0, MINIMAP_W * MINIMAP_H
+		* sizeof(int32_t));
+	ft_memset(game->img->pixels, 0, WIDTH * HEIGHT * sizeof(int32_t));
+}
+
 void	render(t_game *game)
 {
+	clear_images(game);
 	update_rays(game);
+	render_3d_projection(game);
 	render_minimap(game);
 }
