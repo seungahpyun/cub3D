@@ -6,7 +6,7 @@
 /*   By: jianisong <jianisong@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/23 13:39:14 by jianisong     #+#    #+#                 */
-/*   Updated: 2025/05/26 16:02:07 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/05/27 14:37:17 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,4 @@ void	render_3d_projection(t_game *game)
 		draw_floor(game->img, wall_end, &game->asset.floor);
 		i++;
 	}
-	if (mlx_image_to_window(game->mlx, game->img, 0, 0) < 0)
-		ft_mlx_error(game);
 }

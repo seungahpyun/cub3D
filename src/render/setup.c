@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/21 15:17:24 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/27 14:30:22 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/27 14:34:39 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,23 @@ static void	init_rays_offset(t_ray_data *rays)
 	}
 }
 
-// static void	init_images(t_game *game)
-// {
-// 	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
-// 	if (!game->img)
-// 		ft_mlx_error(game);
-// 	game->minimap.img = mlx_new_image(game->mlx, MINIMAP_W, MINIMAP_H);
-// 	if (!game->minimap.img)
-// 		ft_mlx_error(game);
-// }
+static void	init_images(t_game *game)
+{
+	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
+	if (!game->img)
+		ft_mlx_error(game);
+	game->minimap.img = mlx_new_image(game->mlx, MINIMAP_W, MINIMAP_H);
+	if (!game->minimap.img)
+		ft_mlx_error(game);
+	if (mlx_image_to_window(game->mlx, game->img, 0, 0) < 0)
+		ft_mlx_error(game);
+	if (mlx_image_to_window(game->mlx, game->minimap.img, 20, 20) < 0)
+		ft_mlx_error(game);
+}
 
 void	setup_for_raycasting(t_game *game)
 {
 	game->player.angle = dir_to_angle(game->player.dir);
 	init_rays_offset(game->rays);
-	// init_images(game);
+	init_images(game);
 }

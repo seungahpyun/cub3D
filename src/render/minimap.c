@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/09 15:21:43 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/27 14:21:21 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/27 14:33:59 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,7 @@ static void	draw_minimap_grid(t_game *game)
 void	render_minimap(t_game *game)
 {
 	if (!game->minimap.img)
-	{
-		game->minimap.img = mlx_new_image(game->mlx, MINIMAP_W, MINIMAP_H);
-		if (!game->minimap.img)
-			ft_mlx_error(game);
-		if (mlx_image_to_window(game->mlx, game->minimap.img, 0, 0) < 0)
-			ft_mlx_error(game);
-	}
+		return ;
 	ft_memset(game->minimap.img->pixels, 0, MINIMAP_W * MINIMAP_H
 		* sizeof(int32_t));
 	draw_minimap_grid(game);
