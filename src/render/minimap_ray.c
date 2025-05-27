@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   minimap_rays.c                                     :+:    :+:            */
+/*   minimap_ray.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/23 17:00:02 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/23 17:22:35 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/27 16:19:40 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	draw_single_ray(t_game *game, t_point start, int i)
 	t_point	end;
 	double	adjusted_distance;
 
-	adjusted_distance = game->rays[i].dist * 0.98;
+	adjusted_distance = game->rays[i].dist;
 	end.x = start.x + cos(game->rays[i].angle)
 		* adjusted_distance * MINIMAP_CELL_SIZE;
 	end.y = start.y - sin(game->rays[i].angle)

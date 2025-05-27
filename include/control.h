@@ -6,14 +6,14 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/22 08:50:14 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/27 11:51:31 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/27 15:14:11 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONTROL_H
 # define CONTROL_H
 
-# define MOVE_SPEED 0.1
+# define MOVE_SPEED 0.05
 # define ROTATE_SPEED 0.1
 # define ROTATE_LEFT 1
 # define ROTATE_RIGHT -1
