@@ -29,7 +29,8 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(COMMON_DIR)/init_components.c \
 			$(COMMON_DIR)/init.c \
 			\
-			$(CONTROL_DIR)/collision.c \
+			$(CONTROL_DIR)/collision_check.c \
+			$(CONTROL_DIR)/collision_movement.c \
 			$(CONTROL_DIR)/keyboard_input.c \
 			$(CONTROL_DIR)/mouse_input.c \
 			$(CONTROL_DIR)/player_controller.c \
@@ -58,13 +59,13 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			\
 			$(RENDER_DIR)/cast_rays.c \
 			$(RENDER_DIR)/draw_primitives.c \
-			$(RENDER_DIR)/minimap_player.c \
-			$(RENDER_DIR)/minimap_ray.c \
 			$(RENDER_DIR)/minimap.c \
 			$(RENDER_DIR)/render_utils.c \
 			$(RENDER_DIR)/render.c \
 			$(RENDER_DIR)/setup.c \
 			$(RENDER_DIR)/texture_loader.c \
+			$(RENDER_DIR)/3d_projection.c \
+
 
 
 OBJ_FILES = $(SRC_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

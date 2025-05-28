@@ -6,11 +6,20 @@
 /*   By: jianisong <jianisong@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/22 21:47:09 by jianisong     #+#    #+#                 */
-/*   Updated: 2025/05/26 10:43:53 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/27 17:11:12 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
+
+static void	clear_main_image(t_game *game)
+{
+	if (game->img && game->img->pixels)
+		ft_memset(game->img->pixels, 0, WIDTH * HEIGHT * sizeof(int32_t));
+	if (game->minimap.img && game->minimap.img->pixels)
+		ft_memset(game->minimap.img->pixels, 0, MINIMAP_W * MINIMAP_H
+			* sizeof(int32_t));
+}
 
 static void	update_rays(t_game *game)
 {
@@ -29,6 +38,14 @@ static void	update_rays(t_game *game)
 	}
 }
 
+static void	render_frame(t_game *game)
+{
+	clear_main_image(game);
+	update_rays(game);
+	render_3d_projection(game);
+	render_minimap(game);
+}
+
 static void	game_loop(void *param)
 {
 	t_game			*game;
@@ -37,16 +54,15 @@ static void	game_loop(void *param)
 
 	game = (t_game *)param;
 	current_time = mlx_get_time();
-	if (current_time - last_time > 0.016)
+	if (current_time - last_time >= 0.016)
 	{
-		update_rays(game);
-		render_minimap(game);
+		render_frame(game);
 		last_time = current_time;
 	}
 }
 
 void	render(t_game *game)
 {
-	update_rays(game);
+	render_frame(game);
 	mlx_loop_hook(game->mlx, &game_loop, game);
 }

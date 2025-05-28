@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/26 12:03:20 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/28 12:32:58 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,21 @@
 # define RENDER_H
 
 # define MINIMAP_RADIUS 10
-# define MINIMAP_CELL_SIZE 16
+# define MINIMAP_CELL_SIZE 50
 # define MINIMAP_W (MINIMAP_RADIUS * 2 + 1) * MINIMAP_CELL_SIZE
 # define MINIMAP_H MINIMAP_W
 # define MINIMAP_GRID (MINIMAP_RADIUS * 2 + 1)
 
-# define MINIMAP_WALL_COLOR 0x003300FF   // dark green
-# define MINIMAP_FLOOR_COLOR 0x006600FF  // brighter green
+# define MINIMAP_WALL_COLOR 0xFFAA96B2
+# define MINIMAP_FLOOR_COLOR 0xFFEFE7D3
 # define MINIMAP_PLAYER_COLOR 0xD1FFC7FF // light green
 # define MINIMAP_EMPTY_COLOR 0x00000000
 # define MINIMAP_RAY_COLOR 0x65965EFF
 
+# define RED 0xFF0000FF
+
 # define FOV 60.0
+# define MIN_PER_DIST 0.0001
 
 # include "common.h"
 
@@ -66,6 +69,7 @@ int			is_within_boundary(int x, int y, int width, int height);
 bool		is_valid_point(t_map *map, int mx, int my);
 int			get_color(char c);
 double		degree_to_radian(double degree);
+int			color_to_rgba(t_color *color, int a);
 
 /*render*/
 void		render(t_game *game);
@@ -81,13 +85,7 @@ double		cast_ray(t_map *map, t_ray *ray);
 
 /* minimap_render*/
 void		render_minimap(t_game *game);
-
-/* minimap_player.c */
-void		calculate_player_screen_pos(t_game *game, t_point *pos);
-void		draw_minimap_player(t_game *game);
-
-/* minimap_rays.c */
-void		draw_minimap_rays(t_game *game);
+void		render_3d_projection(t_game *game);
 
 /* texture_loader.c */
 bool		load_textures(t_game *game);

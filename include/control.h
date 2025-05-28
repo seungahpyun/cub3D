@@ -6,14 +6,14 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/22 08:50:14 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/23 16:34:03 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/27 15:14:11 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONTROL_H
 # define CONTROL_H
 
-# define MOVE_SPEED 1.0
+# define MOVE_SPEED 0.05
 # define ROTATE_SPEED 0.1
 # define ROTATE_LEFT 1
 # define ROTATE_RIGHT -1
@@ -22,6 +22,10 @@
 
 /* collision.c */
 bool			can_move_to(t_game *game, double new_x, double new_y);
+bool			can_move_x(t_game *game, double new_x);
+bool			can_move_y(t_game *game, double new_y);
+void			apply_sliding_movement(t_game *game,
+					double new_x, double new_y);
 
 /* keyboard_input.c */
 void			handle_key_press(mlx_key_data_t keydata, void *param);
