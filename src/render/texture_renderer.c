@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/29 11:50:04 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/02 13:47:18 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/02 22:25:41 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,27 +45,20 @@ static double	calculate_wall_x(t_wall_info *wall_info)
 	return (wall_x);
 }
 
-static void	calculate_wall_params(t_game *game, t_wall_info *wall_info,
-				t_wall_params *params)
+static void	calculate_wall_params(int line_height, t_wall_params *params)
 {
-	double	per_dist;
-	int		wall_center;
+	int	wall_center;
 
-	if (!game || !wall_info || !params)
+	if (!params)
 		return ;
-	per_dist = sqrt(pow(wall_info->hit_x - game->player.x, 2)
-				+ pow(wall_info->hit_y - game->player.y, 2));
-	per_dist *= cos(wall_info->ray_angle - game->player.angle);
-	if (per_dist < MIN_PER_DIST)
-		per_dist = MIN_PER_DIST;
-	params->full_wall_height = (int)(HEIGHT / per_dist);
+	params->full_wall_height = line_height;
 	wall_center = HEIGHT / 2;
 	params->wall_top = wall_center - params->full_wall_height / 2;
 	params->wall_bottom = wall_center + params->full_wall_height / 2;
 }
 
 static void	init_texture_data(t_game *game, t_wall_info *wall_info,
-				t_texture_data *data)
+				int line_height, t_texture_data *data)
 {
 	if (!game || !wall_info || !data)
 		return ;
@@ -76,18 +69,18 @@ static void	init_texture_data(t_game *game, t_wall_info *wall_info,
 	data->tex_x = (int)(data->wall_x * data->texture->width);
 	if (data->tex_x >= (int)data->texture->width)
 		data->tex_x = data->texture->width - 1;
-	calculate_wall_params(game, wall_info, &data->params);
+	calculate_wall_params(line_height, &data->params);
 }
 
-void	draw_textured_wall(t_game *game, int x, t_point wall_start,
-			t_wall_info *wall_info)
+void	draw_textured_wall(t_game *game, t_render_data *render_data)
 {
 	t_texture_data	data;
 
-	if (!game || !wall_info)
+	if (!game || !render_data)
 		return ;
-	init_texture_data(game, wall_info, &data);
+	init_texture_data(game, &render_data->wall_info,
+		render_data->line_height, &data);
 	if (!data.texture)
 		return ;
-	draw_wall_pixels(game, x, wall_start, &data);
+	draw_wall_pixels(game, render_data->x, render_data->draw_start, &data);
 }

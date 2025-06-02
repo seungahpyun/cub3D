@@ -6,7 +6,7 @@
 /*   By: jianisong <jianisong@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/23 13:39:14 by jianisong     #+#    #+#                 */
-/*   Updated: 2025/06/02 11:41:36 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/02 22:26:27 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ static void	init_render_data(t_game *game, int i, t_render_data *data)
 	if (data->per_dist < MIN_PER_DIST)
 		data->per_dist = MIN_PER_DIST;
 	data->line_height = (int)HEIGHT / data->per_dist;
-	data->wall_start = calculate_wall_start(data->line_height, i);
-	data->wall_end = calculate_wall_end(data->line_height, i);
+	data->draw_start = calculate_wall_start(data->line_height, i);
+	data->draw_end = calculate_wall_end(data->line_height, i);
 }
 
 /**
@@ -59,11 +59,12 @@ void	render_3d_projection(t_game *game)
 	i = 0;
 	while (i < WIDTH)
 	{
+		data.x = i;
 		init_render_data(game, i, &data);
-		draw_ceiling(game->img, data.wall_start, &game->asset.ceiling);
+		draw_ceiling(game->img, data.draw_start, &game->asset.ceiling);
 		create_wall_info(game, i, &data.wall_info, game->rays[i].dist);
-		draw_textured_wall(game, i, data.wall_start, &data.wall_info);
-		draw_floor(game->img, data.wall_end, &game->asset.floor);
+		draw_textured_wall(game, &data);
+		draw_floor(game->img, data.draw_end, &game->asset.floor);
 		i++;
 	}
 }

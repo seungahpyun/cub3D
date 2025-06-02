@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/02 13:46:23 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/02 22:29:48 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,9 @@ typedef struct s_render_data
 {
 	double		per_dist;
 	int			line_height;
-	t_point		wall_start;
-	t_point		wall_end;
+	int			x;
+	t_point		draw_start;
+	t_point		draw_end;
 	t_wall_info	wall_info;
 }				t_render_data;
 
@@ -136,6 +137,6 @@ void		draw_wall_pixels(t_game *game, int x, t_point wall_start,
 				t_texture_data *data);
 
 /* texture_renderer.c */
-void		draw_textured_wall(t_game *game, int x, t_point wall_start,
-				t_wall_info *wall_info);
+void		draw_textured_wall(t_game *game, t_render_data *render_data);
+
 #endif
