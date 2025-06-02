@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/26 11:50:04 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/26 12:21:32 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/02 09:47:48 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,7 @@ static bool	load_single_texture(mlx_t *mlx, const char *path, mlx_image_t **img)
 	mlx_texture_t *texture;
 
 	if (!path || !*path)
-	{
-
-
 		return (print_error("Texture path is empty or NULL.", false));
-	}
 	texture = mlx_load_png(path);
 	if (!texture)
 		return (print_error_with_value("Failed to load texture.", path, false));

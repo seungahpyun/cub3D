@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/28 12:32:58 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/02 09:54:37 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define RENDER_H
 
 # define MINIMAP_RADIUS 10
-# define MINIMAP_CELL_SIZE 50
+# define MINIMAP_CELL_SIZE 16
 # define MINIMAP_W (MINIMAP_RADIUS * 2 + 1) * MINIMAP_CELL_SIZE
 # define MINIMAP_H MINIMAP_W
 # define MINIMAP_GRID (MINIMAP_RADIUS * 2 + 1)
@@ -64,6 +64,14 @@ typedef struct s_ray
 	char	hit_side;
 }			t_ray;
 
+typedef struct s_wall_info
+{
+	char	hit_side;
+	double	ray_angle;
+	double	hit_x;
+	double	hit_y;
+}			t_wall_info;
+
 /* utils */
 int			is_within_boundary(int x, int y, int width, int height);
 bool		is_valid_point(t_map *map, int mx, int my);
@@ -90,5 +98,9 @@ void		render_3d_projection(t_game *game);
 /* texture_loader.c */
 bool		load_textures(t_game *game);
 void		free_textures(t_game *game);
+
+/* texture_renderer.c */
+void		draw_textured_wall(t_game *game, int x, t_point wall_start,
+				t_point wall_end, t_wall_info *wall_info);
 
 #endif

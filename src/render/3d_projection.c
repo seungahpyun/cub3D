@@ -6,7 +6,7 @@
 /*   By: jianisong <jianisong@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/23 13:39:14 by jianisong     #+#    #+#                 */
-/*   Updated: 2025/05/27 15:16:44 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/02 09:58:54 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,18 @@ static void	draw_floor(mlx_image_t *img, t_point wall_end, t_color *color)
 	draw_line(img, wall_end, floor_end, floor_color);
 }
 
+static void	create_wall_info(t_game *game, int i, t_wall_info *wall_info,
+					double ray_dist)
+{
+	double	ray_angle;
+
+	ray_angle = game->rays[i].angle;
+	wall_info->ray_angle = ray_angle;
+	wall_info->hit_x = game->player.x + cos(ray_angle) * ray_dist;
+	wall_info->hit_y = game->player.y - sin(ray_angle) * ray_dist;
+	wall_info->hit_side = game->rays[i].hit_side;
+}
+
 /**
  * Render 3d projection to the screen
  * 1. Calculate perpendicular ray distance to remove fish-eye distortion
@@ -65,11 +77,12 @@ static void	draw_floor(mlx_image_t *img, t_point wall_end, t_color *color)
  */
 void	render_3d_projection(t_game *game)
 {
-	double	per_dist;
-	int		i;
-	int		line_height;
-	t_point	wall_start;
-	t_point	wall_end;
+	double		per_dist;
+	int			i;
+	int			line_height;
+	t_point		wall_start;
+	t_point		wall_end;
+	t_wall_info	wall_info;
 
 	i = 0;
 	while (i < WIDTH)
@@ -81,7 +94,8 @@ void	render_3d_projection(t_game *game)
 		wall_start = calculate_wall_start(line_height, i);
 		wall_end = calculate_wall_end(line_height, i);
 		draw_ceiling(game->img, wall_start, &game->asset.ceiling);
-		draw_line(game->img, wall_start, wall_end, 0x001f1f1f);
+		create_wall_info(game, i, &wall_info, game->rays[i].dist);
+		draw_textured_wall(game, i, wall_start, wall_end, &wall_info);
 		draw_floor(game->img, wall_end, &game->asset.floor);
 		i++;
 	}

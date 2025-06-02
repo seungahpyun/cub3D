@@ -57,6 +57,7 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(PARSER_UTILS_DIR)/map_utils.c \
 			$(PARSER_UTILS_DIR)/string_utils.c \
 			\
+			$(RENDER_DIR)/3d_projection.c \
 			$(RENDER_DIR)/cast_rays.c \
 			$(RENDER_DIR)/draw_primitives.c \
 			$(RENDER_DIR)/minimap.c \
@@ -64,7 +65,7 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(RENDER_DIR)/render.c \
 			$(RENDER_DIR)/setup.c \
 			$(RENDER_DIR)/texture_loader.c \
-			$(RENDER_DIR)/3d_projection.c \
+			$(RENDER_DIR)/texture_renderer.c
 
 
 
