@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/02 12:03:03 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/02 13:46:23 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@
 # define MINIMAP_RAY_COLOR 0xFAAC96
 
 # define RED 0xFF0000FF
+# define DEFAULT_TEXTURE_COLOR 0x001f1f1f
+
+# define HIT_SIDE_VERTICAL 'v'
+# define HIT_SIDE_HORIZONTAL 'h'
 
 # define FOV 60.0
 # define MIN_PER_DIST 0.0001

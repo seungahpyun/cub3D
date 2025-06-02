@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/29 11:50:04 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/02 11:49:16 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/02 13:47:18 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static mlx_image_t	*get_wall_texture(t_game *game, t_wall_info *wall_info)
 	if (!game || !wall_info || !game->asset.no_img || !game->asset.so_img
 		|| !game->asset.we_img || !game->asset.ea_img)
 		return (NULL);
-	if (wall_info->hit_side == 'v')
+	if (wall_info->hit_side == HIT_SIDE_VERTICAL)
 	{
 		if (wall_info->hit_x > game->player.x)
 			return (game->asset.ea_img);
@@ -37,7 +37,7 @@ static double	calculate_wall_x(t_wall_info *wall_info)
 {
 	double	wall_x;
 
-	if (wall_info->hit_side == 'v')
+	if (wall_info->hit_side == HIT_SIDE_VERTICAL)
 		wall_x = wall_info->hit_y;
 	else
 		wall_x = wall_info->hit_x;
@@ -54,7 +54,7 @@ static void	calculate_wall_params(t_game *game, t_wall_info *wall_info,
 	if (!game || !wall_info || !params)
 		return ;
 	per_dist = sqrt(pow(wall_info->hit_x - game->player.x, 2)
-			+ pow(wall_info->hit_y - game->player.y, 2));
+				+ pow(wall_info->hit_y - game->player.y, 2));
 	per_dist *= cos(wall_info->ray_angle - game->player.angle);
 	if (per_dist < MIN_PER_DIST)
 		per_dist = MIN_PER_DIST;

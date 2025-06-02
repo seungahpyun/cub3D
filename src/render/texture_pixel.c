@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/02 11:44:51 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/02 11:49:24 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/02 13:44:48 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ static int	get_texture_pixel(mlx_image_t *texture, int tex_x, int tex_y)
 	uint32_t	color;
 
 	if (!texture || !texture->pixels)
-		return (0x001f1f1f);
+		return (DEFAULT_TEXTURE_COLOR);
 	if (tex_x < 0 || tex_x >= (int)texture->width
 		|| tex_y < 0 || tex_y >= (int)texture->height)
-		return (0x001f1f1f);
+		return (DEFAULT_TEXTURE_COLOR);
 	pixel_index = (tex_y * texture->width + tex_x) * 4;
 	pixel_ptr = texture->pixels + pixel_index;
 	color = (pixel_ptr[0] << 24) | (pixel_ptr[1] << 16)
