@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/02 09:54:37 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/02 11:05:52 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 
 # define RED 0xFF0000FF
 
-# define FOV 60.0
-# define MIN_PER_DIST 0.0001
+# define FOV 66.0
+# define MIN_PER_DIST 0.01
 
 # include "common.h"
 

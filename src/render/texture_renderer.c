@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/29 11:50:04 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/02 09:57:46 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/02 11:09:51 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,45 +60,58 @@ static int	get_texture_pixel(mlx_image_t *texture, int tex_x, int tex_y)
 	return (color);
 }
 
+static void	calculate_wall_params(t_game *game, t_wall_info *wall_info,
+				int *full_wall_height, int *wall_top, int *wall_bottom)
+{
+	double	per_dist;
+	int		wall_center;
+
+	per_dist = sqrt(pow(wall_info->hit_x - game->player.x, 2)
+			+ pow(wall_info->hit_y - game->player.y, 2));
+	per_dist *= cos(wall_info->ray_angle - game->player.angle);
+	if (per_dist < MIN_PER_DIST)
+		per_dist = MIN_PER_DIST;
+	*full_wall_height = (int)(HEIGHT / per_dist);
+	wall_center = HEIGHT / 2;
+	*wall_top = wall_center - *full_wall_height / 2;
+	*wall_bottom = wall_center + *full_wall_height / 2;
+}
+
 void	draw_textured_wall(t_game *game, int x, t_point wall_start,
 			t_point wall_end, t_wall_info *wall_info)
 {
 	mlx_image_t	*texture;
 	double		wall_x;
 	int			tex_x;
-	int			wall_height;
-	double		step;
+	int			full_wall_height;
+	int			wall_top;
+	int			wall_bottom;
+	double		tex_step;
 	double		tex_pos;
-	int			tex_y;
 	int			y;
-	int			color;
 
 	texture = get_wall_texture(game, wall_info);
 	if (!texture)
 		return ;
 	wall_x = calculate_wall_x(wall_info);
-	tex_x = (int)(wall_x * (double)texture->width);
-	if (tex_x < 0)
-		tex_x = 0;
+	tex_x = (int)(wall_x * texture->width);
 	if (tex_x >= (int)texture->width)
 		tex_x = texture->width - 1;
-	wall_height = wall_end.y - wall_start.y;
-	if (wall_height <= 0)
-		return ;
-	step = (double)texture->height / (double)wall_height;
-	tex_pos = (wall_start.y - HEIGHT / 2 + wall_height / 2) * step;
+	calculate_wall_params(game, wall_info, &full_wall_height,
+		&wall_top, &wall_bottom);
+	tex_step = (double)texture->height / (double)full_wall_height;
+	tex_pos = (wall_start.y - wall_top) * tex_step;
 	y = wall_start.y;
 	while (y <= wall_end.y)
 	{
-		tex_y = (int)tex_pos;
-		if (tex_y < 0)
-			tex_y = 0;
-		if (tex_y >= (int)texture->height)
-			tex_y = texture->height - 1;
-		tex_pos += step;
-		color = get_texture_pixel(texture, tex_x, tex_y);
-		if (is_within_boundary(x, y, game->img->width, game->img->height))
-			mlx_put_pixel(game->img, x, y, color);
+		int tex_y = (int)tex_pos;
+		if (tex_y >= 0 && tex_y < (int)texture->height)
+		{
+			int color = get_texture_pixel(texture, tex_x, tex_y);
+			if (is_within_boundary(x, y, game->img->width, game->img->height))
+				mlx_put_pixel(game->img, x, y, color);
+		}
+		tex_pos += tex_step;
 		y++;
 	}
 }
