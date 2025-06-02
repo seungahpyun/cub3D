@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/02 11:49:36 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/02 12:03:03 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define MINIMAP_FLOOR_COLOR 0xFFEFE7D3
 # define MINIMAP_PLAYER_COLOR 0x65965EFF// light green
 # define MINIMAP_EMPTY_COLOR 0x00000000
-# define MINIMAP_RAY_COLOR 0xD1FFC7FF
+# define MINIMAP_RAY_COLOR 0xFAAC96
 
 # define RED 0xFF0000FF
 
