@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/02 11:05:52 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/02 11:49:36 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@
 
 # define MINIMAP_WALL_COLOR 0xFFAA96B2
 # define MINIMAP_FLOOR_COLOR 0xFFEFE7D3
-# define MINIMAP_PLAYER_COLOR 0xD1FFC7FF // light green
+# define MINIMAP_PLAYER_COLOR 0x65965EFF// light green
 # define MINIMAP_EMPTY_COLOR 0x00000000
-# define MINIMAP_RAY_COLOR 0x65965EFF
+# define MINIMAP_RAY_COLOR 0xD1FFC7FF
 
 # define RED 0xFF0000FF
 
-# define FOV 66.0
-# define MIN_PER_DIST 0.01
+# define FOV 60.0
+# define MIN_PER_DIST 0.0001
 
 # include "common.h"
 
@@ -64,6 +64,13 @@ typedef struct s_ray
 	char	hit_side;
 }			t_ray;
 
+typedef struct s_wall_params
+{
+	int		full_wall_height;
+	int		wall_top;
+	int		wall_bottom;
+}			t_wall_params;
+
 typedef struct s_wall_info
 {
 	char	hit_side;
@@ -71,6 +78,23 @@ typedef struct s_wall_info
 	double	hit_x;
 	double	hit_y;
 }			t_wall_info;
+
+typedef struct s_texture_data
+{
+	mlx_image_t		*texture;
+	double			wall_x;
+	int				tex_x;
+	t_wall_params	params;
+}					t_texture_data;
+
+typedef struct s_render_data
+{
+	double		per_dist;
+	int			line_height;
+	t_point		wall_start;
+	t_point		wall_end;
+	t_wall_info	wall_info;
+}				t_render_data;
 
 /* utils */
 int			is_within_boundary(int x, int y, int width, int height);
@@ -94,13 +118,20 @@ double		cast_ray(t_map *map, t_ray *ray);
 /* minimap_render*/
 void		render_minimap(t_game *game);
 void		render_3d_projection(t_game *game);
+void		draw_ceiling(mlx_image_t *img, t_point wall_start, t_color *color);
+void		draw_floor(mlx_image_t *img, t_point wall_end, t_color *color);
+void		create_wall_info(t_game *game, int i, t_wall_info *wall_info,
+				double ray_dist);
 
 /* texture_loader.c */
 bool		load_textures(t_game *game);
 void		free_textures(t_game *game);
 
+/* texture_pixel.c */
+void		draw_wall_pixels(t_game *game, int x, t_point wall_start,
+				t_texture_data *data);
+
 /* texture_renderer.c */
 void		draw_textured_wall(t_game *game, int x, t_point wall_start,
-				t_point wall_end, t_wall_info *wall_info);
-
+				t_wall_info *wall_info);
 #endif

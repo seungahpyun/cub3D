@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/26 11:50:04 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/02 09:47:48 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/02 11:22:33 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static bool	load_single_texture(mlx_t *mlx, const char *path, mlx_image_t **img)
 {
-	mlx_texture_t *texture;
+	mlx_texture_t	*texture;
 
 	if (!path || !*path)
 		return (print_error("Texture path is empty or NULL.", false));
@@ -24,11 +24,12 @@ static bool	load_single_texture(mlx_t *mlx, const char *path, mlx_image_t **img)
 	*img = mlx_texture_to_image(mlx, texture);
 	mlx_delete_texture(texture);
 	if (!*img)
-		return (print_error_with_value("Failed to convert texture to image.", path, false));
+		return (print_error_with_value("Failed to convert texture to image.",
+				path, false));
 	return (true);
 }
 
-static void cleanup_loaded_textures(t_asset *asset, mlx_t *mlx)
+static void	cleanup_loaded_textures(t_asset *asset, mlx_t *mlx)
 {
 	if (asset->no_img)
 	{
@@ -54,8 +55,8 @@ static void cleanup_loaded_textures(t_asset *asset, mlx_t *mlx)
 
 bool	load_textures(t_game *game)
 {
-	t_asset *asset;
-	mlx_t 	*mlx;
+	t_asset	*asset;
+	mlx_t	*mlx;
 
 	asset = &game->asset;
 	mlx = game->mlx;
