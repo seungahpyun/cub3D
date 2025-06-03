@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:50 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/02 09:51:30 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/03 15:10:58 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
+# define MAX_SPRITES 100
+# define TREE_FRAMES 6
 
 # include <MLX42.h>
 # include <fcntl.h>
@@ -24,6 +26,22 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+typedef enum e_sprite_type
+{
+	SPRITE_TREE = 'T'
+}				t_sprite_type;
+
+typedef struct s_sprite
+{
+	double			x;
+	double			y;
+	t_sprite_type	type;
+	int				current_frame;
+	double			last_frame_time;
+	double			distance;
+	mlx_image_t		*frames[TREE_FRAMES];
+}					t_sprite;
 
 typedef struct s_color
 {
@@ -51,6 +69,8 @@ typedef struct s_map
 	char		**grid;
 	int			width;
 	int			height;
+	t_sprite	sprites[MAX_SPRITES];
+	int			sprite_count;
 }				t_map;
 
 typedef struct s_player

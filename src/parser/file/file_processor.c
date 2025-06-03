@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/20 14:57:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/26 12:18:02 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/03 15:21:10 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static bool	is_map_line(char *line)
 	{
 		if (line[i] != ' ' && line[i] != '\t' && line[i] != '0'
 			&& line[i] != '1' && line[i] != 'N' && line[i] != 'S'
-			&& line[i] != 'E' && line[i] != 'W' && line[i] != '\n')
+			&& line[i] != 'E' && line[i] != 'W' && line[i] != 'T'
+			&& line[i] != '\n')
 			return (false);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/20 15:16:48 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/23 15:10:53 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/03 15:25:00 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	check_map_chars(t_map *map)
 			if (map->grid[i][j] != '0' && map->grid[i][j] != '1'
 				&& map->grid[i][j] != ' ' && map->grid[i][j] != 'N'
 				&& map->grid[i][j] != 'S' && map->grid[i][j] != 'E'
-				&& map->grid[i][j] != 'W')
+				&& map->grid[i][j] != 'W' && map->grid[i][j] != 'T')
 				return (0);
 			if (map->grid[i][j] == 'N' || map->grid[i][j] == 'S'
 				|| map->grid[i][j] == 'E' || map->grid[i][j] == 'W')
@@ -83,6 +83,7 @@ bool	validate_map_content(t_map *map, t_player *player)
 		ft_putendl_fd("Error: Must have exactly one player position", 2);
 		return (false);
 	}
+	parse_sprite_from_map(map);
 	return (true);
 }
 
