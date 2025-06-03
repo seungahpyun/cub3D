@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:50 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/02 09:51:30 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/03 14:50:56 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,21 @@ typedef struct s_asset
 	char		*so_path;
 	char		*we_path;
 	char		*ea_path;
+	char		*door_path;
 	t_color		floor;
 	t_color		ceiling;
 	mlx_image_t	*no_img;
 	mlx_image_t	*so_img;
 	mlx_image_t	*we_img;
 	mlx_image_t	*ea_img;
+	mlx_image_t	*door_img;
 }				t_asset;
 
 typedef struct s_map
 {
 	char		**grid;
+	int			**door_states;
+	double		**door_openness;
 	int			width;
 	int			height;
 }				t_map;
