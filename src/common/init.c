@@ -6,20 +6,13 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 15:59:19 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/03 14:52:01 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/03 16:39:03 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
 #include "control.h"
 #include "render.h"
-
-void	init_window(t_game *game)
-{
-	game->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", true);
-	if (!game->mlx)
-		ft_mlx_error(game);
-}
 
 static void	init_asset(t_asset *asset)
 {
@@ -41,13 +34,6 @@ static void	init_asset(t_asset *asset)
 	asset->door_img = NULL;
 }
 
-void	init_input_system(t_game *game)
-{
-	mlx_key_hook(game->mlx, &handle_key_press, game);
-	mlx_cursor_hook(game->mlx, &handle_mouse_move, game);
-	mlx_close_hook(game->mlx, &handle_window_close, game);
-}
-
 void	init_game_state(t_game *game)
 {
 	game->mlx = NULL;
@@ -57,4 +43,42 @@ void	init_game_state(t_game *game)
 	init_map(&game->map);
 	init_minimap(&game->minimap);
 	ft_bzero(game->rays, sizeof(game->rays));
+}
+
+int	init_door_arrays(t_map *map)
+{
+	int	i;
+
+	if (!map)
+		return (-1);
+	map->door_states = malloc(sizeof(int *) * map->height);
+	if (!map->door_states)
+		return (-1);
+	map->door_openness = malloc(sizeof(double *) * map->height);
+	if (!map->door_openness)
+		return (-1);
+	i = 0;
+	while (i < map->height)
+	{
+		map->door_states[i] = ft_calloc(map->width, sizeof(int));
+		map->door_openness[i] = ft_calloc(map->width, sizeof(double));
+		if (!map->door_states[i] || !map->door_openness[i])
+			return (-1);
+		i++;
+	}
+	return (0);
+}
+
+void	init_window(t_game *game)
+{
+	game->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", true);
+	if (!game->mlx)
+		ft_mlx_error(game);
+}
+
+void	init_input_system(t_game *game)
+{
+	mlx_key_hook(game->mlx, &handle_key_press, game);
+	mlx_cursor_hook(game->mlx, &handle_mouse_move, game);
+	mlx_close_hook(game->mlx, &handle_window_close, game);
 }

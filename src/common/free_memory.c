@@ -6,39 +6,41 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 11:34:24 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/03 15:23:09 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/03 16:42:33 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
 #include "render.h"
 
-static void	free_door_states(int **door_states)
+static void	free_door_states(int **door_states, int height)
 {
 	int	i;
 
 	if (!door_states)
 		return ;
 	i = 0;
-	while (door_states[i])
+	while (i < height)
 	{
-		free(door_states[i]);
+		if (door_states[i])
+			free(door_states[i]);
 		i++;
 	}
 	free(door_states);
 	door_states = NULL;
 }
 
-static void	free_door_openness(double **door_openness)
+static void	free_door_openness(double **door_openness, int height)
 {
 	int	i;
 
 	if (!door_openness)
 		return ;
 	i = 0;
-	while (door_openness[i])
+	while (i < height)
 	{
-		free(door_openness[i]);
+		if (door_openness[i])
+			free(door_openness[i]);
 		i++;
 	}
 	free(door_openness);
@@ -59,8 +61,8 @@ void	free_map(t_map *map)
 	}
 	free(map->grid);
 	map->grid = NULL;
-	free_door_states(map->door_states);
-	free_door_openness(map->door_openness);
+	free_door_states(map->door_states, map->height);
+	free_door_openness(map->door_openness, map->height);
 }
 
 static void	free_asset_paths(t_asset *asset)
