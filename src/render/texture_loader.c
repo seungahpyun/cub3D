@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/26 11:50:04 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/02 11:22:33 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/03 15:12:50 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@ static void	cleanup_loaded_textures(t_asset *asset, mlx_t *mlx)
 		mlx_delete_image(mlx, asset->ea_img);
 		asset->ea_img = NULL;
 	}
+	if (asset->door_img)
+	{
+		mlx_delete_image(mlx, asset->door_img);
+		asset->door_img = NULL;
+	}
 }
 
 bool	load_textures(t_game *game)
@@ -67,6 +72,8 @@ bool	load_textures(t_game *game)
 	if (!load_single_texture(mlx, asset->we_path, &asset->we_img))
 		return (cleanup_loaded_textures(asset, mlx), false);
 	if (!load_single_texture(mlx, asset->ea_path, &asset->ea_img))
+		return (cleanup_loaded_textures(asset, mlx), false);
+	if (!load_single_texture(mlx, asset->door_path, &asset->door_img))
 		return (cleanup_loaded_textures(asset, mlx), false);
 	return (true);
 }

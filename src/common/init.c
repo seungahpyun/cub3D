@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 15:59:19 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/28 12:33:03 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/03 14:52:01 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	init_asset(t_asset *asset)
 	asset->so_path = NULL;
 	asset->we_path = NULL;
 	asset->ea_path = NULL;
+	asset->door_path = NULL;
 	asset->floor.r = -1;
 	asset->floor.g = -1;
 	asset->floor.b = -1;
@@ -37,6 +38,7 @@ static void	init_asset(t_asset *asset)
 	asset->so_img = NULL;
 	asset->we_img = NULL;
 	asset->ea_img = NULL;
+	asset->door_img = NULL;
 }
 
 void	init_input_system(t_game *game)
