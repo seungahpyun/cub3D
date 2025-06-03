@@ -6,12 +6,13 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 15:59:19 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/27 14:19:42 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/28 12:33:03 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
 #include "control.h"
+#include "render.h"
 
 void	init_window(t_game *game)
 {

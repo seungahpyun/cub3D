@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:52:59 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/27 14:19:26 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/02 13:44:36 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static void	run_game(t_game *game)
 {
 	init_input_system(game);
 	setup_for_raycasting(game);
+	if (!load_textures(game))
+		ft_mlx_error(game);
 	render(game);
 	mlx_loop(game->mlx);
 }

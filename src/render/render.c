@@ -6,7 +6,7 @@
 /*   By: jianisong <jianisong@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/22 21:47:09 by jianisong     #+#    #+#                 */
-/*   Updated: 2025/05/27 17:11:12 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/02 09:51:59 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static void	update_rays(t_game *game)
 		game->rays[i].angle = ray_angle;
 		init_ray(&game->player, ray_angle, &ray);
 		game->rays[i].dist = cast_ray(&game->map, &ray);
+		game->rays[i].hit_side = ray.hit_side;
 		i++;
 	}
 }

@@ -6,11 +6,12 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 11:34:24 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/26 10:31:08 by spyun         ########   odam.nl         */
+/*   Updated: 2025/05/26 12:08:13 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
+#include "render.h"
 
 void	free_map(t_map *map)
 {
@@ -72,6 +73,8 @@ void	free_game(t_game *game)
 {
 	if (!game)
 		return ;
+	if (game->mlx)
+		free_textures(game);
 	free_map(&game->map);
 	free_asset(&game->asset, game->mlx);
 	if (game->mlx && game->minimap.img)

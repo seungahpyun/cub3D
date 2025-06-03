@@ -1,6 +1,6 @@
 NAME = cub3D
 CC = cc
-SANITIZE   := -fsanitize=address
+# SANITIZE   := -fsanitize=address
 CFLAGS = -g3 $(SANITIZE) -Wall -Wextra -Werror
 LDFLAGS := $(SANITIZE) -ldl -lglfw -pthread -lm
 LDFLAGS += -L/opt/homebrew/lib
@@ -53,18 +53,21 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(PARSER_MAP_DIR)/map_spaces.c \
 			$(PARSER_MAP_DIR)/map_validator.c \
 			\
-			$(PARSER_UTILS_DIR)/error_utils.c \
 			$(PARSER_UTILS_DIR)/file_utils.c \
 			$(PARSER_UTILS_DIR)/map_utils.c \
 			$(PARSER_UTILS_DIR)/string_utils.c \
 			\
+			$(RENDER_DIR)/3d_projection.c \
 			$(RENDER_DIR)/cast_rays.c \
 			$(RENDER_DIR)/draw_primitives.c \
 			$(RENDER_DIR)/minimap.c \
+			$(RENDER_DIR)/projection_draw.c \
 			$(RENDER_DIR)/render_utils.c \
 			$(RENDER_DIR)/render.c \
 			$(RENDER_DIR)/setup.c \
-			$(RENDER_DIR)/3d_projection.c \
+			$(RENDER_DIR)/texture_loader.c \
+			$(RENDER_DIR)/texture_pixel.c \
+			$(RENDER_DIR)/texture_renderer.c
 
 
 

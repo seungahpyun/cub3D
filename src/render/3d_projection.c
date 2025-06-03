@@ -6,7 +6,7 @@
 /*   By: jianisong <jianisong@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/23 13:39:14 by jianisong     #+#    #+#                 */
-/*   Updated: 2025/05/27 15:16:44 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/02 22:26:27 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,26 +34,14 @@ static t_point	calculate_wall_end(int line_height, int i)
 	return (wall_end);
 }
 
-static void	draw_ceiling(mlx_image_t *img, t_point wall_start, t_color *color)
+static void	init_render_data(t_game *game, int i, t_render_data *data)
 {
-	t_point	ceiling_start;
-	int		ceiling_color;
-
-	ceiling_start.x = wall_start.x;
-	ceiling_start.y = 0;
-	ceiling_color = color_to_rgba(color, 255);
-	draw_line(img, ceiling_start, wall_start, ceiling_color);
-}
-
-static void	draw_floor(mlx_image_t *img, t_point wall_end, t_color *color)
-{
-	int		floor_color;
-	t_point	floor_end;
-
-	floor_end.x = wall_end.x;
-	floor_end.y = HEIGHT - 1;
-	floor_color = color_to_rgba(color, 255);
-	draw_line(img, wall_end, floor_end, floor_color);
+	data->per_dist = game->rays[i].dist * cos(game->rays[i].angle_offset);
+	if (data->per_dist < MIN_PER_DIST)
+		data->per_dist = MIN_PER_DIST;
+	data->line_height = (int)HEIGHT / data->per_dist;
+	data->draw_start = calculate_wall_start(data->line_height, i);
+	data->draw_end = calculate_wall_end(data->line_height, i);
 }
 
 /**
@@ -65,24 +53,18 @@ static void	draw_floor(mlx_image_t *img, t_point wall_end, t_color *color)
  */
 void	render_3d_projection(t_game *game)
 {
-	double	per_dist;
-	int		i;
-	int		line_height;
-	t_point	wall_start;
-	t_point	wall_end;
+	t_render_data	data;
+	int				i;
 
 	i = 0;
 	while (i < WIDTH)
 	{
-		per_dist = game->rays[i].dist * cos(game->rays[i].angle_offset);
-		if (per_dist < MIN_PER_DIST)
-			per_dist = MIN_PER_DIST;
-		line_height = (int)HEIGHT / per_dist;
-		wall_start = calculate_wall_start(line_height, i);
-		wall_end = calculate_wall_end(line_height, i);
-		draw_ceiling(game->img, wall_start, &game->asset.ceiling);
-		draw_line(game->img, wall_start, wall_end, 0x001f1f1f);
-		draw_floor(game->img, wall_end, &game->asset.floor);
+		data.x = i;
+		init_render_data(game, i, &data);
+		draw_ceiling(game->img, data.draw_start, &game->asset.ceiling);
+		create_wall_info(game, i, &data.wall_info, game->rays[i].dist);
+		draw_textured_wall(game, &data);
+		draw_floor(game->img, data.draw_end, &game->asset.floor);
 		i++;
 	}
 }
