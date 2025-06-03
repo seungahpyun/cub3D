@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/02 22:29:48 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/03 16:12:11 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 
 # define FOV 60.0
 # define MIN_PER_DIST 0.0001
+
+# define SPRITE_ANIMATION_SPEED 0.15
 
 # include "common.h"
 
@@ -127,6 +129,14 @@ void		draw_ceiling(mlx_image_t *img, t_point wall_start, t_color *color);
 void		draw_floor(mlx_image_t *img, t_point wall_end, t_color *color);
 void		create_wall_info(t_game *game, int i, t_wall_info *wall_info,
 				double ray_dist);
+
+/* sprite_loader.c */
+bool		load_all_sprites(t_game *game);
+void		free_all_sprites(t_game *game);
+void		free_sprite_frames(mlx_t *mlx, t_sprite *sprite);
+
+/* sprite_renderer.c */
+void		update_sprite_animations(t_game *game);
 
 /* texture_loader.c */
 bool		load_textures(t_game *game);
