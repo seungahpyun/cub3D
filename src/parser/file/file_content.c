@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/20 14:58:06 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/21 11:26:48 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/04 17:46:50 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,53 @@ int	parse_map_content(t_game *game, int fd, int ret)
 		if (ret == 0)
 			line = get_next_line(fd);
 	}
-	if (ret == 0)
+	if (ret != -1)
 		ret = check_map_file(game, map_found);
 	return (ret);
+}
+
+bool	map_contains_door(t_map *map)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < map->width)
+	{
+		y = 0;
+		while (y < map->height)
+		{
+			if (is_valid_map_coord(map, x, y) && map->grid[y][x] == 'D')
+				return (true);
+			y++;
+		}
+		x++;
+	}
+	return (false);
+}
+
+static bool	validate_map_consistency(t_asset *asset, t_map *map)
+{
+	if (map_contains_door(map) && asset->door_path == NULL)
+	{
+		ft_putendl_fd("Error: Map contains doors but missing Door texture.", 2);
+		return (false);
+	}
+	if (!map_contains_door(map) && asset->door_path != NULL)
+		ft_putendl_fd("Warning: Door texture specified but no doors in map", 2);
+	return (true);
+}
+
+int	check_map_file(t_game *game, bool map_found)
+{
+	if (!check_all_elements_set(&game->asset))
+		return (-1);
+	if (!map_found)
+	{
+		ft_putendl_fd("Error: No map found in file", 2);
+		return (-1);
+	}
+	if (!validate_map_consistency(&game->asset, &game->map))
+		return (-1);
+	return (0);
 }
