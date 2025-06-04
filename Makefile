@@ -67,8 +67,9 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(RENDER_DIR)/setup.c \
 			$(RENDER_DIR)/texture_loader.c \
 			$(RENDER_DIR)/texture_pixel.c \
-			$(RENDER_DIR)/texture_renderer.c
-
+			$(RENDER_DIR)/texture_renderer.c \
+			$(RENDER_DIR)/door_animation.c \
+			$(RENDER_DIR)/door_render.c \
 
 
 OBJ_FILES = $(SRC_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
