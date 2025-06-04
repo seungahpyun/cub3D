@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/04 12:42:07 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/04 17:12:59 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ typedef struct s_render_data
 /* utils */
 int					is_within_boundary(int x, int y, int width, int height);
 bool				is_valid_map_coord(t_map *map, int mx, int my);
+bool				map_contains_door(t_map *map);
 int					get_color(char c);
 double				degree_to_radian(double degree);
 int					color_to_rgba(t_color *color, int a);
