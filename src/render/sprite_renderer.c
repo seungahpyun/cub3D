@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/03 11:11:51 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/04 15:32:55 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/04 15:44:55 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,22 +98,25 @@ void	sort_sprites_by_distance(t_game *game)
 static void	calculate_sprite_screen_pos(t_game *game, t_sprite *sprite,
 									t_sprite_render *render)
 {
-	double	sprite_x;
-	double	sprite_y;
-	double	inv_det;
-	double	transform_x;
-	double	transform_y;
+	double	dx;
+	double	dy;
+	double	distance;
+	double	sprite_angle;
+	double	angle_diff;
 
-	sprite_x = sprite->x - game->player.x;
-	sprite_y = sprite->y - game->player.y;
-	inv_det = 1.0 / (cos(game->player.angle + M_PI / 2) * (-sin(game->player.angle))
-		- cos(game->player.angle) * (-sin(game->player.angle + M_PI / 2)));
-	transform_x = inv_det * ((-sin(game->player.angle)) * sprite_x
-		- cos(game->player.angle) * sprite_y);
-	transform_y = inv_det * ((-sin(game->player.angle + M_PI / 2)) * sprite_x
-		+ cos(game->player.angle + M_PI / 2) * sprite_y);
-	render->screen_x = (int)((WIDTH / 2) * (1 + transform_x / transform_y));
-	render->sprite_height = abs((int)(HEIGHT / transform_y));
+	dx = sprite->x - game->player.x;
+	dy = sprite->y - game->player.y;
+	distance = sqrt(dx * dx + dy * dy);
+	if (distance <= 0.1)
+		return ;
+	sprite_angle = atan2(-dy, dx);
+	angle_diff = sprite_angle - game->player.angle;
+	while (angle_diff > M_PI)
+		angle_diff -= 2 * M_PI;
+	while (angle_diff < -M_PI)
+		angle_diff += 2 * M_PI;
+	render->screen_x = (WIDTH / 2) - (angle_diff / (FOV * M_PI / 180)) * WIDTH;
+	render->sprite_height = (int)(HEIGHT / distance);
 	render->sprite_width = render->sprite_height;
 	render->draw_start_y = -render->sprite_height / 2 + HEIGHT / 2;
 	if (render->draw_start_y < 0)
