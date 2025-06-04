@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 11:08:44 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/27 16:38:44 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/04 12:42:07 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ double	degree_to_radian(double degree)
 	return (degree * M_PI / 180);
 }
 
-bool	is_valid_point(t_map *map, int mx, int my)
+bool	is_valid_map_coord(t_map *map, int mx, int my)
 {
 	if (!is_within_boundary(mx, my, map->width, map->height))
 		return (false);

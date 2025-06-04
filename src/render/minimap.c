@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/09 15:21:43 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/27 17:06:28 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/04 12:42:07 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ static void	calculate_offset(t_player *player, t_minimap *minimap)
  */
 static void	draw_minimap_grid(t_map *map, t_minimap *minimap)
 {
-	int					mx;
-	int					my;
-	t_cell				cell;
+	int		mx;
+	int		my;
+	t_cell	cell;
 
 	mx = 0;
 	while (mx < map->width)
@@ -45,7 +45,7 @@ static void	draw_minimap_grid(t_map *map, t_minimap *minimap)
 		my = 0;
 		while (my < map->height)
 		{
-			if (is_valid_point(map, mx, my))
+			if (is_valid_map_coord(map, mx, my))
 			{
 				cell.px = mx * MINIMAP_CELL_SIZE - minimap->offset_x;
 				cell.py = my * MINIMAP_CELL_SIZE - minimap->offset_y;
