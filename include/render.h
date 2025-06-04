@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/03 16:12:11 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/04 15:35:59 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define MINIMAP_PLAYER_COLOR 0x65965EFF// light green
 # define MINIMAP_EMPTY_COLOR 0x00000000
 # define MINIMAP_RAY_COLOR 0xFAAC96
+# define MINIMAP_SPRITE_COLOR 0xFF00FFFF
 
 # define RED 0xFF0000FF
 # define DEFAULT_TEXTURE_COLOR 0x001f1f1f
@@ -102,6 +103,18 @@ typedef struct s_render_data
 	t_point		draw_end;
 	t_wall_info	wall_info;
 }				t_render_data;
+
+typedef struct s_sprite_render
+{
+	double	screen_x;
+	double	screen_y;
+	int		sprite_height;
+	int		sprite_width;
+	int		draw_start_x;
+	int		draw_end_x;
+	int		draw_start_y;
+	int		draw_end_y;
+}				t_sprite_render;
 
 /* utils */
 int			is_within_boundary(int x, int y, int width, int height);

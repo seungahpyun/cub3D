@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/09 15:21:43 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/27 17:06:28 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/04 15:32:27 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,25 @@ static void	draw_minimap_grid(t_map *map, t_minimap *minimap)
 			my++;
 		}
 		mx++;
+	}
+}
+
+static void	draw_minimap_sprites(t_map *map, t_minimap *minimap)
+{
+	int		i;
+	t_cell	sprite_cell;
+
+	i = 0;
+	while (i < map->sprite_count)
+	{
+		sprite_cell.px = (int)(map->sprites[i].x * MINIMAP_CELL_SIZE)
+			- minimap->offset_x - MINIMAP_CELL_SIZE / 4;
+		sprite_cell.py = (int)(map->sprites[i].y * MINIMAP_CELL_SIZE)
+			- minimap->offset_y - MINIMAP_CELL_SIZE / 4;
+		sprite_cell.size = MINIMAP_CELL_SIZE / 2;
+		sprite_cell.color = MINIMAP_SPRITE_COLOR;
+		draw_cell(minimap->img, sprite_cell);
+		i++;
 	}
 }
 
@@ -109,6 +128,7 @@ void	render_minimap(t_game *game)
 {
 	calculate_offset(&game->player, &game->minimap);
 	draw_minimap_grid(&game->map, &game->minimap);
+	draw_minimap_sprites(&game->map, &game->minimap);
 	draw_minimap_rays(game->rays, &game->minimap);
 	draw_minimap_player(&game->player, &game->minimap);
 }

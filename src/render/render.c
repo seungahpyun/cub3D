@@ -6,7 +6,7 @@
 /*   By: jianisong <jianisong@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/22 21:47:09 by jianisong     #+#    #+#                 */
-/*   Updated: 2025/06/02 09:51:59 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/04 15:37:00 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,7 @@
 
 static void	clear_main_image(t_game *game)
 {
-	if (game->img && game->img->pixels)
-		ft_memset(game->img->pixels, 0, WIDTH * HEIGHT * sizeof(int32_t));
-	if (game->minimap.img && game->minimap.img->pixels)
-		ft_memset(game->minimap.img->pixels, 0, MINIMAP_W * MINIMAP_H
-			* sizeof(int32_t));
+	(void)game;
 }
 
 static void	update_rays(t_game *game)
@@ -42,6 +38,7 @@ static void	update_rays(t_game *game)
 static void	render_frame(t_game *game)
 {
 	clear_main_image(game);
+	update_sprite_animations(game);
 	update_rays(game);
 	render_3d_projection(game);
 	render_minimap(game);
