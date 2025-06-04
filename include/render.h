@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/04 15:35:59 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/04 15:41:44 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ void		free_sprite_frames(mlx_t *mlx, t_sprite *sprite);
 
 /* sprite_renderer.c */
 void		update_sprite_animations(t_game *game);
-
+void		render_sprites(t_game *game);
 /* texture_loader.c */
 bool		load_textures(t_game *game);
 void		free_textures(t_game *game);
