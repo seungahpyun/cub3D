@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/05 15:02:21 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/05 15:47:43 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,6 @@ void		setup_for_raycasting(t_game *game);
 /* ========================================================================== */
 /* minimap_render*/
 void		render_minimap(t_game *game);
-void		render_3d_projection(t_game *game);
 void		draw_ceiling(mlx_image_t *img, t_point wall_start, t_color *color);
 void		draw_floor(mlx_image_t *img, t_point wall_end, t_color *color);
 void		create_wall_info(t_game *game, int i, t_wall_info *wall_info,
