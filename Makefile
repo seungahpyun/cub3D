@@ -17,6 +17,9 @@ PARSER_FILE_DIR = $(PARSER_DIR)/file
 PARSER_MAP_DIR = $(PARSER_DIR)/map
 PARSER_UTILS_DIR = $(PARSER_DIR)/utils
 RENDER_DIR = $(SRC_DIR)/render
+RENDER_MINIMAP_DIR = $(RENDER_DIR)/minimap
+RENDER_SPRITE_DIR = $(RENDER_DIR)/sprite
+RENDER_TEXTURE_DIR = $(RENDER_DIR)/texture
 COMMON_DIR = $(SRC_DIR)/common
 CONTROL_DIR = $(SRC_DIR)/control
 
@@ -63,22 +66,22 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(RENDER_DIR)/3d_projection.c \
 			$(RENDER_DIR)/cast_rays.c \
 			$(RENDER_DIR)/draw_primitives.c \
-			$(RENDER_DIR)/minimap_grid.c \
-			$(RENDER_DIR)/minimap_player.c \
-			$(RENDER_DIR)/minimap.c \
+			$(RENDER_MINIMAP_DIR)/minimap_grid.c \
+			$(RENDER_MINIMAP_DIR)/minimap_player.c \
+			$(RENDER_MINIMAP_DIR)/minimap.c \
 			$(RENDER_DIR)/projection_draw.c \
 			$(RENDER_DIR)/render_utils.c \
 			$(RENDER_DIR)/render.c \
 			$(RENDER_DIR)/setup.c \
-			$(RENDER_DIR)/sprite_animation.c \
-			$(RENDER_DIR)/sprite_drawing.c \
-			$(RENDER_DIR)/sprite_loader.c \
-			$(RENDER_DIR)/sprite_position.c \
-			$(RENDER_DIR)/sprite_renderer.c\
-			$(RENDER_DIR)/sprite_sorting.c \
-			$(RENDER_DIR)/texture_loader.c \
-			$(RENDER_DIR)/texture_pixel.c \
-			$(RENDER_DIR)/texture_renderer.c
+			$(RENDER_SPRITE_DIR)/sprite_animation.c \
+			$(RENDER_SPRITE_DIR)/sprite_drawing.c \
+			$(RENDER_SPRITE_DIR)/sprite_loader.c \
+			$(RENDER_SPRITE_DIR)/sprite_position.c \
+			$(RENDER_SPRITE_DIR)/sprite_renderer.c\
+			$(RENDER_SPRITE_DIR)/sprite_sorting.c \
+			$(RENDER_TEXTURE_DIR)/texture_loader.c \
+			$(RENDER_TEXTURE_DIR)/texture_pixel.c \
+			$(RENDER_TEXTURE_DIR)/texture_renderer.c
 
 
 
