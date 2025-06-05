@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/22 09:04:17 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/05 11:07:52 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/05 11:54:27 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,4 @@ bool	can_move_to(t_game *game, double new_x, double new_y)
 	if (!is_walkable_cell(game, right_x, bottom_y))
 		return (false);
 	return (true);
-}
-
-bool	can_move_x(t_game *game, double new_x)
-{
-	return (can_move_to(game, new_x, game->player.y));
-}
-
-bool	can_move_y(t_game *game, double new_y)
-{
-	return (can_move_to(game, game->player.x, new_y));
 }

@@ -25,7 +25,9 @@ OBJ_DIR = obj
 SRC_FILES = $(SRC_DIR)/main.c \
 			$(COMMON_DIR)/debug.c \
 			$(COMMON_DIR)/error.c \
+			$(COMMON_DIR)/free_assets.c \
 			$(COMMON_DIR)/free_memory.c \
+			$(COMMON_DIR)/free_sprites.c \
 			$(COMMON_DIR)/init_components.c \
 			$(COMMON_DIR)/init.c \
 			\
@@ -61,13 +63,19 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(RENDER_DIR)/3d_projection.c \
 			$(RENDER_DIR)/cast_rays.c \
 			$(RENDER_DIR)/draw_primitives.c \
+			$(RENDER_DIR)/minimap_grid.c \
+			$(RENDER_DIR)/minimap_player.c \
 			$(RENDER_DIR)/minimap.c \
 			$(RENDER_DIR)/projection_draw.c \
 			$(RENDER_DIR)/render_utils.c \
 			$(RENDER_DIR)/render.c \
 			$(RENDER_DIR)/setup.c \
+			$(RENDER_DIR)/sprite_animation.c \
+			$(RENDER_DIR)/sprite_drawing.c \
 			$(RENDER_DIR)/sprite_loader.c \
-			$(RENDER_DIR)/sprite_renderer.c \
+			$(RENDER_DIR)/sprite_position.c \
+			$(RENDER_DIR)/sprite_renderer.c\
+			$(RENDER_DIR)/sprite_sorting.c \
 			$(RENDER_DIR)/texture_loader.c \
 			$(RENDER_DIR)/texture_pixel.c \
 			$(RENDER_DIR)/texture_renderer.c

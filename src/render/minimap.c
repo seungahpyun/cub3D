@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/09 15:21:43 by jsong         #+#    #+#                 */
-/*   Updated: 2025/06/04 15:32:27 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/05 11:35:20 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,103 +25,6 @@ static void	calculate_offset(t_player *player, t_minimap *minimap)
 	s_py = MINIMAP_H / 2;
 	minimap->offset_x = w_px - s_px;
 	minimap->offset_y = w_py - s_py;
-}
-
-/**
- * Draws minimap grid showing walls and floor around player:
- * 1. Iterates through all map cells
- * 2. For each valid cell, calculates screen position using offset
- * 3. Draws cell with appropriate color based on map content
- */
-static void	draw_minimap_grid(t_map *map, t_minimap *minimap)
-{
-	int					mx;
-	int					my;
-	t_cell				cell;
-
-	mx = 0;
-	while (mx < map->width)
-	{
-		my = 0;
-		while (my < map->height)
-		{
-			if (is_valid_point(map, mx, my))
-			{
-				cell.px = mx * MINIMAP_CELL_SIZE - minimap->offset_x;
-				cell.py = my * MINIMAP_CELL_SIZE - minimap->offset_y;
-				cell.color = get_color(map->grid[my][mx]);
-				cell.size = MINIMAP_CELL_SIZE;
-				draw_cell(minimap->img, cell);
-			}
-			my++;
-		}
-		mx++;
-	}
-}
-
-static void	draw_minimap_sprites(t_map *map, t_minimap *minimap)
-{
-	int		i;
-	t_cell	sprite_cell;
-
-	i = 0;
-	while (i < map->sprite_count)
-	{
-		sprite_cell.px = (int)(map->sprites[i].x * MINIMAP_CELL_SIZE)
-			- minimap->offset_x - MINIMAP_CELL_SIZE / 4;
-		sprite_cell.py = (int)(map->sprites[i].y * MINIMAP_CELL_SIZE)
-			- minimap->offset_y - MINIMAP_CELL_SIZE / 4;
-		sprite_cell.size = MINIMAP_CELL_SIZE / 2;
-		sprite_cell.color = MINIMAP_SPRITE_COLOR;
-		draw_cell(minimap->img, sprite_cell);
-		i++;
-	}
-}
-
-/**
- * Draws rays on minimap from the player:
- * 1. Calculate the ray angle and distiance to get hit point of ray
- * 2. Map map_corrdinates to minimap image position
- * 3. Draw the line on the minimap buffer
- */
-static void	draw_minimap_rays(t_ray_data *rays, t_minimap *minimap)
-{
-	double	ray_angle;
-	double	dist;
-	t_point	start;
-	t_point	end;
-	int		i;
-
-	start.x = MINIMAP_W / 2;
-	start.y = MINIMAP_H / 2;
-	i = 0;
-	while (i < WIDTH)
-	{
-		ray_angle = rays[i].angle;
-		dist = rays[i].dist;
-		end.x = start.x + cos(ray_angle) * dist * MINIMAP_CELL_SIZE;
-		end.y = start.y - sin(ray_angle) * dist * MINIMAP_CELL_SIZE;
-		draw_line(minimap->img, start, end, MINIMAP_RAY_COLOR);
-		i++;
-	}
-}
-
-static void	draw_minimap_player(t_player *player, t_minimap *minimap)
-{
-	t_cell	player_cell;
-	t_point	player_start;
-	t_point	player_end;
-
-	player_cell.size = MINIMAP_CELL_SIZE / 3;
-	player_cell.px = MINIMAP_W / 2 - player_cell.size / 2;
-	player_cell.py = MINIMAP_H / 2 - player_cell.size / 2;
-	player_cell.color = MINIMAP_PLAYER_COLOR;
-	draw_cell(minimap->img, player_cell);
-	player_start.x = MINIMAP_W / 2;
-	player_start.y = MINIMAP_H / 2;
-	player_end.x = player_start.x + cos(player->angle) * MINIMAP_CELL_SIZE;
-	player_end.y = player_start.y - sin(player->angle) * MINIMAP_CELL_SIZE;
-	draw_line(minimap->img, player_start, player_end, RED);
 }
 
 void	render_minimap(t_game *game)

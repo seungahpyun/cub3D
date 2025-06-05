@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/04 15:41:44 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/05 12:01:28 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,15 @@ typedef struct s_sprite_render
 	int		draw_end_x;
 	int		draw_start_y;
 	int		draw_end_y;
-}				t_sprite_render;
+}			t_sprite_render;
+
+typedef struct s_sprite_draw_data
+{
+	t_sprite		*sprite;
+	t_sprite_render	*render;
+	int				tex_x;
+	int				stripe;
+}					t_sprite_draw_data;
 
 /* utils */
 int			is_within_boundary(int x, int y, int width, int height);
@@ -142,23 +150,32 @@ void		draw_ceiling(mlx_image_t *img, t_point wall_start, t_color *color);
 void		draw_floor(mlx_image_t *img, t_point wall_end, t_color *color);
 void		create_wall_info(t_game *game, int i, t_wall_info *wall_info,
 				double ray_dist);
-
+/* minimap_grid.c */
+void		draw_minimap_grid(t_map *map, t_minimap *minimap);
+void		draw_minimap_sprites(t_map *map, t_minimap *minimap);
+/* minimap_player.c */
+void		draw_minimap_rays(t_ray_data *rays, t_minimap *minimap);
+void		draw_minimap_player(t_player *player, t_minimap *minimap);
+/* sprite_animation.c */
+void		update_sprite_animations(t_game *game);
+/* sprite_drawing.c */
+void		draw_sprite_column(t_game *game, t_sprite *sprite,
+				t_sprite_render *render, int stripe);
+void		calculate_sprite_screen_pos(t_game *game, t_sprite *sprite,
+				t_sprite_render *render);
 /* sprite_loader.c */
 bool		load_all_sprites(t_game *game);
-void		free_all_sprites(t_game *game);
-void		free_sprite_frames(mlx_t *mlx, t_sprite *sprite);
-
 /* sprite_renderer.c */
-void		update_sprite_animations(t_game *game);
 void		render_sprites(t_game *game);
+/* sprite_sorting.c */
+void		calculate_sprite_distances(t_game *game);
+void		sort_sprites_by_distance(t_game *game);
 /* texture_loader.c */
 bool		load_textures(t_game *game);
 void		free_textures(t_game *game);
-
 /* texture_pixel.c */
 void		draw_wall_pixels(t_game *game, int x, t_point wall_start,
 				t_texture_data *data);
-
 /* texture_renderer.c */
 void		draw_textured_wall(t_game *game, t_render_data *render_data);
 
