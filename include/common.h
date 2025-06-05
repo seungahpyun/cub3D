@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:50 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/05 14:56:03 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/05 15:02:04 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ typedef struct s_game
 	t_ray_data	rays[WIDTH];
 }				t_game;
 
-
 /* ========================================================================== */
 /*                                    CORE                                    */
 /* ========================================================================== */
@@ -139,8 +138,8 @@ void			free_all_sprites(t_game *game);
 /*                                   UTILS                                    */
 /* ========================================================================== */
 /* math_utils.c */
-double	calculate_distance(double x1, double y1, double x2, double y2);
-double	normalize_angle(double angle);
+double			calculate_distance(double x1, double y1, double x2, double y2);
+double			normalize_angle(double angle);
 
 /* debug */
 void			debug(t_game *game);

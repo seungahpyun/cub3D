@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/05 14:23:32 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/05 14:33:10 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/05 15:03:20 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 double	calculate_distance(double x1, double y1, double x2, double y2)
 {
-	double dx = x2 - x1;
-	double dy = y2 - y1;
+	double	dx;
+	double	dy;
+
+	dx = x2 - x1;
+	dy = y2 - y1;
 	return (sqrt(dx * dx + dy * dy));
 }
 
@@ -27,4 +30,3 @@ double	normalize_angle(double angle)
 		angle += 2 * M_PI;
 	return (angle);
 }
-
