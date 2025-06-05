@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 11:34:24 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/05 11:58:04 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/05 12:24:30 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ void	free_map(t_map *map)
 	if (!map->grid)
 		return ;
 	i = 0;
-	while (map->grid[i])
+	while (i < map->height && map->grid[i])
 	{
 		free(map->grid[i]);
+		map->grid[i] = NULL;
 		i++;
 	}
 	free(map->grid);
