@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/05 14:04:57 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/05 14:14:35 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,6 @@ void		sort_sprites_by_distance(t_game *game);
 /* ========================================================================== */
 /* texture_loader.c */
 bool		load_textures(t_game *game);
-void		free_textures(t_game *game);
 /* texture_pixel.c */
 void		draw_wall_pixels(t_game *game, int x, t_point wall_start,
 				t_texture_data *data);

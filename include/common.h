@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:50 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/05 11:59:21 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/05 14:14:00 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ bool			print_error_with_value(const char *prefix, const char *value,
 					bool return_value);
 
 /* free_assets.c */
+void			free_asset_images(t_asset *asset, mlx_t *mlx);
 void			free_asset(t_asset *asset, mlx_t *mlx);
 
 /* free_memory.c */

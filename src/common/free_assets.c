@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/05 11:55:42 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/05 11:58:31 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/05 14:11:08 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	free_asset_paths(t_asset *asset)
 	asset->ea_path = NULL;
 }
 
-static void	free_asset_images(t_asset *asset, mlx_t *mlx)
+void	free_asset_images(t_asset *asset, mlx_t *mlx)
 {
 	if (mlx && asset->no_img)
 		mlx_delete_image(mlx, asset->no_img);
