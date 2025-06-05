@@ -6,14 +6,14 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/05 11:50:33 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/05 11:52:51 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/05 13:59:25 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-static void	calculate_sprite_distance_and_angle(t_game *game, t_sprite *sprite,
-									double *distance, double *angle_diff)
+static void	calculate_sprite_angle(t_game *game, t_sprite *sprite,
+									double *angle_diff)
 {
 	double	dx;
 	double	dy;
@@ -21,9 +21,6 @@ static void	calculate_sprite_distance_and_angle(t_game *game, t_sprite *sprite,
 
 	dx = sprite->x - game->player.x;
 	dy = sprite->y - game->player.y;
-	*distance = sqrt(dx * dx + dy * dy);
-	if (*distance <= 0.1)
-		return ;
 	sprite_angle = atan2(-dy, dx);
 	*angle_diff = sprite_angle - game->player.angle;
 	while (*angle_diff > M_PI)
@@ -55,11 +52,10 @@ static void	calculate_sprite_dimensions(double distance, double angle_diff,
 void	calculate_sprite_screen_pos(t_game *game, t_sprite *sprite,
 									t_sprite_render *render)
 {
-	double	distance;
 	double	angle_diff;
 
-	calculate_sprite_distance_and_angle(game, sprite, &distance, &angle_diff);
-	if (distance <= 0.1)
+	if (sprite->distance <= 0.1)
 		return ;
-	calculate_sprite_dimensions(distance, angle_diff, render);
+	calculate_sprite_angle(game, sprite, &angle_diff);
+	calculate_sprite_dimensions(sprite->distance, angle_diff, render);
 }

@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/05 12:01:28 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/05 14:04:57 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,9 @@ void		draw_cell(mlx_image_t *img, t_cell cell);
 /* cast_rays*/
 void		init_ray(t_player *player, double ray_angle, t_ray *ray);
 double		cast_ray(t_map *map, t_ray *ray);
-
+/* ========================================================================== */
+/*                               MINIMAP RENDERING                            */
+/* ========================================================================== */
 /* minimap_render*/
 void		render_minimap(t_game *game);
 void		render_3d_projection(t_game *game);
@@ -156,6 +158,9 @@ void		draw_minimap_sprites(t_map *map, t_minimap *minimap);
 /* minimap_player.c */
 void		draw_minimap_rays(t_ray_data *rays, t_minimap *minimap);
 void		draw_minimap_player(t_player *player, t_minimap *minimap);
+/* ========================================================================== */
+/*                               SPRITE RENDERING                             */
+/* ========================================================================== */
 /* sprite_animation.c */
 void		update_sprite_animations(t_game *game);
 /* sprite_drawing.c */
@@ -170,6 +175,9 @@ void		render_sprites(t_game *game);
 /* sprite_sorting.c */
 void		calculate_sprite_distances(t_game *game);
 void		sort_sprites_by_distance(t_game *game);
+/* ========================================================================== */
+/*                               TEXTURE RENDERING                            */
+/* ========================================================================== */
 /* texture_loader.c */
 bool		load_textures(t_game *game);
 void		free_textures(t_game *game);
