@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/22 09:04:17 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/27 17:32:29 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/05 11:07:52 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,26 @@ static bool	is_valid_map_position(t_game *game, int map_x, int map_y)
 	if (map_x < 0 || map_x >= (int)ft_strlen(game->map.grid[map_y]))
 		return (false);
 	return (true);
+}
+
+static bool	check_sprite_collision(t_game *game, double x, double y)
+{
+	int		i;
+	double	dx;
+	double	dy;
+	double	distance;
+
+	i = 0;
+	while (i < game->map.sprite_count)
+	{
+		dx = x - game->map.sprites[i].x;
+		dy = y - game->map.sprites[i].y;
+		distance = sqrt(dx * dx + dy * dy);
+		if (distance < 0.4)
+			return (true);
+		i++;
+	}
+	return (false);
 }
 
 static bool	is_walkable_cell(t_game *game, int map_x, int map_y)
@@ -39,6 +59,8 @@ bool	can_move_to(t_game *game, double new_x, double new_y)
 	int	top_y;
 	int	bottom_y;
 
+	if (check_sprite_collision(game, new_x, new_y))
+		return (false);
 	left_x = (int)(new_x - 0.2);
 	right_x = (int)(new_x + 0.2);
 	top_y = (int)(new_y - 0.2);

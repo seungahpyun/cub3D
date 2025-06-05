@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/20 16:20:00 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/03 15:17:17 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/05 11:03:49 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ bool	is_valid_position(int x, int y, int height, int width)
 
 bool	is_walkable(char c)
 {
-	return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
-		|| c == 'T');
+	return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
 bool	is_map_char(char c)
