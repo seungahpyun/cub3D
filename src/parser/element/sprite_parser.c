@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/03 14:59:56 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/05 11:06:28 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/05 11:23:28 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	parse_sprite_from_map(t_map *map)
 	if (!map || !map->grid)
 		return ;
 	y = 0;
-	while(y < map->height && map->grid[y])
+	while (y < map->height && map->grid[y])
 	{
 		x = 0;
 		while (map->grid[y][x])

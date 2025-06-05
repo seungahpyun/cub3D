@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 10:25:15 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/03 15:10:23 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/05 11:23:48 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	init_minimap(t_minimap *minimap)
 
 void	init_map(t_map *map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	map->grid = NULL;
 	map->width = 0;

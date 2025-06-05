@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/03 11:11:51 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/04 15:44:55 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/05 11:27:07 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static int	get_max_frames(t_sprite_type type)
 	return (1);
 }
 
-static void	update_single_sprite_animation(t_sprite *sprite, double current_time)
+static void	update_single_sprite_animation(t_sprite *sprite,
+										double current_time)
 {
 	int		max_frames;
 	double	time_diff;
@@ -85,7 +86,8 @@ void	sort_sprites_by_distance(t_game *game)
 		j = 0;
 		while (j < game->map.sprite_count - i - 1)
 		{
-			if (game->map.sprites[j].distance < game->map.sprites[j + 1].distance)
+			if (game->map.sprites[j].distance
+				< game->map.sprites[j + 1].distance)
 			{
 				swap_sprites(&game->map.sprites[j], &game->map.sprites[j + 1]);
 			}
@@ -163,18 +165,20 @@ static void	draw_sprite_column(t_game *game, t_sprite *sprite,
 	if (!texture)
 		return ;
 	tex_x = (int)(256 * (stripe - (-render->sprite_width / 2
-		+ (int)render->screen_x)) * texture->width / render->sprite_width) / 256;
+					+ (int)render->screen_x)) * texture->width
+			/ render->sprite_width) / 256;
 	if (tex_x < 0 || tex_x >= (int)texture->width)
 		return ;
 	y = render->draw_start_y;
 	while (y < render->draw_end_y)
 	{
 		tex_y = (((y * 256 - HEIGHT * 128 + render->sprite_height * 128)
-			* texture->height) / render->sprite_height) / 256;
+					* texture->height) / render->sprite_height) / 256;
 		color = get_sprite_pixel(texture, tex_x, tex_y);
 		if ((color & 0xFF) > 0 && game->rays[stripe].dist > sprite->distance)
 		{
-			if (is_within_boundary(stripe, y, game->img->width, game->img->height))
+			if (is_within_boundary(stripe, y, game->img->width,
+					game->img->height))
 				mlx_put_pixel(game->img, stripe, y, color);
 		}
 		y++;
