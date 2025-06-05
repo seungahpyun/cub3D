@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   mouse_input.c                                      :+:    :+:            */
+/*   math_utils.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/05/22 08:51:40 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/05 14:36:01 by spyun         ########   odam.nl         */
+/*   Created: 2025/06/05 14:23:32 by spyun         #+#    #+#                 */
+/*   Updated: 2025/06/05 14:33:10 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "control.h"
+#include "common.h"
 
-void	handle_mouse_move(double xpos, double ypos, void *param)
+double	calculate_distance(double x1, double y1, double x2, double y2)
 {
-	t_game		*game;
-	static int	last_x = -1;
-	int			delta_x;
-
-	game = (t_game *)param;
-	if (last_x == -1)
-		last_x = (int)xpos;
-	delta_x = (int)xpos - last_x;
-	if (delta_x != 0)
-	{
-		game->player.angle -= delta_x * 0.004;
-		game->player.angle = normalize_angle(game->player.angle);
-	}
-	last_x = (int)xpos;
-	(void)ypos;
+	double dx = x2 - x1;
+	double dy = y2 - y1;
+	return (sqrt(dx * dx + dy * dy));
 }
+
+double	normalize_angle(double angle)
+{
+	while (angle >= 2 * M_PI)
+		angle -= 2 * M_PI;
+	while (angle < 0)
+		angle += 2 * M_PI;
+	return (angle);
+}
+

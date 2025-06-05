@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/05 14:14:35 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/05 14:34:09 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,5 +185,10 @@ void		draw_wall_pixels(t_game *game, int x, t_point wall_start,
 				t_texture_data *data);
 /* texture_renderer.c */
 void		draw_textured_wall(t_game *game, t_render_data *render_data);
+/* ========================================================================== */
+/*                               UTILS                                         */
+/* ========================================================================== */
+/* pixel_utils.c */
+uint32_t	get_pixel_color(mlx_image_t *texture, int tex_x, int tex_y);
 
 #endif

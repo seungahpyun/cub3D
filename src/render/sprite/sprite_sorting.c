@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/05 11:37:50 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/05 11:40:10 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/05 14:37:52 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 
 void	calculate_sprite_distances(t_game *game)
 {
-	int		i;
-	double	dx;
-	double	dy;
+	int	i;
 
 	i = 0;
 	while (i < game->map.sprite_count)
 	{
-		dx = game->map.sprites[i].x - game->player.x;
-		dy = game->map.sprites[i].y - game->player.y;
-		game->map.sprites[i].distance = sqrt(dx * dx + dy * dy);
+		game->map.sprites[i].distance = calculate_distance(
+				game->player.x, game->player.y,
+				game->map.sprites[i].x, game->map.sprites[i].y);
 		i++;
 	}
 }

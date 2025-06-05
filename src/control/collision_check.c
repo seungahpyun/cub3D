@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/22 09:04:17 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/05 11:54:27 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/05 14:37:13 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,13 @@ static bool	is_valid_map_position(t_game *game, int map_x, int map_y)
 static bool	check_sprite_collision(t_game *game, double x, double y)
 {
 	int		i;
-	double	dx;
-	double	dy;
 	double	distance;
 
 	i = 0;
 	while (i < game->map.sprite_count)
 	{
-		dx = x - game->map.sprites[i].x;
-		dy = y - game->map.sprites[i].y;
-		distance = sqrt(dx * dx + dy * dy);
+		distance = calculate_distance(x, y, game->map.sprites[i].x,
+				game->map.sprites[i].y);
 		if (distance < 0.4)
 			return (true);
 		i++;

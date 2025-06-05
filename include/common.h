@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:50 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/05 14:14:00 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/05 14:34:42 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,4 +137,7 @@ void			init_map(t_map *map);
 /* debug */
 void			debug(t_game *game);
 
+/* math_utils.c */
+double	calculate_distance(double x1, double y1, double x2, double y2);
+double	normalize_angle(double angle);
 #endif
