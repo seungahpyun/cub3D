@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/22 08:50:14 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/03 15:12:32 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/05 14:56:14 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,11 @@ bool			can_move_x(t_game *game, double new_x);
 bool			can_move_y(t_game *game, double new_y);
 void			apply_sliding_movement(t_game *game,
 					double new_x, double new_y);
-
 /* keyboard_input.c */
 void			handle_key_press(mlx_key_data_t keydata, void *param);
 void			handle_window_close(void *param);
-
 /* mouse_init.c */
 void			handle_mouse_move(double xpos, double ypos, void *param);
-
 /* player_movement.c */
 void			move_player_forward(t_game *game);
 void			move_player_backward(t_game *game);

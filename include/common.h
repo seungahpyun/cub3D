@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:50 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/05 14:34:42 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/05 14:56:03 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,37 +107,42 @@ typedef struct s_game
 	t_ray_data	rays[WIDTH];
 }				t_game;
 
+
+/* ========================================================================== */
+/*                                    CORE                                    */
+/* ========================================================================== */
 /* error.c */
 void			ft_mlx_error(t_game *game);
 bool			print_error(const char *message, bool return_value);
 bool			print_error_with_value(const char *prefix, const char *value,
 					bool return_value);
-
-/* free_assets.c */
-void			free_asset_images(t_asset *asset, mlx_t *mlx);
-void			free_asset(t_asset *asset, mlx_t *mlx);
-
-/* free_memory.c */
-void			free_map(t_map *map);
-void			free_game(t_game *game);
-
-/* free_sprites.c */
-void			free_all_sprites(t_game *game);
-
-/* init.c */
-void			init_window(t_game *game);
-void			init_input_system(t_game *game);
-void			init_game_state(t_game *game);
-
 /* init_components.c */
 void			init_player(t_player *player);
 void			init_minimap(t_minimap *minimap);
 void			init_map(t_map *map);
+/* init.c */
+void			init_window(t_game *game);
+void			init_input_system(t_game *game);
+void			init_game_state(t_game *game);
+/* ========================================================================== */
+/*                                   MEMORY                                   */
+/* ========================================================================== */
+/* free_assets.c */
+void			free_asset_images(t_asset *asset, mlx_t *mlx);
+void			free_asset(t_asset *asset, mlx_t *mlx);
+/* free_memory.c */
+void			free_map(t_map *map);
+void			free_game(t_game *game);
+/* free_sprites.c */
+void			free_all_sprites(t_game *game);
+/* ========================================================================== */
+/*                                   UTILS                                    */
+/* ========================================================================== */
+/* math_utils.c */
+double	calculate_distance(double x1, double y1, double x2, double y2);
+double	normalize_angle(double angle);
 
 /* debug */
 void			debug(t_game *game);
 
-/* math_utils.c */
-double	calculate_distance(double x1, double y1, double x2, double y2);
-double	normalize_angle(double angle);
 #endif

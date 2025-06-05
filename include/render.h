@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/05 14:34:09 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/05 15:01:02 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,24 +124,24 @@ typedef struct s_sprite_draw_data
 	int				stripe;
 }					t_sprite_draw_data;
 
-/* utils */
-int			is_within_boundary(int x, int y, int width, int height);
-bool		is_valid_point(t_map *map, int mx, int my);
-int			get_color(char c);
-double		degree_to_radian(double degree);
-int			color_to_rgba(t_color *color, int a);
-
-/*render*/
-void		render(t_game *game);
-void		setup_for_raycasting(t_game *game);
-
-/* draw_primitives */
-void		draw_line(mlx_image_t *img, t_point start, t_point end, int color);
-void		draw_cell(mlx_image_t *img, t_cell cell);
-
-/* cast_rays*/
+/* ========================================================================== */
+/*                                    CORE                                    */
+/* ========================================================================== */
+/* 3d_projection.c */
+void		render_3d_projection(t_game *game);
+/* cast_rays.c */
 void		init_ray(t_player *player, double ray_angle, t_ray *ray);
+bool		check_hit_wall(t_map *map, t_ray *ray);
 double		cast_ray(t_map *map, t_ray *ray);
+/* projection_draw.c */
+void		draw_ceiling(mlx_image_t *img, t_point wall_start, t_color *color);
+void		draw_floor(mlx_image_t *img, t_point wall_end, t_color *color);
+void		create_wall_info(t_game *game, int i, t_wall_info *wall_info,
+					double ray_dist);
+/* render.c */
+void		render(t_game *game);
+/* setup.c */
+void		setup_for_raycasting(t_game *game);
 /* ========================================================================== */
 /*                               MINIMAP RENDERING                            */
 /* ========================================================================== */
@@ -186,9 +186,18 @@ void		draw_wall_pixels(t_game *game, int x, t_point wall_start,
 /* texture_renderer.c */
 void		draw_textured_wall(t_game *game, t_render_data *render_data);
 /* ========================================================================== */
-/*                               UTILS                                         */
+/*                                    UTILS                                   */
 /* ========================================================================== */
+/* draw_primitives.c */
+void		draw_line(mlx_image_t *img, t_point start, t_point end, int color);
+void		draw_cell(mlx_image_t *img, t_cell cell);
 /* pixel_utils.c */
 uint32_t	get_pixel_color(mlx_image_t *texture, int tex_x, int tex_y);
+/* render_utils.c */
+int			color_to_rgba(t_color *color, int a);
+int			is_within_boundary(int x, int y, int width, int height);
+double		degree_to_radian(double degree);
+bool		is_valid_point(t_map *map, int mx, int my);
+int			get_color(char c);
 
 #endif
