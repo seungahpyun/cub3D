@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:50 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/03 16:47:08 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/05 11:34:09 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
+
+# define DOOR_CLOSED 0
+# define DOOR_OPENING 1
+# define DOOR_OPEN 2
+# define DOOR_CLOSING 3
+# define DOOR_SPEED 0.03
 
 # include <MLX42.h>
 # include <fcntl.h>

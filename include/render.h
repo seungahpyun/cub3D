@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/04 17:12:59 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/05 11:17:03 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,6 @@
 
 # define FOV 60.0
 # define MIN_PER_DIST 0.0001
-
-# define DOOR_CLOSED 0
-# define DOOR_OPENING 1
-# define DOOR_OPEN 2
-# define DOOR_CLOSING 3
-
-# define DOOR_SPEED 0.003
 
 # include "common.h"
 
