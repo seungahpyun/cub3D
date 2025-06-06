@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/26 11:50:04 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/03 15:12:50 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/04 17:47:29 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,11 @@ bool	load_textures(t_game *game)
 		return (cleanup_loaded_textures(asset, mlx), false);
 	if (!load_single_texture(mlx, asset->ea_path, &asset->ea_img))
 		return (cleanup_loaded_textures(asset, mlx), false);
-	if (!load_single_texture(mlx, asset->door_path, &asset->door_img))
-		return (cleanup_loaded_textures(asset, mlx), false);
+	if (map_contains_door(&game->map))
+	{
+		if (!load_single_texture(mlx, asset->door_path, &asset->door_img))
+			return (cleanup_loaded_textures(asset, mlx), false);
+	}
 	return (true);
 }
 

@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:53 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/04 12:48:33 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/06 11:43:09 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,6 @@ void	gnl_cleanup(int fd);
 char	*ft_trim_and_compact(char *str);
 bool	is_empty_line(char *line);
 /* map_utils.c */
-bool	is_valid_position(int x, int y, int height, int width);
-bool	is_valid_map_coord(t_map *map, int mx, int my);
 bool	is_walkable(char c);
 bool	is_map_char(char c);
 
