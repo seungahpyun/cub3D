@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/03 14:59:56 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 19:33:50 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/06 19:48:33 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ static void	add_sprite_to_map(t_map *map, int x, int y, char sprite_char, t_anim
 	map->sprite_count++;
 }
 
-void	parse_sprite_from_map(t_map *map)
+void	parse_sprite_from_map(t_map *map, t_animated_sprite_config *config)
 {
 	int	x;
 	int	y;
 
-	if (!map || !map->grid)
+	if (!map || !map->grid || !config)
 		return ;
 	y = 0;
 	while (y < map->height && map->grid[y])
@@ -57,7 +57,7 @@ void	parse_sprite_from_map(t_map *map)
 		{
 			if (is_sprite_char(map->grid[y][x]))
 			{
-				add_sprite_to_map(map, x, y, map->grid[y][x]);
+				add_sprite_to_map(map, x, y, map->grid[y][x], config);
 				map->grid[y][x] = '0';
 			}
 			x++;

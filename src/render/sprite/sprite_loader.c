@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "render.h"
+#include "parser.h"
 
 static bool	load_sprite_frame_from_path(mlx_t *mlx, t_sprite *sprite, 
 									const char *path, int frame)

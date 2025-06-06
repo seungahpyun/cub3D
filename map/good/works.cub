@@ -11,13 +11,23 @@ EA ./textures/east_texture.png
 
 DOOR              ./textures/door_texture.png
 
+ANIMATED ./textures/tree/tree00.png
+ANIMATED ./textures/tree/tree01.png
+
+
+
 
 C 218, 234, 235
+
+ANIMATED ./textures/tree/tree02.png
+ANIMATED ./textures/tree/tree03.png
+ANIMATED ./textures/tree/tree04.png
+ANIMATED ./textures/tree/tree05.png
 
 1111111111111111111111111
 1000110000100000000000001
 1000110E00000000111111001
 1000110000000000110001001
-1TTT00TTTT100T00000001001
+1AAA00AAAA100A00000001001
 1111111111111111111111111
 

@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:53 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 19:41:25 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/06 19:49:34 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 /* ========================================================================== */
 /*                             ELEMENT PARSING                                */
 /* ========================================================================== */
+/* animated_sprite_parser.c */
+int	parse_animated_sprite(char *line, t_animated_sprite_config *config);
+bool	validate_animated_sprite_config(t_animated_sprite_config *config);
+bool	is_valid_frame_count(int count);
 /* color_component_parser.c */
 int		count_color_commas(const char *str);
 int		check_extra_color_chars(char *str);
@@ -31,7 +35,7 @@ bool	check_all_elements_set(t_asset *asset);
 /* element_parser.c */
 int		parse_element(char *line, t_asset *asset);
 /* sprite_parser.c */
-void	parse_sprite_from_map(t_map *map);
+void	parse_sprite_from_map(t_map *map, t_animated_sprite_config *config);
 /* texture_parser.c */
 bool	check_texture_extension(const char *path);
 int		parse_texture_path(char *line, char **path);
@@ -57,7 +61,7 @@ t_list	*create_map_node(char *line);
 int		add_first_line(t_list **map_lines, char *first_line);
 int		build_map_array(t_map *map, t_list *map_lines);
 /* map_checker.c */
-bool	validate_map_content(t_map *map, t_player *player);
+bool	validate_map_content(t_map *map, t_player *player, t_animated_sprite_config *config);
 bool	check_map_extension(const char *filename);
 /* map_closure.c */
 bool	check_surrounding_walls(t_map *map);
@@ -67,7 +71,7 @@ bool	has_valid_first_line(char *line);
 /* map_spaces.c */
 bool	check_spaces_surrounded(t_map *map);
 /* map_validator.c */
-bool	validate_map(t_map *map, t_player *player);
+bool	validate_map(t_map *map, t_player *player, t_animated_sprite_config *config);
 bool	validate_map_closure(t_map *map);
 /* ========================================================================== */
 /*                               UTILITY FUNCTIONS                            */

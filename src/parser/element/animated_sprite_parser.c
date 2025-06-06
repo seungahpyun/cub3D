@@ -12,7 +12,7 @@
 
 #include "parser.h"
 
-static bool	is_valid_frame_count(int count)
+bool	is_valid_frame_count(int count)
 {
 	return (count >= MIN_SPRITE_FRAMES && count <= MAX_SPRITE_FRAMES);
 }

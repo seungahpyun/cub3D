@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:50 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 19:42:31 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/06 19:48:24 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ typedef struct s_map
 	int				height;
 	t_sprite		sprites[MAX_SPRITES];
 	int				sprite_count;
-	t_door_state	*door_states;
+	t_door_state	**door_states;
 	double			**door_openness;
 }					t_map;
 
