@@ -6,14 +6,14 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/03 11:21:36 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 19:34:34 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/06 20:02:31 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 #include "parser.h"
 
-static bool	load_sprite_frame_from_path(mlx_t *mlx, t_sprite *sprite, 
+static bool	load_sprite_frame_from_path(mlx_t *mlx, t_sprite *sprite,
 									const char *path, int frame)
 {
 	mlx_texture_t	*texture;
@@ -37,7 +37,7 @@ static bool	load_sprite_frame_from_path(mlx_t *mlx, t_sprite *sprite,
 	return (true);
 }
 
-static bool	load_sprite_frames(mlx_t *mlx, t_sprite *sprite, 
+static bool	load_sprite_frames(mlx_t *mlx, t_sprite *sprite,
 								t_animated_sprite_config *config)
 {
 	int	frame;
@@ -76,8 +76,8 @@ bool	load_all_sprites(t_game *game)
 	i = 0;
 	while (i < game->map.sprite_count)
 	{
-		if (!load_sprite_frames(game->mlx, &game->map.sprites[i], 
-								&game->asset.animated_sprite))
+		if (!load_sprite_frames(game->mlx, &game->map.sprites[i],
+				&game->asset.animated_sprite))
 		{
 			ft_putstr_fd("Error: Failed to load sprite frames for sprite ", 2);
 			ft_putnbr_fd(i, 2);
