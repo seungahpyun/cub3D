@@ -43,6 +43,8 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(COMMON_MEMORY_DIR)/free_assets.c \
 			$(COMMON_MEMORY_DIR)/free_memory.c \
 			$(COMMON_MEMORY_DIR)/free_sprites.c \
+			\
+			$(COMMON_UTILS_DIR)/utils.c \
 			$(COMMON_UTILS_DIR)/math_utils.c \
 			\
 			$(CONTROL_DIR)/collision_check.c \

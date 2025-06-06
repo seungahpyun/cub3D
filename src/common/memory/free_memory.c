@@ -6,28 +6,44 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 11:34:24 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/05 14:15:49 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/06 18:47:28 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
 #include "render.h"
 
-void	free_map(t_map *map)
+static void	free_2d_array(void **arr, int rows)
 {
 	int	i;
 
-	if (!map->grid)
+	if (!arr)
 		return ;
 	i = 0;
-	while (i < map->height && map->grid[i])
+	while (i < rows)
 	{
-		free(map->grid[i]);
-		map->grid[i] = NULL;
+		if (arr[i])
+			free(arr[i]);
 		i++;
 	}
-	free(map->grid);
+	free(arr);
+}
+
+void	free_map(t_map *map)
+{
+	int	rows;
+
+	if (!map)
+		return ;
+	rows = map->height;
+	if (rows <= 0)
+		return ;
+	free_2d_array((void **)map->grid, rows);
 	map->grid = NULL;
+	free_2d_array((void **)map->door_states, rows);
+	map->door_states = NULL;
+	free_2d_array((void **)map->door_openness, rows);
+	map->door_openness = NULL;
 }
 
 void	free_game(t_game *game)

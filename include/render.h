@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/05 15:47:43 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/06 19:05:50 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 # define MINIMAP_WALL_COLOR 0xFFAA96B2
 # define MINIMAP_FLOOR_COLOR 0xFFEFE7D3
-# define MINIMAP_PLAYER_COLOR 0x65965EFF// light green
+# define MINIMAP_PLAYER_COLOR 0x65965EFF // light green
 # define MINIMAP_EMPTY_COLOR 0x00000000
 # define MINIMAP_RAY_COLOR 0xFAAC96
 # define MINIMAP_SPRITE_COLOR 0xFF00FFFF
@@ -41,50 +41,50 @@
 
 typedef struct s_point
 {
-	int		x;
-	int		y;
-}			t_point;
+	int				x;
+	int				y;
+}					t_point;
 
 typedef struct s_cell
 {
-	int		px;
-	int		py;
-	int		size;
-	int		color;
-}			t_cell;
+	int				px;
+	int				py;
+	int				size;
+	int				color;
+}					t_cell;
 
 typedef struct s_ray
 {
-	double	start_x;
-	double	start_y;
-	int		map_x;
-	int		map_y;
-	double	angle;
-	double	dir_x;
-	double	dir_y;
-	double	dist_inc_x;
-	double	dist_inc_y;
-	int		step_x;
-	int		step_y;
-	double	dist_to_v;
-	double	dist_to_h;
-	char	hit_side;
-}			t_ray;
+	double			start_x;
+	double			start_y;
+	int				map_x;
+	int				map_y;
+	double			angle;
+	double			dir_x;
+	double			dir_y;
+	double			dist_inc_x;
+	double			dist_inc_y;
+	int				step_x;
+	int				step_y;
+	double			dist_to_v;
+	double			dist_to_h;
+	char			hit_side;
+}					t_ray;
 
 typedef struct s_wall_params
 {
-	int		full_wall_height;
-	int		wall_top;
-	int		wall_bottom;
-}			t_wall_params;
+	int				full_wall_height;
+	int				wall_top;
+	int				wall_bottom;
+}					t_wall_params;
 
 typedef struct s_wall_info
 {
-	char	hit_side;
-	double	ray_angle;
-	double	hit_x;
-	double	hit_y;
-}			t_wall_info;
+	char			hit_side;
+	double			ray_angle;
+	double			hit_x;
+	double			hit_y;
+}					t_wall_info;
 
 typedef struct s_texture_data
 {
@@ -96,13 +96,13 @@ typedef struct s_texture_data
 
 typedef struct s_render_data
 {
-	double		per_dist;
-	int			line_height;
-	int			x;
-	t_point		draw_start;
-	t_point		draw_end;
-	t_wall_info	wall_info;
-}				t_render_data;
+	double			per_dist;
+	int				line_height;
+	int				x;
+	t_point			draw_start;
+	t_point			draw_end;
+	t_wall_info		wall_info;
+}					t_render_data;
 
 typedef struct s_sprite_render
 {
@@ -194,8 +194,8 @@ void		draw_cell(mlx_image_t *img, t_cell cell);
 uint32_t	get_pixel_color(mlx_image_t *texture, int tex_x, int tex_y);
 /* render_utils.c */
 int			color_to_rgba(t_color *color, int a);
-int			is_within_boundary(int x, int y, int width, int height);
 double		degree_to_radian(double degree);
+int			is_coordinate_valid(int x, int y, int width, int height);
 bool		is_valid_point(t_map *map, int mx, int my);
 int			get_color(char c);
 

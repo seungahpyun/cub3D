@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/21 14:19:16 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/23 16:55:32 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/04 12:42:07 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	init_ray(t_player *player, double ray_angle, t_ray *ray)
 
 bool	check_hit_wall(t_map *map, t_ray *ray)
 {
-	if (is_valid_point(map, ray->map_x, ray->map_y)
+	if (is_valid_map_coord(map, ray->map_x, ray->map_y)
 		&& map->grid[ray->map_y][ray->map_x] == '0')
 		return (false);
 	return (true);

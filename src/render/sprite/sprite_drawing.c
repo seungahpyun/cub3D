@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/05 11:37:48 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/05 14:25:25 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/06 19:05:15 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	draw_sprite_pixels(t_game *game, t_sprite_draw_data *data)
 		if ((color & 0xFF) > 0
 			&& game->rays[data->stripe].dist > data->sprite->distance)
 		{
-			if (is_within_boundary(data->stripe, y, game->img->width,
+			if (is_coordinate_valid(data->stripe, y, game->img->width,
 					game->img->height))
 				mlx_put_pixel(game->img, data->stripe, y, color);
 		}
