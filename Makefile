@@ -16,9 +16,15 @@ PARSER_ELEMENT_DIR = $(PARSER_DIR)/element
 PARSER_FILE_DIR = $(PARSER_DIR)/file
 PARSER_MAP_DIR = $(PARSER_DIR)/map
 PARSER_UTILS_DIR = $(PARSER_DIR)/utils
-RENDER_DIR = $(SRC_DIR)/render
+
 COMMON_DIR = $(SRC_DIR)/common
 CONTROL_DIR = $(SRC_DIR)/control
+
+RENDER_DIR = $(SRC_DIR)/render
+RENDER_CORE_DIR = $(RENDER_DIR)/core
+RENDER_FEATURES_DIR = $(RENDER_DIR)/features
+RENDER_TEXTURE_DIR = $(RENDER_DIR)/texture
+RENDER_UTILS_DIR = $(RENDER_DIR)/utils
 
 OBJ_DIR = obj
 
@@ -58,20 +64,23 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(PARSER_UTILS_DIR)/map_utils.c \
 			$(PARSER_UTILS_DIR)/string_utils.c \
 			\
-			$(RENDER_DIR)/3d_projection.c \
-			$(RENDER_DIR)/cast_rays.c \
-			$(RENDER_DIR)/draw_primitives.c \
-			$(RENDER_DIR)/minimap.c \
-			$(RENDER_DIR)/projection_draw.c \
-			$(RENDER_DIR)/render_utils.c \
-			$(RENDER_DIR)/render.c \
-			$(RENDER_DIR)/setup.c \
-			$(RENDER_DIR)/texture_loader.c \
-			$(RENDER_DIR)/texture_pixel.c \
-			$(RENDER_DIR)/texture_renderer.c \
-			$(RENDER_DIR)/door_animation.c \
-			$(RENDER_DIR)/door_render.c \
-
+			$(RENDER_CORE_DIR)/cast_rays.c \
+			$(RENDER_CORE_DIR)/projection_3d.c \
+			$(RENDER_CORE_DIR)/projection_draw.c \
+			$(RENDER_CORE_DIR)/render.c \
+			$(RENDER_CORE_DIR)/setup.c \
+			\
+			$(RENDER_FEATURES_DIR)/minimap_grid.c \
+			$(RENDER_FEATURES_DIR)/minimap.c \
+			$(RENDER_FEATURES_DIR)/door_animation.c \
+			$(RENDER_FEATURES_DIR)/door_render.c \
+			\
+			$(RENDER_TEXTURE_DIR)/texture_loader.c \
+			$(RENDER_TEXTURE_DIR)/texture_pixel.c \
+			$(RENDER_TEXTURE_DIR)/texture_renderer.c\
+			\
+			$(RENDER_UTILS_DIR)/draw_primitives.c \
+			$(RENDER_UTILS_DIR)/render_utils.c \
 
 OBJ_FILES = $(SRC_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 

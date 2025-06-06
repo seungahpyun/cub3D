@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 11:38:29 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/06 15:49:43 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ void				init_ray(t_player *player, double ray_angle, t_ray *ray);
 double				cast_ray(t_map *map, t_ray *ray);
 
 /* minimap_render*/
+void				draw_minimap_grid(t_map *map, t_minimap *minimap);
 void				render_minimap(t_game *game);
 void				render_3d_projection(t_game *game);
 void				draw_ceiling(mlx_image_t *img, t_point wall_start,

@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/03 17:04:17 by jsong         #+#    #+#                 */
-/*   Updated: 2025/06/04 14:38:40 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/06 16:06:55 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	update_single_door(t_map *map, int x, int y, double delta_time)
 		if (map->door_openness[y][x] >= 1.0)
 		{
 			map->door_openness[y][x] = 1.0;
-			map->door_states[y][x] == DOOR_OPEN;
+			map->door_states[y][x] = DOOR_OPEN;
 		}
 	}
 	else if (map->door_states[y][x] == DOOR_CLOSING)
@@ -56,7 +56,7 @@ static void	update_single_door(t_map *map, int x, int y, double delta_time)
 		if (map->door_openness[y][x] <= 0.0)
 		{
 			map->door_openness[y][x] = 0.0;
-			map->door_states[y][x] == DOOR_CLOSED;
+			map->door_states[y][x] = DOOR_CLOSED;
 		}
 	}
 }

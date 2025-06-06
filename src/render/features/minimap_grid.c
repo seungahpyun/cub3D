@@ -6,9 +6,11 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/06 15:10:07 by jsong         #+#    #+#                 */
-/*   Updated: 2025/06/06 15:38:39 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/06 16:09:33 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "render.h"
 
 /**
  * Draws minimap grid showing walls and floor around player:
@@ -42,4 +44,6 @@ void	draw_minimap_grid(t_map *map, t_minimap *minimap)
 	}
 }
 
-void	draw_minimap_door(void)
+void	draw_minimap_doors(t_map *map, t_minimap *minimap)
+{
+}
