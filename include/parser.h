@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:53 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 18:48:17 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/06 19:09:03 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ bool	check_texture_path(const char *path);
 bool	check_color_value(int r, int g, int b);
 bool	check_all_elements_set(t_asset *asset);
 /* element_parser.c */
-int				parse_element(char *line, t_asset *asset);
+int		parse_element(char *line, t_asset *asset);
 /* sprite_parser.c */
-void			parse_sprite_from_map(t_map *map);
+void	parse_sprite_from_map(t_map *map);
 /* texture_parser.c */
 bool	check_texture_extension(const char *path);
 int		parse_texture_path(char *line, char **path);
@@ -79,9 +79,8 @@ void	gnl_cleanup(int fd);
 char	*ft_trim_and_compact(char *str);
 bool	is_empty_line(char *line);
 /* map_utils.c */
-bool			is_valid_position(int x, int y, int height, int width);
-bool			is_walkable(char c);
-bool			is_map_char(char c);
-bool			is_sprite_char(char c);
+bool	is_walkable(char c);
+bool	is_map_char(char c);
+bool	is_sprite_char(char c);
 
 #endif

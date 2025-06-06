@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:50 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 19:02:41 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/06 19:09:53 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,14 @@ typedef struct s_asset
 
 typedef struct s_map
 {
-	char		**grid;
-	int			width;
-	int			height;
-	t_sprite	sprites[MAX_SPRITES];
-	int			sprite_count;
-	t_door_state	**door_states;
+	char			**grid;
+	int				width;
+	int				height;
+	t_sprite		sprites[MAX_SPRITES];
+	int				sprite_count;
+	t_door_state	*door_states;
 	double			**door_openness;
-}				t_map;
+}					t_map;
 
 typedef struct s_player
 {
@@ -155,12 +155,10 @@ void			free_all_sprites(t_game *game);
 /* math_utils.c */
 double			calculate_distance(double x1, double y1, double x2, double y2);
 double			normalize_angle(double angle);
-
 /* debug */
-void				debug(t_game *game);
-
+void			debug(t_game *game);
 /* utils */
-bool				is_within_boundary(int x, int y, int width, int height);
-bool				is_valid_map_coord(t_map *map, int mx, int my);
+bool			is_within_boundary(int x, int y, int width, int height);
+bool			is_valid_map_coord(t_map *map, int mx, int my);
 
 #endif
