@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 19:05:50 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/06 21:24:28 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 # define MINIMAP_RADIUS 10
 # define MINIMAP_CELL_SIZE 16
-# define MINIMAP_W (MINIMAP_RADIUS * 2 + 1) * MINIMAP_CELL_SIZE
-# define MINIMAP_H MINIMAP_W
-# define MINIMAP_GRID (MINIMAP_RADIUS * 2 + 1)
+# define MINIMAP_W 336 // (10 * 2 + 1) * 16 = 21 * 16 = 336
+# define MINIMAP_H 336 // (10 * 2 + 1) * 16 = 21 * 16 = 336
+# define MINIMAP_GRID 21 // (10 * 2 + 1) = 21
 
 # define MINIMAP_WALL_COLOR 0xFFAA96B2
 # define MINIMAP_FLOOR_COLOR 0xFFEFE7D3
