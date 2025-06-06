@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 11:08:44 by jsong         #+#    #+#                 */
-/*   Updated: 2025/06/06 11:43:49 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/06 19:05:00 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,20 @@ double	degree_to_radian(double degree)
 	if (degree < 0)
 		degree += 360;
 	return (degree * M_PI / 180);
+}
+
+int	is_coordinate_valid(int x, int y, int width, int height)
+{
+	return (x >= 0 && y >= 0 && x < width && y < height);
+}
+
+bool	is_valid_point(t_map *map, int mx, int my)
+{
+	if (!is_coordinate_valid(mx, my, map->width, map->height))
+		return (false);
+	if (mx >= (int)ft_strlen(map->grid[my]))
+		return (false);
+	return (true);
 }
 
 int	get_color(char c)

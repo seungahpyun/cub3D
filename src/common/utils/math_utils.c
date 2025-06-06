@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   map_utils.c                                        :+:    :+:            */
+/*   math_utils.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/05/20 16:20:00 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 19:34:08 by seungah       ########   odam.nl         */
+/*   Created: 2025/06/05 14:23:32 by spyun         #+#    #+#                 */
+/*   Updated: 2025/06/05 15:03:20 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "common.h"
 
-bool	is_walkable(char c)
+double	calculate_distance(double x1, double y1, double x2, double y2)
 {
-	return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
+	double	dx;
+	double	dy;
+
+	dx = x2 - x1;
+	dy = y2 - y1;
+	return (sqrt(dx * dx + dy * dy));
 }
 
-bool	is_map_char(char c)
+double	normalize_angle(double angle)
 {
-	return (c == '0' || c == '1' || c == ' ' || c == 'N'
-		|| c == 'S' || c == 'E' || c == 'W' || c == 'A' || c == 'D');
-}
-
-bool	is_sprite_char(char c)
-{
-	return (c == 'A');
+	while (angle >= 2 * M_PI)
+		angle -= 2 * M_PI;
+	while (angle < 0)
+		angle += 2 * M_PI;
+	return (angle);
 }

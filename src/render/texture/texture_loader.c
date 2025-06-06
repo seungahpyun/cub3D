@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/26 11:50:04 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/04 17:47:29 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/06 18:46:22 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,35 +29,6 @@ static bool	load_single_texture(mlx_t *mlx, const char *path, mlx_image_t **img)
 	return (true);
 }
 
-static void	cleanup_loaded_textures(t_asset *asset, mlx_t *mlx)
-{
-	if (asset->no_img)
-	{
-		mlx_delete_image(mlx, asset->no_img);
-		asset->no_img = NULL;
-	}
-	if (asset->so_img)
-	{
-		mlx_delete_image(mlx, asset->so_img);
-		asset->so_img = NULL;
-	}
-	if (asset->we_img)
-	{
-		mlx_delete_image(mlx, asset->we_img);
-		asset->we_img = NULL;
-	}
-	if (asset->ea_img)
-	{
-		mlx_delete_image(mlx, asset->ea_img);
-		asset->ea_img = NULL;
-	}
-	if (asset->door_img)
-	{
-		mlx_delete_image(mlx, asset->door_img);
-		asset->door_img = NULL;
-	}
-}
-
 bool	load_textures(t_game *game)
 {
 	t_asset	*asset;
@@ -66,22 +37,12 @@ bool	load_textures(t_game *game)
 	asset = &game->asset;
 	mlx = game->mlx;
 	if (!load_single_texture(mlx, asset->no_path, &asset->no_img))
-		return (cleanup_loaded_textures(asset, mlx), false);
+		return (free_asset_images(asset, mlx), false);
 	if (!load_single_texture(mlx, asset->so_path, &asset->so_img))
-		return (cleanup_loaded_textures(asset, mlx), false);
+		return (free_asset_images(asset, mlx), false);
 	if (!load_single_texture(mlx, asset->we_path, &asset->we_img))
-		return (cleanup_loaded_textures(asset, mlx), false);
+		return (free_asset_images(asset, mlx), false);
 	if (!load_single_texture(mlx, asset->ea_path, &asset->ea_img))
-		return (cleanup_loaded_textures(asset, mlx), false);
-	if (map_contains_door(&game->map))
-	{
-		if (!load_single_texture(mlx, asset->door_path, &asset->door_img))
-			return (cleanup_loaded_textures(asset, mlx), false);
-	}
+		return (free_asset_images(asset, mlx), false);
 	return (true);
-}
-
-void	free_textures(t_game *game)
-{
-	cleanup_loaded_textures(&game->asset, game->mlx);
 }

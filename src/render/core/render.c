@@ -6,7 +6,7 @@
 /*   By: jianisong <jianisong@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/22 21:47:09 by jianisong     #+#    #+#                 */
-/*   Updated: 2025/06/02 09:51:59 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/04 15:41:06 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,10 @@ static void	update_rays(t_game *game)
 static void	render_frame(t_game *game)
 {
 	clear_main_image(game);
+	update_sprite_animations(game);
 	update_rays(game);
 	render_3d_projection(game);
+	render_sprites(game);
 	render_minimap(game);
 }
 

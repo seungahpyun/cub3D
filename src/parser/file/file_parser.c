@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/08 08:55:27 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/21 11:37:07 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/06 19:38:02 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	parse_map(int fd, t_game *game, char *first_line)
 	if (build_map_array(&game->map, map_lines) == -1)
 		return (ft_lstclear(&map_lines, free), -1);
 	ft_lstclear(&map_lines, free);
-	if (!validate_map(&game->map, &game->player))
+	if (!validate_map(&game->map, &game->player, &game->asset.animated_sprite))
 		return (free_map(&game->map), -1);
 	return (1);
 }

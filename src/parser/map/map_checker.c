@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/20 15:16:48 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/04 12:51:52 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/06 20:00:42 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,8 @@ static bool	find_player_position(t_map *map, t_player *player)
 	return (player_found == 1);
 }
 
-bool	validate_map_content(t_map *map, t_player *player)
+bool	validate_map_content(t_map *map, t_player *player,
+						t_animated_sprite_config *config)
 {
 	if (!map || !player)
 		return (false);
@@ -107,6 +108,7 @@ bool	validate_map_content(t_map *map, t_player *player)
 		ft_putendl_fd("Error: Must have exactly one player position", 2);
 		return (false);
 	}
+	parse_sprite_from_map(map, config);
 	return (true);
 }
 

@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:50 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 11:45:32 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/06 20:43:19 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
+# define MAX_SPRITES 100
+# define MIN_SPRITE_FRAMES 2
+# define MAX_SPRITE_FRAMES 10
 
 # define DOOR_SPEED 0.03
 
@@ -26,6 +29,23 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+typedef enum e_sprite_type
+{
+	SPRITE_ANIMATED = 'A'
+}				t_sprite_type;
+
+typedef struct s_sprite
+{
+	double			x;
+	double			y;
+	t_sprite_type	type;
+	int				current_frame;
+	double			last_frame_time;
+	double			distance;
+	int				frame_count;
+	mlx_image_t		*frames[MAX_SPRITE_FRAMES];
+}					t_sprite;
 
 typedef enum e_door_state
 {
@@ -42,29 +62,38 @@ typedef struct s_color
 	int				b;
 }					t_color;
 
+typedef struct s_animated_sprite_config
+{
+	char			*paths[MAX_SPRITE_FRAMES];
+	int				frame_count;
+}					t_animated_sprite_config;
+
 typedef struct s_asset
 {
-	char			*no_path;
-	char			*so_path;
-	char			*we_path;
-	char			*ea_path;
-	char			*door_path;
-	t_color			floor;
-	t_color			ceiling;
-	mlx_image_t		*no_img;
-	mlx_image_t		*so_img;
-	mlx_image_t		*we_img;
-	mlx_image_t		*ea_img;
-	mlx_image_t		*door_img;
-}					t_asset;
+	char						*no_path;
+	char						*so_path;
+	char						*we_path;
+	char						*ea_path;
+	char						*door_path;
+	t_color						floor;
+	t_color						ceiling;
+	mlx_image_t					*no_img;
+	mlx_image_t					*so_img;
+	mlx_image_t					*we_img;
+	mlx_image_t					*ea_img;
+	mlx_image_t					*door_img;
+	t_animated_sprite_config	animated_sprite;
+}								t_asset;
 
 typedef struct s_map
 {
 	char			**grid;
-	t_door_state	**door_states;
-	double			**door_openness;
 	int				width;
 	int				height;
+	t_sprite		sprites[MAX_SPRITES];
+	int				sprite_count;
+	t_door_state	**door_states;
+	double			**door_openness;
 }					t_map;
 
 typedef struct s_player
@@ -101,32 +130,46 @@ typedef struct s_game
 	t_ray_data		rays[WIDTH];
 }					t_game;
 
+/* ========================================================================== */
+/*                                    CORE                                    */
+/* ========================================================================== */
 /* error.c */
-void				ft_mlx_error(t_game *game);
-bool				print_error(const char *message, bool return_value);
-bool				print_error_with_value(const char *prefix,
-						const char *value, bool return_value);
-
-/* free_memory.c */
-void				free_map(t_map *map);
-void				free_game(t_game *game);
-
-/* init.c */
-void				init_window(t_game *game);
-void				init_input_system(t_game *game);
-void				init_game_state(t_game *game);
-int					init_door_arrays(t_map *map);
-
+void			ft_mlx_error(t_game *game);
+bool			print_error(const char *message, bool return_value);
+bool			print_error_with_value(const char *prefix, const char *value,
+					bool return_value);
 /* init_components.c */
-void				init_player(t_player *player);
-void				init_minimap(t_minimap *minimap);
-void				init_map(t_map *map);
-
+void			init_animated_sprite_in_asset(t_asset *asset);
+void			init_sprite_frames(t_sprite *sprite);
+void			init_player(t_player *player);
+void			init_minimap(t_minimap *minimap);
+void			init_map(t_map *map);
+/* init.c */
+void			init_window(t_game *game);
+void			init_input_system(t_game *game);
+void			init_game_state(t_game *game);
+int				init_door_arrays(t_map *map);
+/* ========================================================================== */
+/*                                   MEMORY                                   */
+/* ========================================================================== */
+/* free_assets.c */
+void			free_asset_images(t_asset *asset, mlx_t *mlx);
+void			free_asset(t_asset *asset, mlx_t *mlx);
+/* free_memory.c */
+void			free_map(t_map *map);
+void			free_game(t_game *game);
+/* free_sprites.c */
+void			free_all_sprites(t_game *game);
+/* ========================================================================== */
+/*                                   UTILS                                    */
+/* ========================================================================== */
+/* math_utils.c */
+double			calculate_distance(double x1, double y1, double x2, double y2);
+double			normalize_angle(double angle);
 /* debug */
-void				debug(t_game *game);
-
+void			debug(t_game *game);
 /* utils */
-bool				is_within_boundary(int x, int y, int width, int height);
-bool				is_valid_map_coord(t_map *map, int mx, int my);
+bool			is_within_boundary(int x, int y, int width, int height);
+bool			is_valid_map_coord(t_map *map, int mx, int my);
 
 #endif
