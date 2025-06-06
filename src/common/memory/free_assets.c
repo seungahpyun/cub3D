@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/05 11:55:42 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 18:52:49 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/06 19:42:01 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 static void	free_asset_paths(t_asset *asset)
 {
+	int	i;
+
 	if (!asset)
 		return ;
 	if (asset->no_path)
@@ -32,6 +34,17 @@ static void	free_asset_paths(t_asset *asset)
 	asset->we_path = NULL;
 	asset->ea_path = NULL;
 	asset->door_path = NULL;
+	i = 0;
+	while (i < asset->animated_sprite.frame_count)
+	{
+		if (asset->animated_sprite.paths[i])
+		{
+			free(asset->animated_sprite.paths[i]);
+			asset->animated_sprite.paths[i] = NULL;
+		}
+		i++;
+	}
+	asset->animated_sprite.frame_count = 0;
 }
 
 void	free_asset_images(t_asset *asset, mlx_t *mlx)

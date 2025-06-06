@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:50 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 19:09:53 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/06 19:42:31 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 # define MAX_SPRITES 100
-# define TREE_FRAMES 6
+# define MIN_SPRITE_FRAMES 2
+# define MAX_SPRITE_FRAMES 10
 
 # define DOOR_SPEED 0.03
 
@@ -31,7 +32,7 @@
 
 typedef enum e_sprite_type
 {
-	SPRITE_TREE = 'T'
+	SPRITE_ANIMATED = 'A'
 }				t_sprite_type;
 
 typedef struct s_sprite
@@ -42,7 +43,8 @@ typedef struct s_sprite
 	int				current_frame;
 	double			last_frame_time;
 	double			distance;
-	mlx_image_t		*frames[TREE_FRAMES];
+	int				frame_count;
+	mlx_image_t		*frames[MAX_SPRITE_FRAMES];
 }					t_sprite;
 
 typedef enum e_door_state
@@ -60,21 +62,28 @@ typedef struct s_color
 	int				b;
 }					t_color;
 
+typedef struct s_animated_sprite_config
+{
+	char			*paths[MAX_SPRITE_FRAMES];
+	int				frame_count;
+}					t_animated_sprite_config;
+
 typedef struct s_asset
 {
-	char			*no_path;
-	char			*so_path;
-	char			*we_path;
-	char			*ea_path;
-	char			*door_path;
-	t_color			floor;
-	t_color			ceiling;
-	mlx_image_t		*no_img;
-	mlx_image_t		*so_img;
-	mlx_image_t		*we_img;
-	mlx_image_t		*ea_img;
-	mlx_image_t		*door_img;
-}					t_asset;
+	char						*no_path;
+	char						*so_path;
+	char						*we_path;
+	char						*ea_path;
+	char						*door_path;
+	t_color						floor;
+	t_color						ceiling;
+	mlx_image_t					*no_img;
+	mlx_image_t					*so_img;
+	mlx_image_t					*we_img;
+	mlx_image_t					*ea_img;
+	mlx_image_t					*door_img;
+	t_animated_sprite_config	animated_sprite;
+}								t_asset;
 
 typedef struct s_map
 {
@@ -130,6 +139,7 @@ bool			print_error(const char *message, bool return_value);
 bool			print_error_with_value(const char *prefix, const char *value,
 					bool return_value);
 /* init_components.c */
+void	init_animated_sprite_in_asset(t_asset *asset);
 void			init_player(t_player *player);
 void			init_minimap(t_minimap *minimap);
 void			init_map(t_map *map);

@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/05 11:55:40 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/05 11:58:57 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/06 19:38:51 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,9 @@
 static void	free_sprite_frames(mlx_t *mlx, t_sprite *sprite)
 {
 	int	frame;
-	int	max_frames;
 
-	if (sprite->type == SPRITE_TREE)
-		max_frames = TREE_FRAMES;
-	else
-		return ;
 	frame = 0;
-	while (frame < max_frames)
+	while (frame < sprite->frame_count && frame < MAX_SPRITE_FRAMES)
 	{
 		if (sprite->frames[frame])
 		{

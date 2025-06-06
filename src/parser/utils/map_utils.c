@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/20 16:20:00 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 18:49:01 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/06 19:34:08 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ bool	is_walkable(char c)
 bool	is_map_char(char c)
 {
 	return (c == '0' || c == '1' || c == ' ' || c == 'N'
-		|| c == 'S' || c == 'E' || c == 'W' || c == 'T' || c == 'D');
+		|| c == 'S' || c == 'E' || c == 'W' || c == 'A' || c == 'D');
 }
 
 bool	is_sprite_char(char c)
 {
-	return (c == 'T');
+	return (c == 'A');
 }

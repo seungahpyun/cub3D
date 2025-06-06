@@ -6,23 +6,24 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/03 14:59:56 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/05 11:23:28 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/06 19:33:50 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static void	add_sprite_to_map(t_map *map, int x, int y, char sprite_char)
+static void	add_sprite_to_map(t_map *map, int x, int y, char sprite_char, t_animated_sprite_config *config)
 {
 	t_sprite_type	type;
+	int				i;
 
 	if (map->sprite_count >= MAX_SPRITES)
 	{
 		ft_putendl_fd("Warning: Maximum sprite count reached", 2);
 		return ;
 	}
-	if (sprite_char == 'T')
-		type = SPRITE_TREE;
+	if (sprite_char == 'A')
+		type = SPRITE_ANIMATED;
 	else
 		return ;
 	map->sprites[map->sprite_count].x = x + 0.5;
@@ -31,6 +32,13 @@ static void	add_sprite_to_map(t_map *map, int x, int y, char sprite_char)
 	map->sprites[map->sprite_count].current_frame = 0;
 	map->sprites[map->sprite_count].last_frame_time = 0.0;
 	map->sprites[map->sprite_count].distance = 0.0;
+	map->sprites[map->sprite_count].frame_count = config->frame_count;
+	i = 0;
+	while (i < MAX_SPRITE_FRAMES)
+	{
+		map->sprites[map->sprite_count].frames[i] = NULL;
+		i++;
+	}
 	map->sprite_count++;
 }
 

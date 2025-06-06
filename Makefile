@@ -53,6 +53,7 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(CONTROL_DIR)/mouse_input.c \
 			$(CONTROL_DIR)/player_controller.c \
 			\
+			$(PARSER_ELEMENT_DIR)/animated_sprite_parser.c \
 			$(PARSER_ELEMENT_DIR)/color_component_parser.c \
 			$(PARSER_ELEMENT_DIR)/color_parser.c \
 			$(PARSER_ELEMENT_DIR)/element_checker.c \

@@ -6,17 +6,17 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/13 14:36:13 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/20 15:18:25 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/06 19:37:38 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-bool	validate_map(t_map *map, t_player *player)
+bool	validate_map(t_map *map, t_player *player, t_animated_sprite_config *config)
 {
 	if (!map || !player)
 		return (false);
-	if (!validate_map_content(map, player))
+	if (!validate_map_content(map, player, config))
 		return (false);
 	if (!validate_map_closure(map))
 		return (false);

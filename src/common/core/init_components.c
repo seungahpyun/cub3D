@@ -6,11 +6,33 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 10:25:15 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 18:51:19 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/06 19:42:09 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
+
+static void	init_animated_sprite_config(t_animated_sprite_config *config)
+{
+	int	i;
+
+	if (!config)
+		return ;
+	config->frame_count = 0;
+	i = 0;
+	while (i < MAX_SPRITE_FRAMES)
+	{
+		config->paths[i] = NULL;
+		i++;
+	}
+}
+
+void	init_animated_sprite_in_asset(t_asset *asset)
+{
+	if (!asset)
+		return ;
+	init_animated_sprite_config(&asset->animated_sprite);
+}
 
 void	init_player(t_player *player)
 {
@@ -43,12 +65,13 @@ void	init_map(t_map *map)
 	{
 		map->sprites[i].x = -1.0;
 		map->sprites[i].y = -1.0;
-		map->sprites[i].type = SPRITE_TREE;
+		map->sprites[i].type = SPRITE_ANIMATED;
 		map->sprites[i].current_frame = 0;
 		map->sprites[i].last_frame_time = 0.0;
 		map->sprites[i].distance = 0.0;
+		map->sprites[i].frame_count = 0;
 		j = 0;
-		while (j < TREE_FRAMES)
+		while (j < MAX_SPRITE_FRAMES)
 		{
 			map->sprites[i].frames[j] = NULL;
 			j++;

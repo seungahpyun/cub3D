@@ -6,48 +6,23 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/03 11:21:36 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/05 11:22:35 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/06 19:34:34 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-static char	*create_sprite_path(t_sprite_type type, int frame)
+static bool	load_sprite_frame_from_path(mlx_t *mlx, t_sprite *sprite, 
+									const char *path, int frame)
 {
-	char	*path;
-	char	*frame_str;
-	char	*temp;
-
-	frame_str = ft_itoa(frame);
-	if (!frame_str)
-		return (NULL);
-	if (type == SPRITE_TREE)
-	{
-		temp = ft_strjoin("textures/tree/tree0", frame_str);
-		if (!temp)
-			return (free(frame_str), NULL);
-		path = ft_strjoin(temp, ".png");
-		free(temp);
-	}
-	else
-		path = NULL;
-	free(frame_str);
-	return (path);
-}
-
-static bool	load_sprite_frame(mlx_t *mlx, t_sprite *sprite, int frame)
-{
-	char			*path;
 	mlx_texture_t	*texture;
 
-	path = create_sprite_path(sprite->type, frame);
 	if (!path)
-		return (print_error("Failed to create sprite path", false));
+		return (print_error("Sprite frame path is NULL", false));
 	texture = mlx_load_png(path);
 	if (!texture)
 	{
 		print_error_with_value("Failed to load sprite texture: ", path, false);
-		free(path);
 		return (false);
 	}
 	sprite->frames[frame] = mlx_texture_to_image(mlx, texture);
@@ -56,26 +31,26 @@ static bool	load_sprite_frame(mlx_t *mlx, t_sprite *sprite, int frame)
 	{
 		print_error_with_value("Failed to convert sprite texture: ", path,
 			false);
-		free(path);
 		return (false);
 	}
-	free(path);
 	return (true);
 }
 
-static bool	load_sprite_frames(mlx_t *mlx, t_sprite *sprite)
+static bool	load_sprite_frames(mlx_t *mlx, t_sprite *sprite, 
+								t_animated_sprite_config *config)
 {
 	int	frame;
-	int	max_frames;
 
-	if (sprite->type == SPRITE_TREE)
-		max_frames = TREE_FRAMES;
-	else
+	if (!sprite || !config)
+		return (print_error("Invalid sprite or config", false));
+	if (sprite->type != SPRITE_ANIMATED)
 		return (print_error("Unknown sprite type", false));
+	if (!is_valid_frame_count(config->frame_count))
+		return (print_error("Invalid frame count", false));
 	frame = 0;
-	while (frame < max_frames)
+	while (frame < config->frame_count)
 	{
-		if (!load_sprite_frame(mlx, sprite, frame))
+		if (!load_sprite_frame_from_path(mlx, sprite, config->paths[frame], frame))
 		{
 			while (frame > 0)
 			{
@@ -95,10 +70,13 @@ bool	load_all_sprites(t_game *game)
 {
 	int	i;
 
+	if (!validate_animated_sprite_config(&game->asset.animated_sprite))
+		return (print_error("Invalid animated sprite configuration", false));
 	i = 0;
 	while (i < game->map.sprite_count)
 	{
-		if (!load_sprite_frames(game->mlx, &game->map.sprites[i]))
+		if (!load_sprite_frames(game->mlx, &game->map.sprites[i], 
+								&game->asset.animated_sprite))
 		{
 			ft_putstr_fd("Error: Failed to load sprite frames for sprite ", 2);
 			ft_putnbr_fd(i, 2);

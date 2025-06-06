@@ -6,31 +6,24 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/05 11:37:45 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/05 11:43:25 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/06 19:34:59 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-static int	get_max_frames(t_sprite_type type)
-{
-	if (type == SPRITE_TREE)
-		return (TREE_FRAMES);
-	return (1);
-}
-
 static void	update_single_sprite_animation(t_sprite *sprite,
 										double current_time)
 {
-	int		max_frames;
 	double	time_diff;
 
-	max_frames = get_max_frames(sprite->type);
+	if (sprite->frame_count <= 1)
+		return ;
 	time_diff = current_time - sprite->last_frame_time;
 	if (time_diff >= SPRITE_ANIMATION_SPEED)
 	{
 		sprite->current_frame++;
-		if (sprite->current_frame >= max_frames)
+		if (sprite->current_frame >= sprite->frame_count)
 			sprite->current_frame = 0;
 		sprite->last_frame_time = current_time;
 	}
