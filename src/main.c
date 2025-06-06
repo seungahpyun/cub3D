@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:52:59 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/03 16:46:37 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/06 17:12:53 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ static bool	setup_game(int argc, char **argv, t_game *game)
 		free_game(game);
 		return (false);
 	}
-	if (init_door_arrays(&game->map) == -1)
+	if (init_doors(&game->map) == -1)
 	{
-		ft_putendl_fd("Error: Failed to initialize door arrays", 2);
+		ft_putendl_fd("Error: Failed to initialize doors", 2);
 		free_game(game);
 		return (false);
 	}

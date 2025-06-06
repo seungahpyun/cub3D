@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 11:34:24 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 10:41:54 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/06 16:17:52 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,8 @@ void	free_map(t_map *map)
 		return ;
 	free_2d_array((void **)map->grid, rows);
 	map->grid = NULL;
-	free_2d_array((void **)map->door_states, rows);
-	map->door_states = NULL;
-	free_2d_array((void **)map->door_openness, rows);
-	map->door_openness = NULL;
+	free_2d_array((void **)map->doors, rows);
+	map->doors = NULL;
 }
 
 static void	free_asset_paths(t_asset *asset)

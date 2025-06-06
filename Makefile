@@ -33,6 +33,7 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(COMMON_DIR)/error.c \
 			$(COMMON_DIR)/free_memory.c \
 			$(COMMON_DIR)/init_components.c \
+			$(COMMON_DIR)/init_doors.c \
 			$(COMMON_DIR)/init.c \
 			$(COMMON_DIR)/utils.c \
 			\

@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 10:25:15 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/03 14:52:41 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/06 16:17:30 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ void	init_minimap(t_minimap *minimap)
 void	init_map(t_map *map)
 {
 	map->grid = NULL;
-	map->door_states = NULL;
-	map->door_openness = NULL;
+	map->doors = NULL;
 	map->width = 0;
 	map->height = 0;
 }

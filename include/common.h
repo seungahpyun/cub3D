@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:50 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 11:45:32 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/06 17:17:00 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,20 @@ typedef enum e_door_state
 	DOOR_CLOSING
 }					t_door_state;
 
+typedef enum e_door_type
+{
+	DOOR_VERTICAL,
+	DOOR_HORIZONTAL
+}					t_door_type;
+
+typedef struct s_door
+{
+	bool			is_door;
+	t_door_state	state;
+	double			openness;
+	t_door_type		type;
+}					t_door;
+
 typedef struct s_color
 {
 	int				r;
@@ -61,8 +75,7 @@ typedef struct s_asset
 typedef struct s_map
 {
 	char			**grid;
-	t_door_state	**door_states;
-	double			**door_openness;
+	t_door			**doors;
 	int				width;
 	int				height;
 }					t_map;
@@ -122,11 +135,15 @@ void				init_player(t_player *player);
 void				init_minimap(t_minimap *minimap);
 void				init_map(t_map *map);
 
+/* init_doors.c */
+int					init_doors(t_map *map);
+
 /* debug */
 void				debug(t_game *game);
 
 /* utils */
 bool				is_within_boundary(int x, int y, int width, int height);
 bool				is_valid_map_coord(t_map *map, int mx, int my);
+bool				is_door(t_map *map, int x, int y);
 
 #endif
