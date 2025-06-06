@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:50 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 10:46:31 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/06 11:45:32 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,5 +124,9 @@ void				init_map(t_map *map);
 
 /* debug */
 void				debug(t_game *game);
+
+/* utils */
+bool				is_within_boundary(int x, int y, int width, int height);
+bool				is_valid_map_coord(t_map *map, int mx, int my);
 
 #endif

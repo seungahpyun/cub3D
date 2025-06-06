@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/02 11:44:51 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/02 13:44:48 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/06 11:56:11 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,17 @@ static int	get_texture_pixel(mlx_image_t *texture, int tex_x, int tex_y)
 
 	if (!texture || !texture->pixels)
 		return (DEFAULT_TEXTURE_COLOR);
-	if (tex_x < 0 || tex_x >= (int)texture->width
-		|| tex_y < 0 || tex_y >= (int)texture->height)
+	if (tex_x < 0 || tex_x >= (int)texture->width || tex_y < 0
+		|| tex_y >= (int)texture->height)
 		return (DEFAULT_TEXTURE_COLOR);
 	pixel_index = (tex_y * texture->width + tex_x) * 4;
 	pixel_ptr = texture->pixels + pixel_index;
-	color = (pixel_ptr[0] << 24) | (pixel_ptr[1] << 16)
-		| (pixel_ptr[2] << 8) | pixel_ptr[3];
+	color = (pixel_ptr[0] << 24) | (pixel_ptr[1] << 16) | (pixel_ptr[2] << 8) | pixel_ptr[3];
 	return (color);
 }
 
 void	draw_wall_pixels(t_game *game, int x, t_point wall_start,
-				t_texture_data *data)
+		t_texture_data *data)
 {
 	double	tex_step;
 	double	tex_pos;
@@ -49,7 +48,7 @@ void	draw_wall_pixels(t_game *game, int x, t_point wall_start,
 		if (tex_y >= 0 && tex_y < (int)data->texture->height)
 		{
 			color = get_texture_pixel(data->texture, data->tex_x, tex_y);
-			if (is_within_boundary(x, y, game->img->width, game->img->height))
+			if (is_within_boundary(x, y, game->img->height, game->img->width))
 				mlx_put_pixel(game->img, x, y, color);
 		}
 		tex_pos += tex_step;
