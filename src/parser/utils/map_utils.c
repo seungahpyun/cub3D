@@ -6,18 +6,11 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/20 16:20:00 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/20 16:30:05 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/06 11:44:37 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-
-bool	is_valid_position(int x, int y, int height, int width)
-{
-	if (y < 0 || y >= height || x < 0 || x >= width)
-		return (false);
-	return (true);
-}
 
 bool	is_walkable(char c)
 {
@@ -26,6 +19,6 @@ bool	is_walkable(char c)
 
 bool	is_map_char(char c)
 {
-	return (c == '0' || c == '1' || c == ' ' || c == 'N'
-		|| c == 'S' || c == 'E' || c == 'W');
+	return (c == '0' || c == '1' || c == ' ' || c == 'N' || c == 'S' || c == 'E'
+		|| c == 'W' || c == 'D');
 }

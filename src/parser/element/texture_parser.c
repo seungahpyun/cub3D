@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/20 15:07:56 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/26 14:12:51 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/04 17:52:05 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static int	validate_texture(char **path, char **split)
 		ret = -1;
 	else if (!check_texture_path(*path))
 	{
+		ft_putendl_fd("Error: Invalid texture path", 2);
 		free(*path);
 		*path = NULL;
 		ret = -1;

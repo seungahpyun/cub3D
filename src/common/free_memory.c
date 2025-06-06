@@ -6,31 +6,50 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 11:34:24 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/26 12:08:13 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/06 10:41:54 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
 #include "render.h"
 
-void	free_map(t_map *map)
+static void	free_2d_array(void **arr, int rows)
 {
 	int	i;
 
-	if (!map->grid)
+	if (!arr)
 		return ;
 	i = 0;
-	while (map->grid[i])
+	while (i < rows)
 	{
-		free(map->grid[i]);
+		if (arr[i])
+			free(arr[i]);
 		i++;
 	}
-	free(map->grid);
+	free(arr);
+}
+
+void	free_map(t_map *map)
+{
+	int	rows;
+
+	if (!map)
+		return ;
+	rows = map->height;
+	if (rows <= 0)
+		return ;
+	free_2d_array((void **)map->grid, rows);
 	map->grid = NULL;
+	free_2d_array((void **)map->door_states, rows);
+	map->door_states = NULL;
+	free_2d_array((void **)map->door_openness, rows);
+	map->door_openness = NULL;
 }
 
 static void	free_asset_paths(t_asset *asset)
 {
+	if (!asset)
+		return ;
 	if (asset->no_path)
 		free(asset->no_path);
 	if (asset->so_path)
@@ -39,44 +58,23 @@ static void	free_asset_paths(t_asset *asset)
 		free(asset->we_path);
 	if (asset->ea_path)
 		free(asset->ea_path);
+	if (asset->door_path)
+		free(asset->door_path);
 	asset->no_path = NULL;
 	asset->so_path = NULL;
 	asset->we_path = NULL;
 	asset->ea_path = NULL;
-}
-
-static void	free_asset_images(t_asset *asset, mlx_t *mlx)
-{
-	if (mlx && asset->no_img)
-		mlx_delete_image(mlx, asset->no_img);
-	if (mlx && asset->so_img)
-		mlx_delete_image(mlx, asset->so_img);
-	if (mlx && asset->we_img)
-		mlx_delete_image(mlx, asset->we_img);
-	if (mlx && asset->ea_img)
-		mlx_delete_image(mlx, asset->ea_img);
-	asset->no_img = NULL;
-	asset->so_img = NULL;
-	asset->we_img = NULL;
-	asset->ea_img = NULL;
-}
-
-static void	free_asset(t_asset *asset, mlx_t *mlx)
-{
-	if (!asset)
-		return ;
-	free_asset_paths(asset);
-	free_asset_images(asset, mlx);
+	asset->door_path = NULL;
 }
 
 void	free_game(t_game *game)
 {
 	if (!game)
 		return ;
+	free_map(&game->map);
+	free_asset_paths(&game->asset);
 	if (game->mlx)
 		free_textures(game);
-	free_map(&game->map);
-	free_asset(&game->asset, game->mlx);
 	if (game->mlx && game->minimap.img)
 	{
 		mlx_delete_image(game->mlx, game->minimap.img);

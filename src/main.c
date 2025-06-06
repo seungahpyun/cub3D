@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/07 09:52:59 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/02 13:44:36 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/03 16:46:37 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ static bool	setup_game(int argc, char **argv, t_game *game)
 	if (parse_file(argv[1], game) == -1)
 	{
 		ft_putendl_fd("Error: Failed to parse map", 2);
+		free_game(game);
+		return (false);
+	}
+	if (init_door_arrays(&game->map) == -1)
+	{
+		ft_putendl_fd("Error: Failed to initialize door arrays", 2);
 		free_game(game);
 		return (false);
 	}

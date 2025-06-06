@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   render_utils.c                                     :+:    :+:            */
+/*   utils.c                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/05/14 11:08:44 by jsong         #+#    #+#                 */
-/*   Updated: 2025/06/06 11:43:49 by jsong         ########   odam.nl         */
+/*   Created: 2025/06/06 11:22:50 by jsong         #+#    #+#                 */
+/*   Updated: 2025/06/06 11:49:01 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render.h"
+#include "common.h"
 
-int	color_to_rgba(t_color *color, int a)
+bool	is_within_boundary(int x, int y, int height, int width)
 {
-	return (color->r << 24 | color->g << 16 | color->b << 8 | a);
+	if (y < 0 || y >= height || x < 0 || x >= width)
+		return (false);
+	return (true);
 }
 
-double	degree_to_radian(double degree)
+bool	is_valid_map_coord(t_map *map, int mx, int my)
 {
-	if (degree < 0)
-		degree += 360;
-	return (degree * M_PI / 180);
-}
-
-int	get_color(char c)
-{
-	if (c == '1')
-		return (MINIMAP_WALL_COLOR);
-	if (c == ' ')
-		return (MINIMAP_EMPTY_COLOR);
-	return (MINIMAP_FLOOR_COLOR);
+	if (!is_within_boundary(mx, my, map->height, map->width))
+		return (false);
+	if (mx >= (int)ft_strlen(map->grid[my]))
+		return (false);
+	return (true);
 }
