@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:50 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 19:59:08 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/06 20:43:19 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ bool			print_error_with_value(const char *prefix, const char *value,
 					bool return_value);
 /* init_components.c */
 void			init_animated_sprite_in_asset(t_asset *asset);
+void			init_sprite_frames(t_sprite *sprite);
 void			init_player(t_player *player);
 void			init_minimap(t_minimap *minimap);
 void			init_map(t_map *map);

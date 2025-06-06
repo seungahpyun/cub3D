@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/03 14:59:56 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 20:28:26 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/06 20:42:41 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,6 @@ static t_sprite_type	get_sprite_type(char sprite_char)
 	return (SPRITE_ANIMATED);
 }
 
-static void	init_sprite_frames(t_sprite *sprite)
-{
-	int	i;
-
-	i = 0;
-	while (i < MAX_SPRITE_FRAMES)
-	{
-		sprite->frames[i] = NULL;
-		i++;
-	}
-}
 
 static void	setup_new_sprite(t_sprite *sprite, int x, int y,
 							t_animated_sprite_config *config)

@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 10:25:15 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 20:10:37 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/06 20:43:25 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	init_animated_sprite_config(t_animated_sprite_config *config)
 	}
 }
 
-static void	init_sprite_frames(t_sprite *sprite)
+void	init_sprite_frames(t_sprite *sprite)
 {
 	int	j;
 
