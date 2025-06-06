@@ -13,10 +13,7 @@ DOOR              ./textures/door_texture.png
 
 ANIMATED ./textures/tree/tree00.png
 ANIMATED ./textures/tree/tree01.png
-ANIMATED ./textures/tree/tree02.png
-ANIMATED ./textures/tree/tree03.png
-ANIMATED ./textures/tree/tree04.png
-ANIMATED ./textures/tree/tree05.png
+
 
 
 C 218, 234, 235
