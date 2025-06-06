@@ -39,6 +39,7 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(COMMON_DIR)/debug.c \
 			$(COMMON_CORE_DIR)/error.c \
 			$(COMMON_CORE_DIR)/init_components.c \
+			$(COMMON_CORE_DIR)/init_player_minimap.c \
 			$(COMMON_CORE_DIR)/init.c \
 			$(COMMON_MEMORY_DIR)/free_assets.c \
 			$(COMMON_MEMORY_DIR)/free_memory.c \
@@ -75,6 +76,7 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			\
 			$(PARSER_UTILS_DIR)/file_utils.c \
 			$(PARSER_UTILS_DIR)/map_utils.c \
+			$(PARSER_UTILS_DIR)/sprite_utils.c \
 			$(PARSER_UTILS_DIR)/string_utils.c \
 			\
 			$(RENDER_CORE_DIR)/3d_projection.c \

@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/03 11:21:36 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 20:02:31 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/06 20:21:24 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,29 +37,46 @@ static bool	load_sprite_frame_from_path(mlx_t *mlx, t_sprite *sprite,
 	return (true);
 }
 
-static bool	load_sprite_frames(mlx_t *mlx, t_sprite *sprite,
-								t_animated_sprite_config *config)
+static void	cleanup_loaded_frames(mlx_t *mlx, t_sprite *sprite, int frame_count)
 {
-	int	frame;
+	int	i;
 
+	i = 0;
+	while (i < frame_count)
+	{
+		if (sprite->frames[i])
+			mlx_delete_image(mlx, sprite->frames[i]);
+		sprite->frames[i] = NULL;
+		i++;
+	}
+}
+
+static bool	validate_sprite_loading_params(t_sprite *sprite,
+										t_animated_sprite_config *config)
+{
 	if (!sprite || !config)
 		return (print_error("Invalid sprite or config", false));
 	if (sprite->type != SPRITE_ANIMATED)
 		return (print_error("Unknown sprite type", false));
 	if (!is_valid_frame_count(config->frame_count))
 		return (print_error("Invalid frame count", false));
+	return (true);
+}
+
+static bool	load_sprite_frames(mlx_t *mlx, t_sprite *sprite,
+								t_animated_sprite_config *config)
+{
+	int	frame;
+
+	if (!validate_sprite_loading_params(sprite, config))
+		return (false);
 	frame = 0;
 	while (frame < config->frame_count)
 	{
-		if (!load_sprite_frame_from_path(mlx, sprite, config->paths[frame], frame))
+		if (!load_sprite_frame_from_path(mlx, sprite,
+				config->paths[frame], frame))
 		{
-			while (frame > 0)
-			{
-				frame--;
-				if (sprite->frames[frame])
-					mlx_delete_image(mlx, sprite->frames[frame]);
-				sprite->frames[frame] = NULL;
-			}
+			cleanup_loaded_frames(mlx, sprite, frame);
 			return (false);
 		}
 		frame++;

@@ -6,19 +6,15 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/05 11:55:42 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 19:42:01 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/06 20:12:56 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
 #include "render.h"
 
-static void	free_asset_paths(t_asset *asset)
+static void	free_texture_paths(t_asset *asset)
 {
-	int	i;
-
-	if (!asset)
-		return ;
 	if (asset->no_path)
 		free(asset->no_path);
 	if (asset->so_path)
@@ -34,6 +30,12 @@ static void	free_asset_paths(t_asset *asset)
 	asset->we_path = NULL;
 	asset->ea_path = NULL;
 	asset->door_path = NULL;
+}
+
+static void	free_sprite_paths(t_asset *asset)
+{
+	int	i;
+
 	i = 0;
 	while (i < asset->animated_sprite.frame_count)
 	{
@@ -45,6 +47,14 @@ static void	free_asset_paths(t_asset *asset)
 		i++;
 	}
 	asset->animated_sprite.frame_count = 0;
+}
+
+static void	free_asset_paths(t_asset *asset)
+{
+	if (!asset)
+		return ;
+	free_texture_paths(asset);
+	free_sprite_paths(asset);
 }
 
 void	free_asset_images(t_asset *asset, mlx_t *mlx)

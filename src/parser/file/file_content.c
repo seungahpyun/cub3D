@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/20 14:58:06 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 20:03:01 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/06 20:16:14 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,17 @@ static bool	validate_map_consistency(t_asset *asset, t_map *map)
 	}
 	if (!map_contains_door(map) && asset->door_path != NULL)
 		ft_putendl_fd("Warning: Door texture specified but no doors in map", 2);
-	if (map_contains_animated_sprites(map) && !validate_animated_sprite_config(&asset->animated_sprite))
+	if (map_contains_animated_sprites(map)
+		&& !validate_animated_sprite_config(&asset->animated_sprite))
 	{
-		ft_putendl_fd("Error: Map contains animated sprites but missing or invalid ANIMATED configuration.", 2);
+		ft_putendl_fd("Error: Map contains animated sprites \
+			but missing or invalid ANIMATED configuration.", 2);
 		return (false);
 	}
-	if (!map_contains_animated_sprites(map) && asset->animated_sprite.frame_count > 0)
-		ft_putendl_fd("Warning: ANIMATED configuration specified but no animated sprites in map", 2);
+	if (!map_contains_animated_sprites(map)
+		&& asset->animated_sprite.frame_count > 0)
+		ft_putendl_fd("Warning: ANIMATED configuration specified \
+			but no animated sprites in map", 2);
 	return (true);
 }
 
