@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 21:24:28 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/10 14:41:52 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,8 +195,6 @@ uint32_t	get_pixel_color(mlx_image_t *texture, int tex_x, int tex_y);
 /* render_utils.c */
 int			color_to_rgba(t_color *color, int a);
 double		degree_to_radian(double degree);
-int			is_coordinate_valid(int x, int y, int width, int height);
-bool		is_valid_point(t_map *map, int mx, int my);
 int			get_color(char c);
 
 #endif

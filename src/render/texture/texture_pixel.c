@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/02 11:44:51 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 19:05:25 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/10 14:42:21 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	draw_wall_pixels(t_game *game, int x, t_point wall_start,
 		if (tex_y >= 0 && tex_y < (int)data->texture->height)
 		{
 			color = get_pixel_color(data->texture, data->tex_x, tex_y);
-			if (is_coordinate_valid(x, y, game->img->width, game->img->height))
+			if (is_within_boundary(x, y, game->img->height, game->img->width))
 				mlx_put_pixel(game->img, x, y, color);
 		}
 		tex_pos += tex_step;

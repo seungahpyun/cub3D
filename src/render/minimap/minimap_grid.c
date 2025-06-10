@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/05 11:31:51 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 20:01:32 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/10 14:40:37 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	draw_minimap_grid(t_map *map, t_minimap *minimap)
 		my = 0;
 		while (my < map->height)
 		{
-			if (is_valid_point(map, mx, my))
+			if (is_valid_map_coord(map, mx, my))
 			{
 				cell.px = mx * MINIMAP_CELL_SIZE - minimap->offset_x;
 				cell.py = my * MINIMAP_CELL_SIZE - minimap->offset_y;
