@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/03 11:21:36 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/10 09:21:57 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/10 09:27:10 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ bool	load_all_sprites(t_game *game)
 		return (true);
 	if (!validate_animated_sprite_config(&game->asset.animated_sprite))
 	{
-		ft_putendl_fd("Error: Map contains sprites \
-			but no ANIMATED configuration", 2);
+		ft_putendl_fd("Error: Map contains sprites"
+			" but no ANIMATED configuration", 2);
 		return (false);
 	}
 	i = 0;

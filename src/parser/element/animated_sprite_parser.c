@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/06 19:32:30 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 20:26:33 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/10 09:28:03 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ static int	validate_animated_texture_path(const char *path)
 	if (ft_strlen(path) == 0)
 		return (ft_putendl_fd("Error: Animated sprite path is empty", 2), -1);
 	if (!check_texture_extension(path))
-		return (ft_putendl_fd("Error: Invalid \
-            animated sprite texture extension", 2), -1);
+		return (ft_putendl_fd("Error: Invalid"
+				" animated sprite texture extension", 2), -1);
 	if (!check_texture_path(path))
-		return (ft_putendl_fd("Error: Cannot access \
-            animated sprite texture file", 2), -1);
+		return (ft_putendl_fd("Error: Cannot access"
+				" animated sprite texture file", 2), -1);
 	return (0);
 }
 
