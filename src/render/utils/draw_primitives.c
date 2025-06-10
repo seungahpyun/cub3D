@@ -6,7 +6,7 @@
 /*   By: jianisong <jianisong@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 17:24:56 by jianisong     #+#    #+#                 */
-/*   Updated: 2025/06/06 11:56:01 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/06 17:55:46 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,33 @@ void	draw_line(mlx_image_t *img, t_point start, t_point end, int color)
 	}
 }
 
-void	draw_cell(mlx_image_t *img, t_cell cell)
+static	swap_2_points(t_point *p0, t_point *p1)
+{
+	t_point	*temp;
+
+	temp = p1;
+	p0 = p1;
+	p1 = temp;
+}
+
+void	draw_rec(mlx_image_t *img, t_point p0, t_point p1, t_color color)
+{
+	int	x;
+	int	y;
+	int	x_end;
+	int	y_end;
+
+	if (p0.x > p1.x)
+		swap_2_points(&p0, &p1);
+	x = p0.x;
+	y = p0.y;
+	while (x < p0)
+	{
+		x
+	}
+}
+
+void	draw_cell(mlx_image_t *img, t_rect cell)
 {
 	int	x;
 	int	y;

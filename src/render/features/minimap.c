@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/09 15:21:43 by jsong         #+#    #+#                 */
-/*   Updated: 2025/06/06 15:10:35 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/06 17:55:46 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	draw_minimap_rays(t_ray_data *rays, t_minimap *minimap)
 
 static void	draw_minimap_player(t_player *player, t_minimap *minimap)
 {
-	t_cell	player_cell;
+	t_rect	player_cell;
 	t_point	player_start;
 	t_point	player_end;
 
