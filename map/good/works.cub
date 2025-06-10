@@ -11,8 +11,7 @@ EA ./textures/east_texture.png
 
 DOOR              ./textures/door_texture.png
 
-ANIMATED ./textures/tree/tree00.png
-ANIMATED ./textures/tree/tree01.png
+
 
 
 

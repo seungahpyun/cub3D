@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/20 14:58:06 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 20:16:14 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/10 09:20:24 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,20 +61,16 @@ bool	map_contains_door(t_map *map)
 
 bool	map_contains_animated_sprites(t_map *map)
 {
-	int	x;
-	int	y;
+	int	i;
 
-	x = 0;
-	while (x < map->width)
+	if (!map || map->sprite_count <= 0)
+		return (false);
+	i = 0;
+	while (i < map->sprite_count)
 	{
-		y = 0;
-		while (y < map->height)
-		{
-			if (is_valid_map_coord(map, x, y) && map->grid[y][x] == 'A')
-				return (true);
-			y++;
-		}
-		x++;
+		if (map->sprites[i].type == SPRITE_ANIMATED)
+			return (true);
+		i++;
 	}
 	return (false);
 }
