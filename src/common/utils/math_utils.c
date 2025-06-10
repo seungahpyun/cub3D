@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   init_components.c                                  :+:    :+:            */
+/*   math_utils.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/05/19 10:25:15 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 16:17:30 by jsong         ########   odam.nl         */
+/*   Created: 2025/06/05 14:23:32 by spyun         #+#    #+#                 */
+/*   Updated: 2025/06/05 15:03:20 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
 
-void	init_player(t_player *player)
+double	calculate_distance(double x1, double y1, double x2, double y2)
 {
-	player->x = -1.0;
-	player->y = -1.0;
-	player->dir = '\0';
-	player->angle = -1.0;
+	double	dx;
+	double	dy;
+
+	dx = x2 - x1;
+	dy = y2 - y1;
+	return (sqrt(dx * dx + dy * dy));
 }
 
-void	init_minimap(t_minimap *minimap)
+double	normalize_angle(double angle)
 {
-	minimap->offset_x = 0;
-	minimap->offset_y = 0;
-	minimap->img = NULL;
-}
-
-void	init_map(t_map *map)
-{
-	map->grid = NULL;
-	map->doors = NULL;
-	map->width = 0;
-	map->height = 0;
+	while (angle >= 2 * M_PI)
+		angle -= 2 * M_PI;
+	while (angle < 0)
+		angle += 2 * M_PI;
+	return (angle);
 }

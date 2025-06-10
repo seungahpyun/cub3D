@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/13 11:43:41 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 11:45:19 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/06 19:10:57 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ static bool	check_space_adjacents(t_map *map, int x, int y)
 		&& is_walkable(map->grid[y][x - 1]))
 		return (false);
 	if (is_within_boundary(x, y + 1, map->height, map->width) && map->grid[y
-		+ 1] && x < (int)ft_strlen(map->grid[y + 1]) && is_walkable(map->grid[y
-			+ 1][x]))
+			+ 1] && x < (int)ft_strlen(map->grid[y + 1])
+		&& is_walkable(map->grid[y + 1][x]))
 		return (false);
 	if (is_within_boundary(x, y - 1, map->height, map->width) && y > 0
 		&& x < (int)ft_strlen(map->grid[y - 1]) && is_walkable(map->grid[y
-			- 1][x]))
+				- 1][x]))
 		return (false);
 	return (true);
 }
