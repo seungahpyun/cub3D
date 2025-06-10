@@ -6,20 +6,11 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/22 09:04:17 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 18:48:27 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/10 14:39:42 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "control.h"
-
-static bool	is_valid_map_position(t_game *game, int map_x, int map_y)
-{
-	if (map_y < 0 || map_y >= game->map.height)
-		return (false);
-	if (map_x < 0 || map_x >= (int)ft_strlen(game->map.grid[map_y]))
-		return (false);
-	return (true);
-}
 
 static bool	check_sprite_collision(t_game *game, double x, double y)
 {
@@ -40,7 +31,7 @@ static bool	check_sprite_collision(t_game *game, double x, double y)
 
 static bool	is_walkable_cell(t_game *game, int map_x, int map_y)
 {
-	if (!is_valid_map_position(game, map_x, map_y))
+	if (!is_valid_map_coord(&game->map, map_x, map_y))
 		return (false);
 	if (game->map.grid[map_y][map_x] == '1')
 		return (false);
