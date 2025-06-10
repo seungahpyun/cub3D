@@ -6,11 +6,11 @@
 /*   By: jianisong <jianisong@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 17:24:56 by jianisong     #+#    #+#                 */
-/*   Updated: 2025/06/06 17:55:46 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/10 15:02:57 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "render.h"
 
 void	draw_line(mlx_image_t *img, t_point start, t_point end, int color)
 {
@@ -34,46 +34,20 @@ void	draw_line(mlx_image_t *img, t_point start, t_point end, int color)
 	}
 }
 
-static	swap_2_points(t_point *p0, t_point *p1)
-{
-	t_point	*temp;
-
-	temp = p1;
-	p0 = p1;
-	p1 = temp;
-}
-
-void	draw_rec(mlx_image_t *img, t_point p0, t_point p1, t_color color)
-{
-	int	x;
-	int	y;
-	int	x_end;
-	int	y_end;
-
-	if (p0.x > p1.x)
-		swap_2_points(&p0, &p1);
-	x = p0.x;
-	y = p0.y;
-	while (x < p0)
-	{
-		x
-	}
-}
-
-void	draw_cell(mlx_image_t *img, t_rect cell)
+void	draw_rec(mlx_image_t *img, t_rect rect)
 {
 	int	x;
 	int	y;
 
 	x = 0;
-	while (x < cell.size)
+	while (x < rect.width)
 	{
 		y = 0;
-		while (y < cell.size)
+		while (y < rect.height)
 		{
-			if (is_within_boundary(cell.px + x, cell.py + y, img->height,
+			if (is_within_boundary(rect.px + x, rect.py + y, img->height,
 					img->width))
-				mlx_put_pixel(img, cell.px + x, cell.py + y, cell.color);
+				mlx_put_pixel(img, rect.px + x, rect.py + y, rect.color);
 			y++;
 		}
 		x++;

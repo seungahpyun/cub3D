@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/09 15:21:43 by jsong         #+#    #+#                 */
-/*   Updated: 2025/06/06 17:55:46 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/10 14:59:34 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,12 @@ static void	draw_minimap_player(t_player *player, t_minimap *minimap)
 	t_point	player_start;
 	t_point	player_end;
 
-	player_cell.size = MINIMAP_CELL_SIZE / 3;
-	player_cell.px = MINIMAP_W / 2 - player_cell.size / 2;
-	player_cell.py = MINIMAP_H / 2 - player_cell.size / 2;
+	player_cell.width = MINIMAP_CELL_SIZE / 3;
+	player_cell.height = player_cell.width;
+	player_cell.px = MINIMAP_W / 2 - player_cell.width / 2;
+	player_cell.py = MINIMAP_H / 2 - player_cell.height / 2;
 	player_cell.color = MINIMAP_PLAYER_COLOR;
-	draw_cell(minimap->img, player_cell);
+	draw_rec(minimap->img, player_cell);
 	player_start.x = MINIMAP_W / 2;
 	player_start.y = MINIMAP_H / 2;
 	player_end.x = player_start.x + cos(player->angle) * MINIMAP_CELL_SIZE;

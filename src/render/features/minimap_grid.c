@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/06 15:10:07 by jsong         #+#    #+#                 */
-/*   Updated: 2025/06/06 17:55:46 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/10 14:58:43 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,12 @@ void	draw_minimap_grid(t_map *map, t_minimap *minimap)
 				cell.px = mx * MINIMAP_CELL_SIZE - minimap->offset_x;
 				cell.py = my * MINIMAP_CELL_SIZE - minimap->offset_y;
 				cell.color = get_color(map->grid[my][mx]);
-				cell.size = MINIMAP_CELL_SIZE;
-				draw_cell(minimap->img, cell);
-				if (map->doors[my][mx].is_door)
-					draw_minimap_door(minimap->img, cell, mx, my);
+				cell.width = MINIMAP_CELL_SIZE;
+				cell.height = cell.width;
+				draw_rec(minimap->img, cell);
+				// draw_cell(minimap->img, cell);
+				// if (map->doors[my][mx].is_door)
+				// 	draw_minimap_door(minimap->img, cell, mx, my);
 			}
 			my++;
 		}
@@ -46,6 +48,6 @@ void	draw_minimap_grid(t_map *map, t_minimap *minimap)
 	}
 }
 
-void	draw_minimap_door(mlx_image_t *img, t_rect cell, int mx, int my)
-{
-}
+// void	draw_minimap_door(mlx_image_t *img, t_rect cell, int mx, int my)
+// {
+// }

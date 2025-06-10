@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 17:55:46 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/10 14:59:01 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,15 @@ typedef struct s_cell
 	int				px;
 	int				py;
 	int				size;
+	int				color;
+}					t_cell;
+
+typedef struct s_rect
+{
+	int				px;
+	int				py;
+	int				width;
+	int				height;
 	int				color;
 }					t_rect;
 
@@ -114,7 +123,8 @@ void				setup_for_raycasting(t_game *game);
 /* draw_primitives */
 void				draw_line(mlx_image_t *img, t_point start, t_point end,
 						int color);
-void				draw_cell(mlx_image_t *img, t_rect cell);
+// void				draw_cell(mlx_image_t *img, t_rect cell);
+void				draw_rec(mlx_image_t *img, t_rect rect);
 
 /* cast_rays*/
 void				init_ray(t_player *player, double ray_angle, t_ray *ray);
