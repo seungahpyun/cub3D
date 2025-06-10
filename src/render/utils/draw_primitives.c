@@ -6,7 +6,7 @@
 /*   By: jianisong <jianisong@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 17:24:56 by jianisong     #+#    #+#                 */
-/*   Updated: 2025/06/06 11:56:01 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/10 14:42:46 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	draw_cell(mlx_image_t *img, t_cell cell)
 		y = 0;
 		while (y < cell.size)
 		{
-			if (is_within_boundary(cell.px + x, cell.py + y, img->height,
-					img->width))
+			if (is_within_boundary(cell.px + x, cell.py + y,
+					img->height, img->width))
 				mlx_put_pixel(img, cell.px + x, cell.py + y, cell.color);
 			y++;
 		}

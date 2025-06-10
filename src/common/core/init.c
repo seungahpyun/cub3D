@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/14 15:59:19 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 11:11:27 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/06 19:44:15 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	init_asset(t_asset *asset)
 	asset->we_img = NULL;
 	asset->ea_img = NULL;
 	asset->door_img = NULL;
+	init_animated_sprite_in_asset(asset);
 }
 
 void	init_game_state(t_game *game)

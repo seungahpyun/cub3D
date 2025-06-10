@@ -6,32 +6,72 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 10:25:15 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/03 14:52:41 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/06 20:43:25 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "common.h"
 
-void	init_player(t_player *player)
+static void	init_animated_sprite_config(t_animated_sprite_config *config)
 {
-	player->x = -1.0;
-	player->y = -1.0;
-	player->dir = '\0';
-	player->angle = -1.0;
+	int	i;
+
+	if (!config)
+		return ;
+	config->frame_count = 0;
+	i = 0;
+	while (i < MAX_SPRITE_FRAMES)
+	{
+		config->paths[i] = NULL;
+		i++;
+	}
 }
 
-void	init_minimap(t_minimap *minimap)
+void	init_sprite_frames(t_sprite *sprite)
 {
-	minimap->offset_x = 0;
-	minimap->offset_y = 0;
-	minimap->img = NULL;
+	int	j;
+
+	j = 0;
+	while (j < MAX_SPRITE_FRAMES)
+	{
+		sprite->frames[j] = NULL;
+		j++;
+	}
+}
+
+static void	init_single_sprite(t_sprite *sprite)
+{
+	sprite->x = -1.0;
+	sprite->y = -1.0;
+	sprite->type = SPRITE_ANIMATED;
+	sprite->current_frame = 0;
+	sprite->last_frame_time = 0.0;
+	sprite->distance = 0.0;
+	sprite->frame_count = 0;
+	init_sprite_frames(sprite);
+}
+
+void	init_animated_sprite_in_asset(t_asset *asset)
+{
+	if (!asset)
+		return ;
+	init_animated_sprite_config(&asset->animated_sprite);
 }
 
 void	init_map(t_map *map)
 {
+	int	i;
+
 	map->grid = NULL;
 	map->door_states = NULL;
 	map->door_openness = NULL;
 	map->width = 0;
 	map->height = 0;
+	map->sprite_count = 0;
+	i = 0;
+	while (i < MAX_SPRITES)
+	{
+		init_single_sprite(&map->sprites[i]);
+		i++;
+	}
 }

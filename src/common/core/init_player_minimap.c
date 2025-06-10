@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   map_utils.c                                        :+:    :+:            */
+/*   init_player_minimap.c                              :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/05/20 16:20:00 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 19:34:08 by seungah       ########   odam.nl         */
+/*   Created: 2025/06/06 19:59:57 by spyun         #+#    #+#                 */
+/*   Updated: 2025/06/06 20:10:27 by seungah       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "common.h"
 
-bool	is_walkable(char c)
+void	init_player(t_player *player)
 {
-	return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
+	player->x = -1.0;
+	player->y = -1.0;
+	player->dir = '\0';
+	player->angle = -1.0;
 }
 
-bool	is_map_char(char c)
+void	init_minimap(t_minimap *minimap)
 {
-	return (c == '0' || c == '1' || c == ' ' || c == 'N'
-		|| c == 'S' || c == 'E' || c == 'W' || c == 'A' || c == 'D');
-}
-
-bool	is_sprite_char(char c)
-{
-	return (c == 'A');
+	minimap->offset_x = 0;
+	minimap->offset_y = 0;
+	minimap->img = NULL;
 }

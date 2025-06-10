@@ -6,28 +6,11 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/02 11:44:51 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 11:56:11 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/10 14:42:21 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
-
-static int	get_texture_pixel(mlx_image_t *texture, int tex_x, int tex_y)
-{
-	int			pixel_index;
-	uint8_t		*pixel_ptr;
-	uint32_t	color;
-
-	if (!texture || !texture->pixels)
-		return (DEFAULT_TEXTURE_COLOR);
-	if (tex_x < 0 || tex_x >= (int)texture->width || tex_y < 0
-		|| tex_y >= (int)texture->height)
-		return (DEFAULT_TEXTURE_COLOR);
-	pixel_index = (tex_y * texture->width + tex_x) * 4;
-	pixel_ptr = texture->pixels + pixel_index;
-	color = (pixel_ptr[0] << 24) | (pixel_ptr[1] << 16) | (pixel_ptr[2] << 8) | pixel_ptr[3];
-	return (color);
-}
 
 void	draw_wall_pixels(t_game *game, int x, t_point wall_start,
 		t_texture_data *data)
@@ -47,7 +30,7 @@ void	draw_wall_pixels(t_game *game, int x, t_point wall_start,
 		tex_y = (int)tex_pos;
 		if (tex_y >= 0 && tex_y < (int)data->texture->height)
 		{
-			color = get_texture_pixel(data->texture, data->tex_x, tex_y);
+			color = get_pixel_color(data->texture, data->tex_x, tex_y);
 			if (is_within_boundary(x, y, game->img->height, game->img->width))
 				mlx_put_pixel(game->img, x, y, color);
 		}

@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/27 17:14:31 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/27 17:15:24 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/05 11:54:38 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,14 @@ void	apply_sliding_movement(t_game *game, double new_x, double new_y)
 		game->player.x = new_x;
 	else if (can_move_y_only)
 		game->player.y = new_y;
+}
+
+bool	can_move_x(t_game *game, double new_x)
+{
+	return (can_move_to(game, new_x, game->player.y));
+}
+
+bool	can_move_y(t_game *game, double new_y)
+{
+	return (can_move_to(game, game->player.x, new_y));
 }
