@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:50 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/10 15:15:02 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/10 16:04:32 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,12 +157,13 @@ void							init_animated_sprite_in_asset(t_asset *asset);
 void							init_sprite_frames(t_sprite *sprite);
 void							init_player(t_player *player);
 void							init_minimap(t_minimap *minimap);
+int								init_doors(t_map *map);
 void							init_map(t_map *map);
 /* init.c */
 void							init_window(t_game *game);
 void							init_input_system(t_game *game);
 void							init_game_state(t_game *game);
-int								init_door_arrays(t_map *map);
+
 /* ========================================================================== */
 /*                                   MEMORY                                   */
 /* ========================================================================== */
@@ -181,8 +182,6 @@ void							free_all_sprites(t_game *game);
 double							calculate_distance(double x1, double y1,
 									double x2, double y2);
 double							normalize_angle(double angle);
-/* init_doors.c */
-int								init_doors(t_map *map);
 
 /* debug */
 void							debug(t_game *game);

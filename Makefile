@@ -25,16 +25,11 @@ PARSER_FILE_DIR = $(PARSER_DIR)/file
 PARSER_MAP_DIR = $(PARSER_DIR)/map
 PARSER_UTILS_DIR = $(PARSER_DIR)/utils
 
-
-RENDER_CORE_DIR = $(RENDER_DIR)/core
-RENDER_MINIMAP_DIR = $(RENDER_DIR)/minimap
-RENDER_SPRITE_DIR = $(RENDER_DIR)/sprite
-RENDER_TEXTURE_DIR = $(RENDER_DIR)/texture
-RENDER_UTILS_DIR = $(RENDER_DIR)/utils
-
 RENDER_DIR = $(SRC_DIR)/render
 RENDER_CORE_DIR = $(RENDER_DIR)/core
-RENDER_FEATURES_DIR = $(RENDER_DIR)/features
+RENDER_DOOR_DIR = $(RENDER_DIR)/door
+RENDER_MINIMAP_DIR = $(RENDER_DIR)/minimap
+RENDER_SPRITE_DIR = $(RENDER_DIR)/sprite
 RENDER_TEXTURE_DIR = $(RENDER_DIR)/texture
 RENDER_UTILS_DIR = $(RENDER_DIR)/utils
 
@@ -45,7 +40,7 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(COMMON_DIR)/debug.c \
 			$(COMMON_CORE_DIR)/error.c \
 			$(COMMON_CORE_DIR)/init_components.c \
-			$(COMMON_DIR)/init_doors.c \
+			$(COMMON_CORE_DIR)/init_doors.c \
 			$(COMMON_CORE_DIR)/init_player_minimap.c \
 			$(COMMON_CORE_DIR)/init.c \
 			$(COMMON_MEMORY_DIR)/free_assets.c \
@@ -86,8 +81,8 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(PARSER_UTILS_DIR)/sprite_utils.c \
 			$(PARSER_UTILS_DIR)/string_utils.c \
 			\
-			$(RENDER_CORE_DIR)/3d_projection.c \
 			$(RENDER_CORE_DIR)/cast_rays.c \
+			$(RENDER_CORE_DIR)/projection_3d.c \
 			$(RENDER_CORE_DIR)/projection_draw.c \
 			$(RENDER_CORE_DIR)/render.c \
 			$(RENDER_CORE_DIR)/setup.c \
@@ -110,7 +105,9 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(RENDER_UTILS_DIR)/draw_primitives.c \
 			$(RENDER_UTILS_DIR)/pixel_utils.c \
 			$(RENDER_UTILS_DIR)/render_utils.c \
-
+			\
+			$(RENDER_DOOR_DIR)/door_animation.c \
+			$(RENDER_DOOR_DIR)/door_render.c \
 
 
 OBJ_FILES = $(SRC_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

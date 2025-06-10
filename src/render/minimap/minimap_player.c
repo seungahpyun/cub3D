@@ -5,36 +5,13 @@
 /*                                                     +:+                    */
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-<<<<<<<< HEAD:src/render/features/minimap.c
 /*   Created: 2025/05/09 15:21:43 by jsong         #+#    #+#                 */
-/*   Updated: 2025/06/10 14:59:34 by jsong         ########   odam.nl         */
-========
-/*   Created: 2025/06/05 11:31:48 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 18:49:12 by seungah       ########   odam.nl         */
->>>>>>>> main:src/render/minimap/minimap_player.c
+/*   Updated: 2025/06/10 15:39:57 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-<<<<<<<< HEAD:src/render/features/minimap.c
-static void	calculate_offset(t_player *player, t_minimap *minimap)
-{
-	int	w_px;
-	int	w_py;
-	int	s_px;
-	int	s_py;
-
-	w_px = (int)(player->x * MINIMAP_CELL_SIZE);
-	w_py = (int)(player->y * MINIMAP_CELL_SIZE);
-	s_px = MINIMAP_W / 2;
-	s_py = MINIMAP_H / 2;
-	minimap->offset_x = w_px - s_px;
-	minimap->offset_y = w_py - s_py;
-}
-
-========
->>>>>>>> main:src/render/minimap/minimap_player.c
 /**
  * Draws rays on minimap from the player:
  * 1. Calculate the ray angle and distiance to get hit point of ray

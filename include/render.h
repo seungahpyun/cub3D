@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/10 15:15:38 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/10 15:50:39 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,6 @@ typedef struct s_point
 	int				x;
 	int				y;
 }					t_point;
-
-typedef struct s_cell
-{
-	int				px;
-	int				py;
-	int				size;
-	int				color;
-}					t_cell;
 
 typedef struct s_rect
 {
@@ -205,7 +197,7 @@ void				draw_textured_wall(t_game *game,
 /* draw_primitives.c */
 void				draw_line(mlx_image_t *img, t_point start, t_point end,
 						int color);
-void				draw_cell(mlx_image_t *img, t_cell cell);
+void				draw_rec(mlx_image_t *img, t_rect rect);
 /* pixel_utils.c */
 uint32_t			get_pixel_color(mlx_image_t *texture, int tex_x, int tex_y);
 /* render_utils.c */
