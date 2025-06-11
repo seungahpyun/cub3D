@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:50 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/11 14:44:39 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/06/11 17:42:43 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,5 +192,6 @@ bool							is_within_boundary(int x, int y, int width,
 									int height);
 bool							is_valid_map_coord(t_map *map, int mx, int my);
 bool							is_door(t_map *map, int x, int y);
+bool							map_contains_door(t_map *map);
 
 #endif
