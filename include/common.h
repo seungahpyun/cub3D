@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:50 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/11 17:42:43 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/06/11 21:28:07 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ typedef struct s_ray_data
 	double						angle;
 	double						dist;
 	char						hit_side;
+	bool						hit_door;
 }								t_ray_data;
 
 typedef struct s_game

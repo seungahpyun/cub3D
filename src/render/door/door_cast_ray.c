@@ -6,7 +6,7 @@
 /*   By: jianisong <jianisong@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/11 12:54:43 by jianisong     #+#    #+#                 */
-/*   Updated: 2025/06/11 17:28:20 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/06/11 21:16:31 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static bool	hit_vertical_door(t_door *door, t_ray *ray, double *door_dist)
 	if (hit)
 	{
 		*door_dist = dist;
+		ray->hit_door = true;
 		return (true);
 	}
 	return (false);
@@ -49,6 +50,7 @@ static bool	hit_horizontal_door(t_door *door, t_ray *ray, double *door_dist)
 	if (hit)
 	{
 		*door_dist = dist;
+		ray->hit_door = true;
 		return (true);
 	}
 	return (false);

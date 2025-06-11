@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/21 14:19:16 by jsong         #+#    #+#                 */
-/*   Updated: 2025/06/11 17:27:15 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/06/11 21:15:33 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	init_ray(t_player *player, double ray_angle, t_ray *ray)
 	ray->angle = ray_angle;
 	ray->dir_x = cos(ray->angle);
 	ray->dir_y = sin(ray->angle);
+	ray->hit_door = false;
 	calculate_dist_inc(ray);
 	calculate_initial_dist(ray);
 }

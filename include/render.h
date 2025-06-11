@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/11 15:30:25 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/06/11 21:59:59 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct s_ray
 	double			dist_to_v;
 	double			dist_to_h;
 	char			hit_side;
+	bool			hit_door;
 }					t_ray;
 
 typedef struct s_wall_params
@@ -133,7 +134,6 @@ typedef struct s_sprite_draw_data
 void				render_3d_projection(t_game *game);
 /* cast_rays.c */
 void				init_ray(t_player *player, double ray_angle, t_ray *ray);
-bool				check_hit_wall(t_map *map, t_ray *ray);
 double				cast_ray(t_map *map, t_ray *ray);
 bool				hit_door(t_door *door, t_ray *ray, double *door_dist);
 
@@ -143,7 +143,7 @@ void				draw_ceiling(mlx_image_t *img, t_point wall_start,
 void				draw_floor(mlx_image_t *img, t_point wall_end,
 						t_color *color);
 void				create_wall_info(t_game *game, int i,
-						t_wall_info *wall_info, double ray_dist);
+						t_wall_info *wall_info);
 /* render.c */
 void				render(t_game *game);
 /* setup.c */
@@ -152,14 +152,7 @@ void				setup_for_raycasting(t_game *game);
 /*                               MINIMAP RENDERING                            */
 /* ========================================================================== */
 /* minimap_render*/
-void				draw_minimap_grid(t_map *map, t_minimap *minimap);
 void				render_minimap(t_game *game);
-void				draw_ceiling(mlx_image_t *img, t_point wall_start,
-						t_color *color);
-void				draw_floor(mlx_image_t *img, t_point wall_end,
-						t_color *color);
-void				create_wall_info(t_game *game, int i,
-						t_wall_info *wall_info, double ray_dist);
 /* minimap_grid.c */
 void				draw_minimap_grid(t_map *map, t_minimap *minimap);
 void				draw_minimap_sprites(t_map *map, t_minimap *minimap);
