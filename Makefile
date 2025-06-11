@@ -108,6 +108,7 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			\
 			$(RENDER_DOOR_DIR)/door_animation.c \
 			$(RENDER_DOOR_DIR)/door_render.c \
+			$(RENDER_DOOR_DIR)/door_cast_ray.c \
 
 
 OBJ_FILES = $(SRC_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
