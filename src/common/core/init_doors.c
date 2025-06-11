@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/06 17:11:16 by jsong         #+#    #+#                 */
-/*   Updated: 2025/06/06 17:21:04 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/11 14:57:23 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,13 @@
 static void	init_single_door(t_map *map, int x, int y)
 {
 	if (!is_door(map, x, y))
+	{
+		ft_memset(&map->doors[y][x], 0, sizeof(t_door));
+		map->doors[y][x].is_door = false;
 		return ;
+	}
+	map->doors[y][x].mx = x;
+	map->doors[y][x].my = y;
 	map->doors[y][x].is_door = true;
 	map->doors[y][x].state = DOOR_CLOSED;
 	map->doors[y][x].openness = 0.0;

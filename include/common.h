@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:50 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/10 16:04:32 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/11 14:44:39 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ typedef enum e_door_type
 
 typedef struct s_door
 {
+	int							mx;
+	int							my;
 	bool						is_door;
 	t_door_state				state;
 	double						openness;
