@@ -6,7 +6,7 @@
 /*   By: jianisong <jianisong@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/23 13:39:14 by jianisong     #+#    #+#                 */
-/*   Updated: 2025/06/11 21:35:22 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/06/11 22:17:53 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,10 @@ void	render_3d_projection(t_game *game)
 		init_render_data(game, i, &data);
 		draw_ceiling(game->img, data.draw_start, &game->asset.ceiling);
 		create_wall_info(game, i, &data.wall_info);
-		draw_textured_wall(game, &data);
+		if (game->rays[i].hit_door)
+			draw_textured_door(game, &data);
+		else
+			draw_textured_wall(game, &data);
 		draw_floor(game->img, data.draw_end, &game->asset.floor);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: jianisong <jianisong@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/22 21:47:09 by jianisong     #+#    #+#                 */
-/*   Updated: 2025/06/11 21:31:21 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/06/11 22:26:30 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ static void	update_rays(t_game *game)
 		game->rays[i].dist = cast_ray(&game->map, &ray);
 		game->rays[i].hit_side = ray.hit_side;
 		game->rays[i].hit_door = ray.hit_door;
+		game->rays[i].map_x = ray.map_x;
+		game->rays[i].map_y = ray.map_y;
 		i++;
 	}
 }
