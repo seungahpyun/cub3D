@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/22 08:52:09 by spyun         #+#    #+#                 */
-/*   Updated: 2025/05/23 16:21:29 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/12 10:52:25 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	handle_key_press(mlx_key_data_t keydata, void *param)
 			rotate_player(game, ROTATE_LEFT);
 		else if (keydata.key == MLX_KEY_RIGHT)
 			rotate_player(game, ROTATE_RIGHT);
+		else if (keydata.key == MLX_KEY_SPACE)
+			handle_door_interaction(&game->map, &game->player);
 	}
 }
 

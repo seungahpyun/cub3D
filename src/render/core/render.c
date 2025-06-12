@@ -6,7 +6,7 @@
 /*   By: jianisong <jianisong@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/22 21:47:09 by jianisong     #+#    #+#                 */
-/*   Updated: 2025/06/11 22:26:30 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/06/12 12:05:27 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,15 @@ static void	update_rays(t_game *game)
 	}
 }
 
+static void	update_game_state(t_game *game, double delta_time)
+{
+	update_sprite_animations(game);
+	update_doors(&game->map, delta_time);
+}
+
 static void	render_frame(t_game *game)
 {
 	clear_main_image(game);
-	update_sprite_animations(game);
 	update_rays(game);
 	render_3d_projection(game);
 	render_sprites(game);
@@ -57,11 +62,14 @@ static void	game_loop(void *param)
 	t_game			*game;
 	static double	last_time = 0;
 	double			current_time;
+	double			delta_time;
 
 	game = (t_game *)param;
 	current_time = mlx_get_time();
-	if (current_time - last_time >= 0.016)
+	delta_time = current_time - last_time;
+	if (delta_time >= 0.016)
 	{
+		update_game_state(game, delta_time);
 		render_frame(game);
 		last_time = current_time;
 	}

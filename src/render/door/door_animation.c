@@ -6,31 +6,11 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/03 17:04:17 by jsong         #+#    #+#                 */
-/*   Updated: 2025/06/06 17:04:22 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/12 10:40:44 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
-
-void	handle_door_interaction(t_map *map, t_player *player,
-		bool space_pressed)
-{
-	t_point	front;
-	int		current_state;
-
-	if (!space_pressed)
-		return ;
-	front.x = (int)(player->x + cos(player->angle) * 1.0);
-	front.y = (int)(player->y - sin(player->angle) * 1.0);
-	if (!is_door(map, front.x, front.y))
-		return ;
-	current_state = map->doors[front.y][front.x].state;
-	if (current_state == DOOR_CLOSED)
-		map->doors[front.y][front.x].state = DOOR_OPENING;
-	else if (current_state == DOOR_OPEN)
-		map->doors[front.y][front.x].state = DOOR_CLOSING;
-	return ;
-}
 
 static void	update_single_door(t_map *map, int x, int y, double delta_time)
 {
@@ -58,17 +38,19 @@ void	update_doors(t_map *map, double delta_time)
 {
 	int	x;
 	int	y;
+	int	width;
 
-	x = 0;
-	while (x < map->width)
+	y = 0;
+	while (y < map->height)
 	{
-		y = 0;
-		while (y < map->height)
+		x = 0;
+		width = ft_strlen(map->grid[y]);
+		while (x < width)
 		{
-			if (is_door(map, x, y))
+			if (map->doors[y][x].is_door)
 				update_single_door(map, x, y, delta_time);
-			y++;
+			x++;
 		}
-		x++;
+		y++;
 	}
 }

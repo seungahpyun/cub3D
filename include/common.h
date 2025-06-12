@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:50 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/11 22:25:20 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/06/12 11:31:21 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define MIN_SPRITE_FRAMES 2
 # define MAX_SPRITE_FRAMES 10
 
-# define DOOR_SPEED 0.03
+# define DOOR_SPEED 1
 
 # include <MLX42.h>
 # include <fcntl.h>

@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/12 10:14:01 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/06/12 10:50:52 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,7 +195,8 @@ void				draw_textured_wall(t_game *game,
 /* door_render.c */
 void				draw_textured_door(t_game *game,
 						t_render_data *render_data);
-
+/* door_animation.c */
+void				update_doors(t_map *map, double delta_time);
 /* ========================================================================== */
 /*                                    UTILS                                   */
 /* ========================================================================== */
