@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/11 21:59:59 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/06/12 10:14:01 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,8 +185,17 @@ bool				load_textures(t_game *game);
 void				draw_wall_pixels(t_game *game, int x, t_point wall_start,
 						t_texture_data *data);
 /* texture_renderer.c */
+void				calculate_wall_params(int line_height,
+						t_wall_params *params);
 void				draw_textured_wall(t_game *game,
 						t_render_data *render_data);
+/* ========================================================================== */
+/*                               DOOR RENDERING                               */
+/* ========================================================================== */
+/* door_render.c */
+void				draw_textured_door(t_game *game,
+						t_render_data *render_data);
+
 /* ========================================================================== */
 /*                                    UTILS                                   */
 /* ========================================================================== */

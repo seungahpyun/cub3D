@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/29 11:50:04 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/02 22:25:41 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/12 10:03:03 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static double	calculate_wall_x(t_wall_info *wall_info)
 	return (wall_x);
 }
 
-static void	calculate_wall_params(int line_height, t_wall_params *params)
+void	calculate_wall_params(int line_height, t_wall_params *params)
 {
 	int	wall_center;
 
@@ -58,7 +58,7 @@ static void	calculate_wall_params(int line_height, t_wall_params *params)
 }
 
 static void	init_texture_data(t_game *game, t_wall_info *wall_info,
-				int line_height, t_texture_data *data)
+		int line_height, t_texture_data *data)
 {
 	if (!game || !wall_info || !data)
 		return ;
@@ -78,8 +78,8 @@ void	draw_textured_wall(t_game *game, t_render_data *render_data)
 
 	if (!game || !render_data)
 		return ;
-	init_texture_data(game, &render_data->wall_info,
-		render_data->line_height, &data);
+	init_texture_data(game, &render_data->wall_info, render_data->line_height,
+		&data);
 	if (!data.texture)
 		return ;
 	draw_wall_pixels(game, render_data->x, render_data->draw_start, &data);
