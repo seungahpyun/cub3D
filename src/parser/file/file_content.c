@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/20 14:58:06 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/11 17:42:14 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/06/12 18:03:42 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,13 @@ static bool	validate_map_consistency(t_asset *asset, t_map *map)
 		&& !validate_animated_sprite_config(&asset->animated_sprite))
 	{
 		ft_putendl_fd("Error: Map contains animated sprites"
-						" but missing or invalid ANIMATED configuration.",
-						2);
+			" but missing or invalid ANIMATED configuration.", 2);
 		return (false);
 	}
 	if (!map_contains_animated_sprites(map)
 		&& asset->animated_sprite.frame_count > 0)
 		ft_putendl_fd("Warning: ANIMATED configuration specified"
-						" but no animated sprites in map",
-						2);
+			" but no animated sprites in map", 2);
 	return (true);
 }
 
