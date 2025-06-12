@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/20 14:30:17 by jsong         #+#    #+#                 */
-/*   Updated: 2025/05/22 22:18:13 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/06/10 17:45:56 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,39 @@ static void	print_map(t_map *map)
 	ft_putstr_fd("\n", 1);
 }
 
+static void	print_single_door(t_door *door)
+{
+	if (!door)
+		return ;
+	printf("door_state is %d\n", door->state);
+	printf("door_openness is %f\n", door->openness);
+	printf("door_type is %d\n", door->type);
+}
+
+static void	print_doors(t_map *map)
+{
+	int	x;
+	int	y;
+
+	if (!map)
+		return ;
+	y = 0;
+	while (y < map->height)
+	{
+		x = 0;
+		while (is_valid_map_coord(map, x, y))
+		{
+			if (map->doors[y][x].is_door)
+			{
+				printf("[Door info at (%d, %d)] : \n", y, x);
+				print_single_door(&map->doors[y][x]);
+			}
+			x++;
+		}
+		y++;
+	}
+}
+
 static void	print_player(t_player *player)
 {
 	if (!player)
@@ -52,5 +85,6 @@ static void	print_player(t_player *player)
 void	debug(t_game *game)
 {
 	print_map(&game->map);
+	print_doors(&game->map);
 	print_player(&game->player);
 }

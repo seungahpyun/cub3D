@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/21 14:19:16 by jsong         #+#    #+#                 */
-/*   Updated: 2025/06/04 12:42:07 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/11 21:15:33 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,16 +73,25 @@ void	init_ray(t_player *player, double ray_angle, t_ray *ray)
 	ray->angle = ray_angle;
 	ray->dir_x = cos(ray->angle);
 	ray->dir_y = sin(ray->angle);
+	ray->hit_door = false;
 	calculate_dist_inc(ray);
 	calculate_initial_dist(ray);
 }
 
-bool	check_hit_wall(t_map *map, t_ray *ray)
+static void	dda_step(t_ray *ray)
 {
-	if (is_valid_map_coord(map, ray->map_x, ray->map_y)
-		&& map->grid[ray->map_y][ray->map_x] == '0')
-		return (false);
-	return (true);
+	if (ray->dist_to_v < ray->dist_to_h)
+	{
+		ray->dist_to_v += ray->dist_inc_x;
+		ray->map_x += ray->step_x;
+		ray->hit_side = 'v';
+	}
+	else
+	{
+		ray->dist_to_h += ray->dist_inc_y;
+		ray->map_y += ray->step_y;
+		ray->hit_side = 'h';
+	}
 }
 
 /**
@@ -91,35 +100,32 @@ bool	check_hit_wall(t_map *map, t_ray *ray)
  *  - compare dist_to_v and dist_to_h value
  *  - extend the ray to that intersection point
  * 2. Update the distance to the next boundary of that type
- * 3. Check if you've hit a wall at this new grid cell
+ * 3. Check if you've hit a wall/door at this new grid cell
  *  - if no hit, repeat the previous process
- * 4. Calculate the final distance and return
+ *  - if hit, calculate the final distance and return
  */
 double	cast_ray(t_map *map, t_ray *ray)
 {
-	bool	hit;
 	double	distance;
+	char	c;
+	double	door_dist;
 
-	hit = false;
-	while (!hit)
+	while (true)
 	{
-		if (ray->dist_to_v < ray->dist_to_h)
+		dda_step(ray);
+		c = map->grid[ray->map_y][ray->map_x];
+		if (c == '1')
 		{
-			ray->dist_to_v += ray->dist_inc_x;
-			ray->map_x += ray->step_x;
-			ray->hit_side = 'v';
+			if (ray->hit_side == 'v')
+				distance = ray->dist_to_v - ray->dist_inc_x;
+			else
+				distance = ray->dist_to_h - ray->dist_inc_y;
+			return (distance);
 		}
-		else
+		if (c == 'D')
 		{
-			ray->dist_to_h += ray->dist_inc_y;
-			ray->map_y += ray->step_y;
-			ray->hit_side = 'h';
+			if (hit_door(&map->doors[ray->map_y][ray->map_x], ray, &door_dist))
+				return (door_dist);
 		}
-		hit = check_hit_wall(map, ray);
 	}
-	if (ray->hit_side == 'v')
-		distance = ray->dist_to_v - ray->dist_inc_x;
-	else
-		distance = ray->dist_to_h - ray->dist_inc_y;
-	return (distance);
 }

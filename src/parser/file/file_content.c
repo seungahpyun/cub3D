@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/20 14:58:06 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/10 09:24:08 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/12 18:03:42 by jianisong     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,26 +37,6 @@ int	parse_map_content(t_game *game, int fd, int ret)
 	if (ret != -1)
 		ret = check_map_file(game, map_found);
 	return (ret);
-}
-
-bool	map_contains_door(t_map *map)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	while (x < map->width)
-	{
-		y = 0;
-		while (y < map->height)
-		{
-			if (is_valid_map_coord(map, x, y) && map->grid[y][x] == 'D')
-				return (true);
-			y++;
-		}
-		x++;
-	}
-	return (false);
 }
 
 bool	map_contains_animated_sprites(t_map *map)
