@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/06 17:11:16 by jsong         #+#    #+#                 */
-/*   Updated: 2025/06/11 14:57:23 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/06/17 11:07:40 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int	init_doors(t_map *map)
 
 	if (!map)
 		return (-1);
+	if (!map->contains_door)
+		return (0);
 	map->doors = ft_calloc(map->height, sizeof(t_door *));
 	if (!map->doors)
 		return (-1);
@@ -50,11 +52,8 @@ int	init_doors(t_map *map)
 		if (!map->doors[i])
 			return (-1);
 		j = 0;
-		while (j < width)
-		{
+		while (++j < width)
 			init_single_door(map, j, i);
-			j++;
-		}
 		i++;
 	}
 	return (0);

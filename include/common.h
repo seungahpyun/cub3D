@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:50 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/12 11:31:21 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/06/17 10:31:59 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ typedef struct s_map
 	t_sprite					sprites[MAX_SPRITES];
 	int							sprite_count;
 	t_door						**doors;
+	bool						contains_door;
 }								t_map;
 
 typedef struct s_player

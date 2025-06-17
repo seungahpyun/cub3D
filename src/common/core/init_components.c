@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 10:25:15 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/10 15:27:58 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/17 10:32:41 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	init_map(t_map *map)
 	map->width = 0;
 	map->height = 0;
 	map->sprite_count = 0;
+	map->contains_door = false;
 	i = 0;
 	while (i < MAX_SPRITES)
 	{
