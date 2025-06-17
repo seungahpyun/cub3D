@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 09:43:55 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/17 11:26:33 by jsong         ########   odam.nl         */
+/*   Updated: 2025/06/17 11:45:31 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ void				render_minimap(t_game *game);
 /* minimap_grid.c */
 void				draw_minimap_grid(t_map *map, t_minimap *minimap);
 void				draw_minimap_sprites(t_map *map, t_minimap *minimap);
+/* minimap_door.c */
 void				draw_minimap_doors(t_map *map, t_minimap *minimap);
 /* minimap_player.c */
 void				draw_minimap_rays(t_ray_data *rays, t_minimap *minimap);
