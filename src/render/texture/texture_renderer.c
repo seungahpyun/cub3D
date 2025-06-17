@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/29 11:50:04 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/12 10:03:03 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/06/17 14:14:40 by spyun         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static mlx_image_t	*get_wall_texture(t_game *game, t_wall_info *wall_info)
 	else
 	{
 		if (wall_info->hit_y > game->player.y)
-			return (game->asset.so_img);
-		else
 			return (game->asset.no_img);
+		else
+			return (game->asset.so_img);
 	}
 }
 
