@@ -6,7 +6,7 @@
 /*   By: jsong <jsong@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/06/03 17:04:17 by jsong         #+#    #+#                 */
-/*   Updated: 2025/06/12 10:40:44 by jianisong     ########   odam.nl         */
+/*   Updated: 2025/06/17 11:30:27 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	update_doors(t_map *map, double delta_time)
 	int	width;
 
 	y = 0;
+	if (!map->contains_door)
+		return ;
 	while (y < map->height)
 	{
 		x = 0;

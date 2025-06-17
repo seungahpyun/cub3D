@@ -90,6 +90,7 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			\
 			$(RENDER_MINIMAP_DIR)/minimap_grid.c \
 			$(RENDER_MINIMAP_DIR)/minimap_player.c \
+			$(RENDER_MINIMAP_DIR)/minimap_door.c \
 			$(RENDER_MINIMAP_DIR)/minimap.c \
 			\
 			$(RENDER_SPRITE_DIR)/sprite_animation.c \
