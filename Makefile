@@ -27,6 +27,7 @@ PARSER_UTILS_DIR = $(PARSER_DIR)/utils
 
 RENDER_DIR = $(SRC_DIR)/render
 RENDER_CORE_DIR = $(RENDER_DIR)/core
+RENDER_DOOR_DIR = $(RENDER_DIR)/door
 RENDER_MINIMAP_DIR = $(RENDER_DIR)/minimap
 RENDER_SPRITE_DIR = $(RENDER_DIR)/sprite
 RENDER_TEXTURE_DIR = $(RENDER_DIR)/texture
@@ -39,6 +40,7 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(COMMON_DIR)/debug.c \
 			$(COMMON_CORE_DIR)/error.c \
 			$(COMMON_CORE_DIR)/init_components.c \
+			$(COMMON_CORE_DIR)/init_doors.c \
 			$(COMMON_CORE_DIR)/init_player_minimap.c \
 			$(COMMON_CORE_DIR)/init.c \
 			$(COMMON_MEMORY_DIR)/free_assets.c \
@@ -53,6 +55,7 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(CONTROL_DIR)/keyboard_input.c \
 			$(CONTROL_DIR)/mouse_input.c \
 			$(CONTROL_DIR)/player_controller.c \
+			$(CONTROL_DIR)/door_controller.c \
 			\
 			$(PARSER_ELEMENT_DIR)/animated_sprite_parser.c \
 			$(PARSER_ELEMENT_DIR)/color_component_parser.c \
@@ -79,14 +82,15 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(PARSER_UTILS_DIR)/sprite_utils.c \
 			$(PARSER_UTILS_DIR)/string_utils.c \
 			\
-			$(RENDER_CORE_DIR)/3d_projection.c \
 			$(RENDER_CORE_DIR)/cast_rays.c \
+			$(RENDER_CORE_DIR)/projection_3d.c \
 			$(RENDER_CORE_DIR)/projection_draw.c \
 			$(RENDER_CORE_DIR)/render.c \
 			$(RENDER_CORE_DIR)/setup.c \
 			\
 			$(RENDER_MINIMAP_DIR)/minimap_grid.c \
 			$(RENDER_MINIMAP_DIR)/minimap_player.c \
+			$(RENDER_MINIMAP_DIR)/minimap_door.c \
 			$(RENDER_MINIMAP_DIR)/minimap.c \
 			\
 			$(RENDER_SPRITE_DIR)/sprite_animation.c \
@@ -103,7 +107,10 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(RENDER_UTILS_DIR)/draw_primitives.c \
 			$(RENDER_UTILS_DIR)/pixel_utils.c \
 			$(RENDER_UTILS_DIR)/render_utils.c \
-
+			\
+			$(RENDER_DOOR_DIR)/door_animation.c \
+			$(RENDER_DOOR_DIR)/door_render.c \
+			$(RENDER_DOOR_DIR)/door_cast_ray.c \
 
 
 OBJ_FILES = $(SRC_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

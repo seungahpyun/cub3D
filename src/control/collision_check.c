@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/22 09:04:17 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/10 14:39:42 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/10 15:18:27 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static bool	is_walkable_cell(t_game *game, int map_x, int map_y)
 		return (false);
 	if (game->map.grid[map_y][map_x] == 'D')
 	{
-		if (game->map.door_states[map_y][map_x] != DOOR_OPEN)
+		if (game->map.doors[map_y][map_x].state != DOOR_OPEN)
 			return (false);
 	}
 	return (true);

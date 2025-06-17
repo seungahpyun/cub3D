@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/19 10:25:15 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/06 20:43:25 by seungah       ########   odam.nl         */
+/*   Updated: 2025/06/17 10:32:41 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,11 @@ void	init_map(t_map *map)
 	int	i;
 
 	map->grid = NULL;
-	map->door_states = NULL;
-	map->door_openness = NULL;
+	map->doors = NULL;
 	map->width = 0;
 	map->height = 0;
 	map->sprite_count = 0;
+	map->contains_door = false;
 	i = 0;
 	while (i < MAX_SPRITES)
 	{

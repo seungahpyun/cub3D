@@ -6,7 +6,7 @@
 /*   By: spyun <spyun@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/20 14:58:06 by spyun         #+#    #+#                 */
-/*   Updated: 2025/06/10 09:24:08 by spyun         ########   odam.nl         */
+/*   Updated: 2025/06/17 11:43:02 by jsong         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,26 +39,6 @@ int	parse_map_content(t_game *game, int fd, int ret)
 	return (ret);
 }
 
-bool	map_contains_door(t_map *map)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	while (x < map->width)
-	{
-		y = 0;
-		while (y < map->height)
-		{
-			if (is_valid_map_coord(map, x, y) && map->grid[y][x] == 'D')
-				return (true);
-			y++;
-		}
-		x++;
-	}
-	return (false);
-}
-
 bool	map_contains_animated_sprites(t_map *map)
 {
 	int	i;
@@ -77,12 +57,13 @@ bool	map_contains_animated_sprites(t_map *map)
 
 static bool	validate_map_consistency(t_asset *asset, t_map *map)
 {
-	if (map_contains_door(map) && asset->door_path == NULL)
+	map->contains_door = map_contains_door(map);
+	if (map->contains_door && asset->door_path == NULL)
 	{
 		ft_putendl_fd("Error: Map contains doors but missing Door texture.", 2);
 		return (false);
 	}
-	if (!map_contains_door(map) && asset->door_path != NULL)
+	if (!map->contains_door && asset->door_path != NULL)
 		ft_putendl_fd("Warning: Door texture specified but no doors in map", 2);
 	if (map_contains_animated_sprites(map)
 		&& !validate_animated_sprite_config(&asset->animated_sprite))
