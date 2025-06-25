@@ -1,16 +1,4 @@
-# cub3D - My First RayCaster with miniLibX
-
-## 📋 Table of Contents
-- [Project Overview](#project-overview)
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Map Configuration](#map-configuration)
-- [Controls](#controls)
-- [Bonus Features](#bonus-features)
-- [Project Structure](#project-structure)
-- [Technical Implementation](#technical-implementation)
-- [Team](#team)
+# cub3D
 
 ## 🎮 Project Overview
 
